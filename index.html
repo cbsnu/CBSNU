@@ -1,66 +1,510 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSN-U | Cross Border Study Network University</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #8B0000;
-            color: white;
-            padding: 20px 0;
-        }
-        header img {
-            max-height: 100px;
-        }
-        nav {
-            background: #333;
-            padding: 10px 0;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-        }
-        footer {
-            background-color: #222;
-            color: white;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CBSNU - Cross Border Study Network University</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f9fc;
+      color: #1a2a3a;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #067bc2;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #045a8d;
+    }
+    header {
+      background: #023e8a;
+      color: #fff;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    nav {
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    nav a:hover, nav a.active {
+      background: #0096c7;
+      color: #fff;
+    }
+    main {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    h2.section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      color: #023e8a;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      border-bottom: 3px solid #0096c7;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    /* Mission */
+    #mission {
+      background: #caf0f8;
+      padding: 2rem 1rem;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 12px rgba(0,123,255,0.15);
+    }
+    /* University Programs */
+    #programs .program-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    #programs .program {
+      background: #fff;
+      padding: 1.4rem 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    #programs .program:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+    #programs .program h3 {
+      color: #0077b6;
+      margin-bottom: 0.6rem;
+      font-weight: 700;
+    }
+    #programs .program p {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    /* Testimonials */
+    #testimonials {
+      background: #dff6ff;
+      padding: 2rem 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0,123,255,0.1);
+    }
+    #testimonials .testimonial-list {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.6rem;
+      padding-bottom: 0.5rem;
+      scroll-behavior: smooth;
+    }
+    #testimonials .testimonial {
+      min-width: 300px;
+      background: #023e8a;
+      color: #fff;
+      padding: 1.6rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 62, 138, 0.2);
+      flex-shrink: 0;
+      font-style: italic;
+      line-height: 1.4;
+      position: relative;
+    }
+    #testimonials .testimonial::before {
+      content: '“';
+      font-size: 3rem;
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      opacity: 0.2;
+      font-weight: 700;
+      font-family: serif;
+    }
+    #testimonials .testimonial-footer {
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 700;
+      text-align: right;
+      color: #ade8f4;
+    }
+    /* Partnerships */
+    #partnerships .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      align-items: center;
+    }
+    #partnerships .partner {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+      text-align: center;
+      cursor: default;
+    }
+    #partnerships .partner:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+    }
+    #partnerships .partner img {
+      max-width: 100px;
+      max-height: 60px;
+      object-fit: contain;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+    }
+    #partnerships .partner-name {
+      font-weight: 700;
+      color: #023e8a;
+      font-size: 1.1rem;
+    }
+    /* Blog */
+    #blog {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    #blog .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    #blog article {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      padding: 1.6rem 1.4rem;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+    #blog article:hover {
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    #blog article h3 {
+      font-weight: 700;
+      color: #0077b6;
+      margin-bottom: 0.6rem;
+    }
+    #blog article p {
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.5;
+      max-height: 3.6em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    /* Expand blog content */
+    #blog article.expanded p {
+      max-height: none;
+      overflow: visible;
+    }
+    /* Footer */
+    footer {
+      background: #023e8a;
+      color: #aed9e0;
+      text-align: center;
+      padding: 1.8rem 1rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.02rem;
+      margin-top: 3rem;
+    }
+    footer a {
+      color: #80ced6;
+      margin: 0 0.4rem;
+      font-weight: 600;
+    }
+    footer a:hover {
+      color: #b4e0ff;
+    }
+    /* Responsive navigation for smaller screens */
+    @media (max-width: 720px) {
+      nav {
+        flex-direction: column;
+        background: #0353a4;
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 220px;
+        height: calc(100% - 60px);
+        padding: 1rem;
+        transition: right 0.3s ease;
+        border-radius: 0 0 0 10px;
+        box-shadow: 0 3px 18px rgba(0,0,0,0.3);
+      }
+      nav.active {
+        right: 0;
+      }
+      nav a {
+        padding: 1rem;
+        font-size: 1.1rem;
+        border-radius: 6px;
+        display: block;
+      }
+      header .menu-toggle {
+        cursor: pointer;
+        user-select: none;
+        font-size: 1.8rem;
+        color: #fff;
+        display: block;
+      }
+    }
+    @media (min-width: 721px) {
+      header .menu-toggle {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="CBSN-U Logo">
-        <h1>CBSN-U</h1>
-        <p>Cross Border Study Network University</p>
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Courses</a>
-        <a href="#">Contact</a>
-    </nav>
-    <section>
-        <h2>Welcome to CBSN-U</h2>
-        <p>Founded by Rittik Raj, our mission is to empower students globally through cross-border educational excellence.</p>
+  <header>
+    <div class="container">
+      <h1>CBSNU</h1>
+      <nav id="nav-menu">
+        <a href="#mission" class="active">Mission</a>
+        <a href="#programs">Programs</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#partnerships">Partnerships</a>
+        <a href="#blog">Blog</a>
+      </nav>
+      <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="mission">
+      <h2 class="section-title">Our Mission</h2>
+      <p>
+        At Cross Border Study Network University (CBSNU), our mission is to break down educational barriers by facilitating cross-border educational opportunities for students around the globe. We strive to foster innovation, cultural exchange, and academic excellence by connecting brilliant minds across countries and continents.
+      </p>
     </section>
-    <footer>
-        <p>&copy; 2025 CBSN-U. All rights reserved.</p>
-    </footer>
+
+    <section id="programs">
+      <h2 class="section-title">University Programs</h2>
+      <div class="program-list">
+        <div class="program">
+          <h3>Global Exchange Program</h3>
+          <p>
+            Offers students the chance to study semesters at partner universities worldwide, gaining diverse academic and cultural experiences.
+          </p>
+        </div>
+        <div class="program">
+          <h3>International Dual Degree</h3>
+          <p>
+            Earn degrees from two reputed universities located in different countries, prepared for a global career.
+          </p>
+        </div>
+        <div class="program">
+          <h3>Cross-border Online Courses</h3>
+          <p>
+            Learn from top professors across the world remotely with interactive courses tailored for global learners.
+          </p>
+        </div>
+        <div class="program">
+          <h3>Language Immersion Programs</h3>
+          <p>
+            Enhance your language skills and cultural understanding through immersive study opportunities abroad.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2 class="section-title">Student Testimonials</h2>
+      <div class="testimonial-list" aria-label="Student testimonials carousel">
+        <div class="testimonial" tabindex="0">
+          <p>
+            Thanks to CBSNU, I had the opportunity to study in three different countries and truly expand my horizons. The cross-border network opened doors I never imagined!
+          </p>
+          <div class="testimonial-footer">– Aisha M., Global Exchange Participant</div>
+        </div>
+        <div class="testimonial" tabindex="0">
+          <p>
+            The dual degree program helped me gain expertise in two education systems and gave me a competitive edge in the job market. Highly recommend CBSNU!
+          </p>
+          <div class="testimonial-footer">– Luis R., Dual Degree Graduate</div>
+        </div>
+        <div class="testimonial" tabindex="0">
+          <p>
+            CBSNU's online courses allowed me to learn from professors worldwide while staying in my home country — a perfect blend of flexibility and quality education.
+          </p>
+          <div class="testimonial-footer">– Mei Ling, Online Student</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partnerships">
+      <h2 class="section-title">International Partnerships</h2>
+      <div class="partners-grid">
+        <div class="partner" title="University of Cambridge">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/University_of_Cambridge_coat_of_arms.svg/120px-University_of_Cambridge_coat_of_arms.svg.png" alt="University of Cambridge logo" />
+          <div class="partner-name">University of Cambridge</div>
+        </div>
+        <div class="partner" title="University of Tokyo">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/64/University_of_Tokyo_Logo.svg/120px-University_of_Tokyo_Logo.svg.png" alt="University of Tokyo logo" />
+          <div class="partner-name">University of Tokyo</div>
+        </div>
+        <div class="partner" title="University of Melbourne">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/29/University_of_Melbourne_coat_of_arms.svg/120px-University_of_Melbourne_coat_of_arms.svg.png" alt="University of Melbourne logo" />
+          <div class="partner-name">University of Melbourne</div>
+        </div>
+        <div class="partner" title="McGill University">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1e/McGill_University_coat_of_arms.svg/120px-McGill_University_coat_of_arms.svg.png" alt="McGill University logo" />
+          <div class="partner-name">McGill University</div>
+        </div>
+        <div class="partner" title="ETH Zurich">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/ea/ETH_Zürich_logo.svg/120px-ETH_Zürich_logo.svg.png" alt="ETH Zurich logo" />
+          <div class="partner-name">ETH Zurich</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog">
+      <h2 class="section-title">Study Abroad Advice Blog</h2>
+      <div class="blog-list" aria-label="Blog posts with study abroad advice">
+        <article tabindex="0">
+          <h3>5 Tips to Prepare for Your First Semester Abroad</h3>
+          <p>
+            Studying abroad is exciting but can be overwhelming. Learn how to make your transition smooth with practical tips about packing, culture shock, and academic readiness...
+          </p>
+        </article>
+        <article tabindex="0">
+          <h3>How to Choose the Right International Program for You</h3>
+          <p>
+            From exchange programs to dual degrees, find out what factors to consider to pick the perfect opportunity that aligns with your personal and academic goals...
+          </p>
+        </article>
+        <article tabindex="0">
+          <h3>Financing Your International Education: Scholarships & Budgeting</h3>
+          <p>
+            Studying abroad can be affordable if you know where to look for scholarships and how to plan your finances effectively. Read on for strategic advice...
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 Cross Border Study Network University</p>
+    <p>
+      Connect with us:
+      <a href="#" aria-label="Facebook">Facebook</a> |
+      <a href="#" aria-label="Twitter">Twitter</a> |
+      <a href="#" aria-label="LinkedIn">LinkedIn</a>
+    </p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Smooth scroll active nav link highlight
+    const sections = document.querySelectorAll('main section');
+    const navLinks = document.querySelectorAll('nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Blog articles expand/collapse on click
+    const blogArticles = document.querySelectorAll('#blog article');
+    blogArticles.forEach(article => {
+      article.addEventListener('click', () => {
+        article.classList.toggle('expanded');
+      });
+      // Allow keyboard users to expand via enter key
+      article.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          article.classList.toggle('expanded');
+        }
+      });
+    });
+
+    // Testimonials horizontal scroll enhancement
+    const testimonialList = document.querySelector('.testimonial-list');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    testimonialList.addEventListener('mousedown', (e) => {
+      isDown = true;
+      testimonialList.classList.add('active');
+      startX = e.pageX - testimonialList.offsetLeft;
+      scrollLeft = testimonialList.scrollLeft;
+    });
+    testimonialList.addEventListener('mouseleave', () => {
+      isDown = false;
+      testimonialList.classList.remove('active');
+    });
+    testimonialList.addEventListener('mouseup', () => {
+      isDown = false;
+      testimonialList.classList.remove('active');
+    });
+    testimonialList.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - testimonialList.offsetLeft;
+      const walk = (x - startX) * 2; //scroll-fast
+      testimonialList.scrollLeft = scrollLeft - walk;
+    });
+  </script>
 </body>
 </html>
+

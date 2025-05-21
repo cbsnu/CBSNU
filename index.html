@@ -1,77 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CBSN-U | Learn Anywhere</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="font-sans text-gray-800">
+import React from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Courses from "./components/Courses";
+import Educators from "./components/Educators";
+import Footer from "./components/Footer";
 
-  <!-- Navbar -->
-  <nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-blue-600">CBSN-U</h1>
-    <div class="space-x-4 text-sm">
-      <a href="#courses" class="hover:text-blue-600">Courses</a>
-      <a href="#educators" class="hover:text-blue-600">Faculties</a>
-      <a href="#scholarships" class="hover:text-blue-600">Scholarships</a>
-      <a href="#examinations" class="hover:text-blue-600">Examinations</a>
-      <a href="#contact" class="hover:text-blue-600">Contact</a>
+function App() {
+  return (
+    <div className="font-sans">
+      <Navbar />
+      <Hero />
+      <Courses />
+      <Educators />
+      <Footer />
     </div>
-  </nav>
+  );
+}
 
-  <!-- Hero -->
-  <section class="bg-blue-700 text-white text-center py-20">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">Learn Anytime, Anywhere with CBSN-U</h2>
-    <p class="text-lg mb-6 max-w-2xl mx-auto">
-      Top educators, scholarships, and structured courses for your success.
-    </p>
-    <div class="space-x-4">
-      <a href="#login" class="bg-white text-blue-700 font-bold px-6 py-3 rounded-xl">Login</a>
-      <a href="#register" class="border border-white text-white font-bold px-6 py-3 rounded-xl">Register</a>
-    </div>
-  </section>
+export default App;
 
-  <!-- Courses Section -->
-  <section id="courses" class="py-16 px-6 md:px-20 bg-gray-50">
-    <h2 class="text-3xl font-bold text-center mb-10">Top Courses</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="p-6 rounded-xl shadow-md bg-white border-t-4 border-blue-500">
-        <h3 class="text-xl font-bold mb-2">UPSC Preparation</h3>
-        <p class="text-gray-600">Mentorship by experts</p>
-      </div>
-      <div class="p-6 rounded-xl shadow-md bg-white border-t-4 border-green-500">
-        <h3 class="text-xl font-bold mb-2">NEET Coaching</h3>
-        <p class="text-gray-600">Best support for medical aspirants</p>
-      </div>
-      <div class="p-6 rounded-xl shadow-md bg-white border-t-4 border-yellow-500">
-        <h3 class="text-xl font-bold mb-2">IIT-JEE</h3>
-        <p class="text-gray-600">Engineering preparation made easy</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- Faculties Section -->
-  <section id="educators" class="py-16 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold text-center mb-10">Our Faculties</h2>
-    <div class="grid md:grid-cols-3 gap-8 text-center">
-      <div class="p-6 rounded-xl border shadow-sm">
-        <img src="https://via.placeholder.com/150" alt="Educator 1" class="rounded-full w-24 h-24 mx-auto mb-4"/>
-        <h4 class="text-xl font-semibold">Dr. A. Sharma</h4>
-        <p class="text-gray-500">UPSC Expert</p>
+import React from "react";
+
+const Navbar = () => {
+  return (
+    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+      <h1 className="text-2xl font-bold text-blue-600">CBSN-U</h1>
+      <div className="space-x-6 text-sm">
+        <a href="#courses" className="hover:text-blue-600">Courses</a>
+        <a href="#educators" className="hover:text-blue-600">Educators</a>
+        <button className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+        <button className="border border-blue-600 text-blue-600 px-4 py-2 rounded">Sign Up</button>
       </div>
-      <div class="p-6 rounded-xl border shadow-sm">
-        <img src="https://via.placeholder.com/150" alt="Educator 2" class="rounded-full w-24 h-24 mx-auto mb-4"/>
-        <h4 class="text-xl font-semibold">Prof. B. Verma</h4>
-        <p class="text-gray-500">IIT-JEE Faculty</p>
+    </nav>
+  );
+};
+
+export default Navbar;
+import React from "react";
+
+const Hero = () => {
+  return (
+    <section className="bg-blue-700 text-white text-center py-20">
+      <h2 className="text-4xl md:text-5xl font-bold mb-4">Learn Anytime, Anywhere with CBSN-U</h2>
+      <p className="text-lg mb-6 max-w-2xl mx-auto">
+        Access top educators, live sessions, and practice materials across subjects and exams.
+      </p>
+      <button className="bg-white text-blue-700 font-bold px-6 py-3 rounded-xl">
+        Explore Courses
+      </button>
+    </section>
+  );
+};
+
+export default Hero;
+
+import React from "react";
+
+const courseList = [
+  { title: "UPSC Preparation", description: "Guidance from top mentors", color: "blue" },
+  { title: "NEET Coaching", description: "Crack NEET with expert help", color: "green" },
+  { title: "IIT-JEE", description: "Engineering entrance support", color: "orange" },
+];
+
+const Courses = () => {
+  return (
+    <section id="courses" className="py-16 px-6 md:px-20 bg-gray-50">
+      <h2 className="text-3xl font-bold text-center mb-10">Our Top Courses</h2>
+      <div className="grid md:grid-cols-3 gap-6">
+        {courseList.map((course, index) => (
+          <div key={index} className={`p-6 rounded-xl shadow-md bg-white border-t-4 border-${course.color}-500`}>
+            <h3 className="text-xl font-bold mb-2">{course.title}</h3>
+            <p className="text-gray-600">{course.description}</p>
+          </div>
+        ))}
       </div>
-      <div class="p-6 rounded-xl border shadow-sm">
-        <img src="https://via.placeholder.com/150" alt="Educator 3" class="rounded-full w-24 h-24 mx-auto mb-4"/>
-        <h4 class="text-xl font-semibold">Ms. C. Gupta</h4>
-        <p class="text-gray-500">NEET Specialist</p>
+    </section>
+  );
+};
+
+export default Courses;
+
+
+ import React from "react";
+
+const educatorList = [
+  { name: "Dr. A. Sharma", subject: "UPSC", image: "https://via.placeholder.com/150" },
+  { name: "Prof. B. Verma", subject: "IIT-JEE", image: "https://via.placeholder.com/150" },
+  { name: "Ms. C. Gupta", subject: "NEET", image: "https://via.placeholder.com/150" },
+];
+
+const Educators = () => {
+  return (
+    <section id="educators" className="py-16 px-6 md:px-20 bg-white">
+      <h2 className="text-3xl font-bold text-center mb-10">Meet Our Educators</h2>
+      <div className="grid md:grid-cols-3 gap-8 text-center">
+        {educatorList.map((ed, index) => (
+          <div key={index} className="p-6 rounded-xl border shadow-sm">
+            <img
+              src={ed.image}
+              alt={ed.name}
+              className="rounded-full w-24 h-24 mx-auto mb-4"
+            />
+            <h4 className="text-xl font-semibold">{ed.name}</h4>
+            <p className="text-gray-500">{ed.subject} Expert</p>
+          </div>
+        ))}
       </div>
-    </div>
-  </section>
+    </section>
+  );
+};
+
+export default Educators;
+
 
   <!-- Scholarships Section -->
   <section id="scholarships" class="py-16 px-6 md:px-20 bg-gray-50">
@@ -123,10 +165,18 @@
     <p>Founder & CEO: <strong>Rittik Raj</strong></p>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-6 mt-10 text-sm">
-    © 2025 CBSN-U. All Rights Reserved. | Powered by Shivansh Academy
-  </footer>
+  import React from "react";
+
+const Footer = () => {
+  return (
+    <footer className="bg-gray-900 text-white text-center py-6 mt-10 text-sm">
+      © 2025 CBSN-U. All Rights Reserved.
+    </footer>
+  );
+};
+
+export default Footer;
+
 
 </body>
 </html>

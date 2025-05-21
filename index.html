@@ -1,182 +1,588 @@
 <!DOCTYPE html>
-import React from "react";
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Courses from "./components/Courses";
-import Educators from "./components/Educators";
-import Footer from "./components/Footer";
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSN-U: Cross Border Study Network University</title>
+    <!--
+        CSS File: style.css
+        This links your main stylesheet. Make sure 'style.css' is in a folder named 'css'
+        in the same directory as this 'index.html' file.
+    -->
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!--
+        Favicon: favicon.ico
+        This is the small icon that appears in the browser tab.
+        Place your actual favicon.ico file in the 'images' folder.
+    -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
 
-function App() {
-  return (
-    <div className="font-sans">
-      <Navbar />
-      <Hero />
-      <Courses />
-      <Educators />
-      <Footer />
-    </div>
-  );
-}
+    <header>
+        <div class="container">
+            <div class="logo">
+                <!--
+                    Your Logo: cbsnu_logo.png
+                    Replace 'cbsnu_logo.png' with the actual filename of your logo.
+                    Place your logo image file in the 'images' folder.
+                    The placeholder image below is 150x50 pixels.
+                -->
+                <img src="https://placehold.co/150x50/004080/FFFFFF?text=CBSN-U+Logo" alt="CBSN-U Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#facilities">Our Facilities</a></li> <li><a href="#scholarships">Scholarships</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#blog">Resources</a></li> </ul>
+            </nav>
+        </div>
+    </header>
 
-export default App;
-
-
-import React from "react";
-
-const Navbar = () => {
-  return (
-    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-      <h1 className="text-2xl font-bold text-blue-600">CBSN-U</h1>
-      <div className="space-x-6 text-sm">
-        <a href="#courses" className="hover:text-blue-600">Courses</a>
-        <a href="#educators" className="hover:text-blue-600">Educators</a>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
-        <button className="border border-blue-600 text-blue-600 px-4 py-2 rounded">Sign Up</button>
-      </div>
-    </nav>
-  );
-};
-
-export default Navbar;
-import React from "react";
-
-const Hero = () => {
-  return (
-    <section className="bg-blue-700 text-white text-center py-20">
-      <h2 className="text-4xl md:text-5xl font-bold mb-4">Learn Anytime, Anywhere with CBSN-U</h2>
-      <p className="text-lg mb-6 max-w-2xl mx-auto">
-        Access top educators, live sessions, and practice materials across subjects and exams.
-      </p>
-      <button className="bg-white text-blue-700 font-bold px-6 py-3 rounded-xl">
-        Explore Courses
-      </button>
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Empowering Education for the Middle Class</h1>
+            <p>Providing the best study materials, progress reports, and scholarship opportunities.</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
     </section>
-  );
-};
 
-export default Hero;
-
-import React from "react";
-
-const courseList = [
-  { title: "UPSC Preparation", description: "Guidance from top mentors", color: "blue" },
-  { title: "NEET Coaching", description: "Crack NEET with expert help", color: "green" },
-  { title: "IIT-JEE", description: "Engineering entrance support", color: "orange" },
-];
-
-const Courses = () => {
-  return (
-    <section id="courses" className="py-16 px-6 md:px-20 bg-gray-50">
-      <h2 className="text-3xl font-bold text-center mb-10">Our Top Courses</h2>
-      <div className="grid md:grid-cols-3 gap-6">
-        {courseList.map((course, index) => (
-          <div key={index} className={`p-6 rounded-xl shadow-md bg-white border-t-4 border-${course.color}-500`}>
-            <h3 className="text-xl font-bold mb-2">{course.title}</h3>
-            <p className="text-gray-600">{course.description}</p>
-          </div>
-        ))}
-      </div>
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About CBSN-U</h2>
+            <!--
+                About Us Content:
+                Replace this placeholder text with your actual About Us content.
+            -->
+            <p>At Cross Border Study Network University (CBSN-U), our mission is to revolutionize the educational landscape for middle-class families. We believe in providing accessible, high-quality exam environments and education, alongside deserving scholarships for talented students.</p>
+            <p>Our commitment extends to fostering a transparent and supportive learning journey, ensuring students achieve their full potential. We are a dynamic service provider, continuously upgrading our offerings to meet the evolving demands of education.</p>
+        </div>
     </section>
-  );
-};
 
-export default Courses;
-
-
- import React from "react";
-
-const educatorList = [
-  { name: "Dr. A. Sharma", subject: "UPSC", image: "https://via.placeholder.com/150" },
-  { name: "Prof. B. Verma", subject: "IIT-JEE", image: "https://via.placeholder.com/150" },
-  { name: "Ms. C. Gupta", subject: "NEET", image: "https://via.placeholder.com/150" },
-];
-
-const Educators = () => {
-  return (
-    <section id="educators" className="py-16 px-6 md:px-20 bg-white">
-      <h2 className="text-3xl font-bold text-center mb-10">Meet Our Educators</h2>
-      <div className="grid md:grid-cols-3 gap-8 text-center">
-        {educatorList.map((ed, index) => (
-          <div key={index} className="p-6 rounded-xl border shadow-sm">
-            <img
-              src={ed.image}
-              alt={ed.name}
-              className="rounded-full w-24 h-24 mx-auto mb-4"
-            />
-            <h4 className="text-xl font-semibold">{ed.name}</h4>
-            <p className="text-gray-500">{ed.subject} Expert</p>
-          </div>
-        ))}
-      </div>
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <!--
+                        Service Image: service_materials.jpg
+                        Replace this placeholder URL with the path to your actual image for study materials.
+                        Example: 'images/your_study_materials_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/300x200/0056b3/FFFFFF?text=Study+Materials" alt="Best Study Materials">
+                    <h3>Best Study Materials</h3>
+                    <p>Access meticulously crafted study materials designed to cover all curriculum aspects and enhance understanding, tailored for students up to 12th grade.</p>
+                </div>
+                <div class="service-item">
+                    <!--
+                        Service Image: service_progress.jpg
+                        Replace this placeholder URL with the path to your actual image for progress reports.
+                        Example: 'images/your_progress_report_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/300x200/0056b3/FFFFFF?text=Progress+Reports" alt="Student Progress Reports">
+                    <h3>Detailed Progress Reports</h3>
+                    <p>Parents and institutions receive comprehensive reports tracking student performance, strengths, and areas for improvement, ensuring transparency and targeted support.</p>
+                </div>
+                <div class="service-item">
+                    <!--
+                        Service Image: service_exams.jpg
+                        Replace this placeholder URL with the path to your actual image for exam environment.
+                        Example: 'images/your_exam_environment_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/300x200/0056b3/FFFFFF?text=Exam+Environment" alt="Optimized Exam Environment">
+                    <h3>Optimized Exam Environment</h3>
+                    <p>We help establish conducive and fair exam environments that reduce stress and promote accurate assessment for all students.</p>
+                </div>
+                <div class="service-item">
+                    <!--
+                        Service Image: service_institution.jpg
+                        Replace this placeholder URL with the path to your actual image for institution support.
+                        Example: 'images/your_institution_support_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/300x200/0056b3/FFFFFF?text=Institution+Support" alt="Support for Institutions">
+                    <h3>Support for Institutions</h3>
+                    <p>Dedicated resources and collaboration tools for coaching institutions and schools to streamline their educational processes and enhance student outcomes.</p>
+                </div>
+            </div>
+        </div>
     </section>
-  );
-};
 
-export default Educators;
+    <section id="facilities" class="facilities">
+        <div class="container">
+            <h2>Our Facilities</h2>
+            <p>At CBSN-U, we believe a conducive learning environment is key to success. Our facilities are designed to support comprehensive education and effective exam preparation.</p>
+            <div class="facility-grid">
+                <div class="facility-item">
+                    <!--
+                        Facility Image: facility_classroom.jpg
+                        Replace this placeholder URL with the path to your actual image of a classroom.
+                        Example: 'images/your_classroom_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/400x250/007bff/FFFFFF?text=Modern+Classrooms" alt="Modern Classrooms">
+                    <h3>Modern Classrooms</h3>
+                    <p>Spacious and well-equipped classrooms designed for interactive learning and focused study.</p>
+                </div>
+                <div class="facility-item">
+                    <!--
+                        Facility Image: facility_library.jpg
+                        Replace this placeholder URL with the path to your actual image of a library/resource center.
+                        Example: 'images/your_library_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/400x250/007bff/FFFFFF?text=Resource+Center" alt="Resource Center">
+                    <h3>Comprehensive Resource Center</h3>
+                    <p>A rich collection of books, digital resources, and quiet study areas for in-depth research and self-study.</p>
+                </div>
+                <div class="facility-item">
+                    <!--
+                        Facility Image: facility_lab.jpg
+                        Replace this placeholder URL with the path to your actual image of a lab (if applicable).
+                        Example: 'images/your_lab_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/400x250/007bff/FFFFFF?text=Computer+Labs" alt="Computer Labs">
+                    <h3>Advanced Computer Labs</h3>
+                    <p>State-of-the-art computer labs with high-speed internet for online exams and digital learning.</p>
+                </div>
+                <div class="facility-item">
+                    <!--
+                        Facility Image: facility_counseling.jpg
+                        Replace this placeholder URL with the path to your actual image of a counseling area.
+                        Example: 'images/your_counseling_photo.jpg'
+                    -->
+                    <img src="https://placehold.co/400x250/007bff/FFFFFF?text=Counseling+Area" alt="Counseling Area">
+                    <h3>Dedicated Counseling Area</h3>
+                    <p>Private spaces for student and parent counseling, offering personalized guidance and support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="scholarships" class="scholarships">
+        <div class="container">
+            <h2>Scholarships for Deserving Students</h2>
+            <!--
+                Scholarship Content:
+                Replace this placeholder text with details about your scholarship program.
+            -->
+            <p>CBSN-U is dedicated to identifying and supporting bright minds. Our scholarship programs are designed to provide financial aid and resources to students who demonstrate academic merit and genuine need, ensuring that financial constraints do not hinder their educational journey.</p>
+            <p>Learn more about our scholarship criteria and application process.</p>
+            <a href="#" class="btn">Apply for Scholarship</a>
+            <!--
+                Developer Note: This "Apply for Scholarship" button currently links to '#'.
+                You will need to create a dedicated page (e.g., 'scholarship-application.html')
+                or a detailed section on this page that explains the application process.
+            -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p>Interested in partnering with CBSN-U or learning more about our services?</p>
+            <p>Fill out our inquiry form below:</p>
+            <!--
+                JotForm Embed:
+                This iframe embeds your JotForm directly into the page.
+                Ensure the 'src' attribute points to your exact JotForm URL.
+            -->
+            <iframe src="https://form.jotform.com/251035593326455" frameborder="0" width="100%" height="700px"></iframe>
+            <p>Or reach us directly via:</p>
+            <p>Email: <a href="mailto:info@cbsnu.live">info@cbsnu.live</a></p>
+            <!--
+                Phone Number:
+                Replace 'XXXXXXXXXX' with your actual phone number.
+            -->
+            <p>Phone: +91 XXXXXXXXXX</p>
+            </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="container">
+            <h2>Our Resources & Blog</h2>
+            <!--
+                Blog/Resources Content:
+                This section is crucial for your Google AdSense goal.
+                You'll need to regularly add valuable content here (articles, guides, news).
+                Initially, you can add a few placeholder articles or a general description.
+            -->
+            <p>Explore our comprehensive resources and blog for valuable insights into education, exam preparation tips, scholarship guidance, and industry news. We regularly update this section to provide the most relevant information to students, parents, and institutions.</p>
+            <div class="blog-preview-grid">
+                <div class="blog-preview-item">
+                    <img src="https://placehold.co/300x180/6c757d/FFFFFF?text=Article+1" alt="Blog Article Thumbnail">
+                    <h3>The Importance of Early Exam Preparation</h3>
+                    <p>Discover strategies for effective study habits from a young age...</p>
+                    <a href="#" class="btn-small">Read More</a>
+                </div>
+                <div class="blog-preview-item">
+                    <img src="https://placehold.co/300x180/6c757d/FFFFFF?text=Article+2" alt="Blog Article Thumbnail">
+                    <h3>Navigating Scholarship Opportunities</h3>
+                    <p>A guide for students and parents on finding and applying for scholarships...</p>
+                    <a href="#" class="btn-small">Read More</a>
+                }
+                <div class="blog-preview-item">
+                    <img src="https://placehold.co/300x180/6c757d/FFFFFF?text=Article+3" alt="Blog Article Thumbnail">
+                    <h3>Partnering with Coaching Institutions: A Win-Win</h3>
+                    <p>How CBSN-U collaborates with institutions to enhance student success...</p>
+                    <a href="#" class="btn-small">Read More</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">
+                <a href="#" class="btn">View All Resources</a>
+            </p>
+        </div>
+    </section>
 
 
-  <!-- Scholarships Section -->
-  <section id="scholarships" class="py-16 px-6 md:px-20 bg-gray-50">
-    <h2 class="text-3xl font-bold text-center mb-10">Scholarships</h2>
-    <p class="text-center text-lg mb-6">CBSN-U provides merit-based and need-based scholarships to deserving students.</p>
-    <ul class="text-center list-disc list-inside">
-      <li>100% Scholarship for Top Rankers</li>
-      <li>Early Bird Enrolment Discounts</li>
-      <li>Special Offers for Economically Weaker Sections</li>
-    </ul>
-  </section>
-
-  <!-- Examination Section -->
-  <section id="examinations" class="py-16 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold text-center mb-10">Examinations</h2>
-    <p class="text-center text-lg mb-6">Practice tests and mock exams available for all major courses.</p>
-    <div class="text-center">
-      <button class="bg-blue-600 text-white px-6 py-2 rounded">Take a Mock Test</button>
-    </div>
-  </section>
-
-  <!-- Login Section -->
-  <section id="login" class="py-16 px-6 md:px-20 bg-gray-50">
-    <h2 class="text-3xl font-bold text-center mb-10">Login</h2>
-    <form class="max-w-md mx-auto space-y-4">
-      <input type="email" placeholder="Email" class="w-full p-2 border rounded" required/>
-      <input type="password" placeholder="Password" class="w-full p-2 border rounded" required/>
-      <button class="w-full bg-blue-600 text-white py-2 rounded">Login</button>
-    </form>
-  </section>
-
-  <!-- Register Section -->
-  <section id="register" class="py-16 px-6 md:px-20 bg-white">
-    <h2 class="text-3xl font-bold text-center mb-10">Register</h2>
-    <form class="max-w-md mx-auto space-y-4">
-      <input type="text" placeholder="Full Name" class="w-full p-2 border rounded" required/>
-      <input type="email" placeholder="Email" class="w-full p-2 border rounded" required/>
-      <input type="tel" placeholder="Phone" class="w-full p-2 border rounded" required/>
-      <input type="password" placeholder="Password" class="w-full p-2 border rounded" required/>
-      <button class="w-full bg-blue-600 text-white py-2 rounded">Register</button>
-    </form>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-16 px-6 md:px-20 bg-gray-50 text-center">
-    <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
-    <p>Email: <a href="mailto:cyberhelper231@gmail.com" class="text-blue-600">cyberhelper231@gmail.com</a></p>
-    <p>Phone: <a href="tel:8709547748" class="text-blue-600">8709547748</a></p>
-    <p>Founder & CEO: <strong>Rittik Raj</strong></p>
-  </section>
-
-  import React from "react";
-
-const Footer = () => {
-  return (
-    <footer className="bg-gray-900 text-white text-center py-6 mt-10 text-sm">
-      © 2025 CBSN-U. All Rights Reserved.
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CBSN-U. All rights reserved.</p>
+            <div class="footer-links">
+                <!--
+                    Legal Links:
+                    Replace '#' with actual links to your Privacy Policy and Terms of Service pages.
+                -->
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                </div>
+        </div>
     </footer>
-  );
-};
 
-export default Footer;
-
-
+    <!--
+        JavaScript File: script.js
+        This links your main JavaScript file. Place 'script.js' in a folder named 'js'
+        in the same directory as this 'index.html' file.
+        It's placed at the end of the body for better page loading performance.
+    -->
+    <script src="js/script.js"></script>
 </body>
 </html>
+```
+```css
+/* CSS File: style.css */
+/* Upload this file to your 'css' folder on the server */
+
+/* Basic Reset & Body Styles */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px; /* Limit max width for large screens */
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Header & Navigation */
+header {
+    background: #004080; /* Dark blue for header */
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: 3px solid #0056b3;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.logo img {
+    height: 50px; /* Adjust logo size */
+    border-radius: 5px; /* Slightly rounded corners for logo */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap; /* Allow navigation items to wrap */
+    justify-content: center; /* Center nav items when wrapped */
+}
+
+nav ul li {
+    margin-left: 20px;
+    margin-bottom: 5px; /* Add some space when wrapping */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0056b3; /* Slightly lighter blue on hover */
+    color: #ffd700; /* Gold text on hover */
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #0056b3, #004080); /* Gradient blue */
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden; /* Ensure gradient is contained */
+    border-radius: 10px; /* Rounded corners for hero */
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero p {
+    font-size: 1.3em;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    background: #ffd700; /* Gold button */
+    color: #004080;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 8px; /* More rounded corners */
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+    background: #e6c200;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.btn-small { /* For blog read more buttons */
+    padding: 8px 15px;
+    font-size: 0.9em;
+    border-radius: 5px;
+}
+
+/* General Section Styling */
+section {
+    padding: 60px 0;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Rounded corners for sections */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 20px auto; /* Center sections and add space */
+}
+
+section:nth-child(even) { /* Alternate background for readability */
+    background-color: #f8f8f8;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #004080;
+    font-size: 2.8em;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+section h2::after { /* Underline effect for headings */
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #ffd700; /* Gold underline */
+    border-radius: 2px;
+}
+
+/* Services Section */
+.service-grid, .facility-grid, .blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.service-item, .facility-item, .blog-preview-item {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribute space */
+}
+
+.service-item:hover, .facility-item:hover, .blog-preview-item:hover {
+    transform: translateY(-8px); /* More pronounced lift */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.service-item img, .facility-item img, .blog-preview-item img {
+    max-width: 100%;
+    height: 180px; /* Slightly larger fixed height for consistency */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.service-item h3, .facility-item h3, .blog-preview-item h3 {
+    color: #0056b3;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+}
+
+.blog-preview-item p {
+    font-size: 0.95em;
+    color: #555;
+    flex-grow: 1; /* Allow paragraph to take available space */
+}
+
+/* Contact Section (for JotForm embed) */
+.contact iframe {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contact p {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+.contact a {
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+.contact a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: #004080;
+    color: #fff;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 30px;
+    border-top: 3px solid #0056b3;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    header .container {
+        flex-direction: column;
+        align-items: flex-start; /* Align logo to left */
+    }
+
+    nav ul {
+        flex-direction: column;
+        margin-top: 15px;
+        width: 100%; /* Make nav full width */
+        align-items: flex-start; /* Align nav items to left */
+    }
+
+    nav ul li {
+        margin: 5px 0;
+        width: 100%; /* Full width for clickable area */
+    }
+    nav ul li a {
+        display: block; /* Make links block level */
+        padding: 10px;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    section h2 {
+        font-size: 2em;
+    }
+
+    .service-grid, .facility-grid, .blog-preview-grid {
+        grid-template-columns: 1fr; /* Stack items on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+    section h2 {
+        font-size: 1.8em;
+    }
+}
+```
+```javascript
+// JS File: script.js
+// Upload this file to your 'js' folder on the server
+
+// This JavaScript provides smooth scrolling functionality for navigation links.
+// When a user clicks on a navigation link (e.g., "About Us"),
+// the page will smoothly scroll to the corresponding section instead of jumping instantly.
+
+document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        // Prevent the default jump behavior of the anchor link
+        e.preventDefault();
+
+        // Get the target section's ID from the href attribute (e.g., '#about')
+        const targetId = this.getAttribute('href');
+
+        // Find the element on the page with that ID
+        const targetElement = document.querySelector(targetId);
+
+        // Check if the target element exists to prevent errors
+        if (targetElement) {
+            // Scroll to the target element with a smooth animation
+            targetElement.scrollIntoView({
+                behavior: 'smooth' // This makes the scroll animated
+            });
+        }
+    });
+});

@@ -1,1 +1,0 @@
-<div>Scholarship Info</div>

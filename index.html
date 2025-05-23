@@ -465,42 +465,82 @@
     </section>
 
     <!-- Student Registration Portal -->
-    <section id="register" aria-labelledby="register-heading">
-      <h2 id="register-heading">Join CBSNU Today</h2>
-      <form action="https://script.google.com/macros/s/AKfycby4J7K_RrTEb0p3adpV4gjap-G7_p0PCxLk6DrSq_g4utbysfQeY7BNahIktdqZG-Ak/exec" method="POST" aria-describedby="register-description">
-        <p id="register-description">Fill the form below to register and start your education journey with CBSNU.</p>
-        <label for="full-name">Full Name:</label>
-        <input type="text" id="full-name" name="full-name" required autocomplete="name" />
+ <!-- Featured Courses -->
+<section class="featured-courses" aria-labelledby="featured-courses-heading">
+  <h2 id="featured-courses-heading">Featured Courses</h2>
+  <div class="course-list">
+    <article class="course-card" role="article" aria-label="CBSE Class IX English course">
+      <h3>CBSE Class IX English: Language and Literature</h3>
+      <p>Fee: Rs. 1000/month</p>
+      <button onclick="openEnrollForm('CBSE Class IX English')" class="enroll-button" role="button" aria-label="Enroll in CBSE Class IX English course">Enroll Now</button>
+    </article>
+  </div>
+</section>
 
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" required autocomplete="email" />
+<!-- Enrollment Form Modal -->
+<div id="enrollFormModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, 0); background:#fff; padding:20px; box-shadow:0 0 10px rgba(0,0,0,0.5); z-index:1000;">
+  <h3>Enroll Now</h3>
+  <form id="enrollForm">
+    <input type="hidden" id="courseName" name="course" />
+    Name: <input type="text" name="name" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    Phone: <input type="text" name="phone" required><br><br>
+    <button type="submit">Submit</button>
+    <button type="button" onclick="closeEnrollForm()">Cancel</button>
+  </form>
+</div>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required autocomplete="tel" />
+<!-- Testimonials -->
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <h2 id="testimonials-heading">Testimonials</h2>
+  <blockquote>
+    <p>"CBSNU's flexible and global approach has broadened my academic horizons!" <br>– Current Student</p>
+  </blockquote>
+</section>
 
-        <label for="class">Current Class/Grade:</label>
-        <input type="text" id="class" name="class" required />
+<!-- Educators Page -->
+<section id="educators" aria-labelledby="educators-heading">
+  <h2 id="educators-heading">Meet Our Founder & CEO</h2>
+  <article class="educator-profile" role="article" aria-label="Profile of Rittik Raj">
+    <h3>Rittik Raj</h3>
+    <p>Founder & CEO, CBSNU</p>
+    <p>Visionary leader committed to global education and innovation.</p>
+    <p>Contact: <a href="#contact" aria-label="Contact Rittik Raj">Get in touch</a></p>
+  </article>
+</section>
 
-        <label for="course">Course Selection:</label>
-        <select id="course" name="course" required>
-          <option value="cbse-class-ix-english">CBSE Class IX English: Language and Literature - Rs. 1000/month</option>
-          <!-- Add other courses as needed -->
-        </select>
+<script>
+  const formModal = document.getElementById("enrollFormModal");
+  const courseInput = document.getElementById("courseName");
 
-        <label for="password">Set Password:</label>
-        <input type="password" id="password" name="password" required autocomplete="new-password" />
+  function openEnrollForm(course) {
+    courseInput.value = course;
+    formModal.style.display = "block";
+  }
 
-        <label for="confirm-password">Confirm Password:</label>
-        <input type="password" id="confirm-password" name="confirm-password" required autocomplete="new-password" />
+  function closeEnrollForm() {
+    formModal.style.display = "none";
+  }
 
-        <div style="display:flex; align-items:center;">
-          <input type="checkbox" id="terms" name="terms" required aria-required="true" />
-          <label for="terms" style="margin-left:0.5rem;">I agree to the <a href="#terms" tabindex="0">Terms &amp; Conditions</a> and <a href="#privacy" tabindex="0">Privacy Policy</a>.</label>
-        </div>
+  document.getElementById("enrollForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const formData = new FormData(this);
 
-        <button type="submit">Register &amp; Proceed to Payment</button>
-      </form>
-    </section>
+    fetch("YOUR_WEB_APP_URL_HERE", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert("Enrollment successful!");
+      closeEnrollForm();
+    })
+    .catch(error => {
+      alert("Error: " + error);
+    });
+  });
+</script>
+
 
     <!-- Contact Page -->
     <section id="contact" aria-labelledby="contact-heading">

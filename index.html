@@ -82,11 +82,25 @@
 
     document.getElementById("admissionForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const formData = new FormData(this);
-      fetch(scriptURL, { method: "POST", body: formData })
-        .then(response => alert("Admission form submitted!"))
-        .catch(error => alert("Error!"));
-      this.reset();
+      const form = this;
+      const data = new URLSearchParams(new FormData(form));
+
+      fetch(scriptURL, {
+        method: "POST",
+        body: data,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert("Admission form submitted!");
+        form.reset();
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("There was an error submitting the form.");
+      });
     });
 
     document.getElementById("reviewForm").addEventListener("submit", function (e) {

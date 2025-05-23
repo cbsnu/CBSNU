@@ -20,7 +20,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="https://yourlogo.link/here.png" alt="CBSN-U Logo" />
+      <img src="https://chat.openai.com/mnt/data/file-12zBt8novQdRbQv458xWMV" alt="CBSN-U Logo" />
     </div>
     <h1>Cross-Border Study Network University</h1>
     <p>Set Your Limit Beyond the World</p>
@@ -68,10 +68,10 @@
       <option value="admin">Admin</option>
       <option value="parent">Parent</option>
     </select>
-    <input type="text" id="loginUsername" placeholder="Username or Email" />
+    <input type="text" id="loginUsername" placeholder="Username" />
     <input type="password" id="loginPassword" placeholder="Password" />
     <button onclick="handleLogin()">Login</button>
-    <p>Don't have an account? <a href="#" onclick="showSignup(); return false;">Create one</a></p>
+    <p>Don't have an account? <a href="#" onclick="showSignup()">Create one</a></p>
   </section>
 
   <section class="section" id="signup" style="display:none">
@@ -80,7 +80,6 @@
     <input type="email" id="signupEmail" placeholder="Email" />
     <input type="password" id="signupPassword" placeholder="Password" />
     <button onclick="handleSignup()">Sign Up</button>
-    <p>Already have an account? <a href="#" onclick="showLogin(); return false;">Login here</a></p>
   </section>
 
   <section class="section" id="userProfile" style="display:none">
@@ -90,6 +89,9 @@
   </section>
 
   <footer>
+    <div class="logo">
+      <img src="https://chat.openai.com/mnt/data/file-12zBt8novQdRbQv458xWMV" alt="CBSN-U Logo" />
+    </div>
     <p>&copy; 2025 CBSN-U | All Rights Reserved</p>
   </footer>
 
@@ -102,11 +104,6 @@
       const username = document.getElementById("signupUsername").value.trim();
       const email = document.getElementById("signupEmail").value.trim();
       const password = document.getElementById("signupPassword").value;
-
-      if (!username || !email || !password) {
-        alert("Please fill all signup fields.");
-        return;
-      }
 
       if (users.find(u => u.username === username || u.email === email)) {
         alert("Username or email already exists!");
@@ -122,19 +119,13 @@
     function handleLogin() {
       const username = document.getElementById("loginUsername").value.trim();
       const password = document.getElementById("loginPassword").value;
-
-      if (!username || !password) {
-        alert("Please enter username/email and password.");
-        return;
-      }
-
       const user = users.find(u => (u.username === username || u.email === username) && u.password === password);
       if (user) {
-        // Hide main sections
-        ["admission", "review", "gallery", "login", "signup"].forEach(id => {
-          document.getElementById(id).style.display = "none";
-        });
-        // Show profile and set name
+        document.getElementById("admission").style.display = "none";
+        document.getElementById("review").style.display = "none";
+        document.getElementById("gallery").style.display = "none";
+        document.getElementById("login").style.display = "none";
+        document.getElementById("signup").style.display = "none";
         document.getElementById("userProfile").style.display = "block";
         document.getElementById("profileName").innerText = user.username;
       } else {
@@ -143,19 +134,7 @@
     }
 
     function logout() {
-      // Reset all forms and show initial sections
-      ["admission", "review", "gallery", "login"].forEach(id => {
-        document.getElementById(id).style.display = "block";
-      });
-      document.getElementById("signup").style.display = "none";
-      document.getElementById("userProfile").style.display = "none";
-
-      // Clear input fields
-      document.getElementById("loginUsername").value = "";
-      document.getElementById("loginPassword").value = "";
-      document.getElementById("signupUsername").value = "";
-      document.getElementById("signupEmail").value = "";
-      document.getElementById("signupPassword").value = "";
+      location.reload();
     }
 
     function showSignup() {
@@ -173,7 +152,7 @@
       const formData = new FormData(this);
       fetch(scriptURL, { method: "POST", body: formData })
         .then(response => alert("Admission form submitted!"))
-        .catch(error => alert("Error submitting admission form!"));
+        .catch(error => alert("Error!"));
       this.reset();
     });
 

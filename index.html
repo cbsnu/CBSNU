@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CBSN-U | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CBSN-U | Employee Field Guide</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
 
@@ -26,7 +26,9 @@
       height: 80px;
     }
 
-    h1, h2, h3 {
+    h1,
+    h2,
+    h3 {
       color: #a855f7;
       text-align: center;
     }
@@ -50,10 +52,26 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .circle-graphic, .bar-graphic {
+    .circle-graphic {
       display: flex;
       justify-content: center;
       margin: 2rem 0;
+    }
+
+    button {
+      margin-top: 0.5rem;
+      background: #a855f7;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #7c3aed;
     }
 
     footer {
@@ -61,6 +79,108 @@
       padding: 2rem;
       font-size: 0.9rem;
       color: #bbb;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      border-radius: 8px;
+      border: none;
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 80%;
+      max-width: 300px;
+      margin-top: 0.3rem;
+      background: rgba(255 255 255 / 0.1);
+      color: white;
+      resize: vertical;
+    }
+
+    form {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    form label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    /* Chatbot Styles */
+    #chatbot {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #a855f7;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      color: white;
+      font-size: 30px;
+      text-align: center;
+      line-height: 60px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      user-select: none;
+      z-index: 1000;
+    }
+
+    #chatbox {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 320px;
+      max-height: 400px;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 12px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      color: #ddd;
+      font-size: 0.9rem;
+      z-index: 1000;
+    }
+
+    #chatbox header {
+      background: #7c3aed;
+      padding: 0.5rem;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    #chat-messages {
+      flex: 1;
+      padding: 0.5rem;
+      overflow-y: auto;
+    }
+
+    #chat-input {
+      display: flex;
+      border-top: 1px solid #555;
+    }
+
+    #chat-input input {
+      flex: 1;
+      border: none;
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 0 0 0 12px;
+      outline: none;
+      background: #222;
+      color: white;
+    }
+
+    #chat-input button {
+      border-radius: 0 0 12px 0;
+      background: #a855f7;
+      border: none;
+      color: white;
+      padding: 0 1rem;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -89,7 +209,8 @@
   <section>
     <h2>LETTER FROM OUR LEADER</h2>
     <div class="card">
-      <p>Welcome to the CBSN-U family! We're excited to embark on this journey with you. Together, we'll build a legacy of excellence, learning, and growth. Let's shape the future—one student at a time.</p>
+      <p>Welcome to the CBSN-U family! We're excited to embark on this journey with you. Together, we'll build a legacy
+        of excellence, learning, and growth. Let's shape the future—one student at a time.</p>
       <p><strong>— Rittik Raj, Founder & CEO</strong></p>
     </div>
   </section>
@@ -99,11 +220,13 @@
     <div class="grid">
       <div class="card">
         <h3>History</h3>
-        <p>CBSN-U was founded with the vision to provide quality cross-border education using innovative and accessible technologies.</p>
+        <p>CBSN-U was founded with the vision to provide quality cross-border education using innovative and accessible
+          technologies.</p>
       </div>
       <div class="card">
         <h3>Culture</h3>
-        <p>Our culture promotes creativity, collaboration, and continuous improvement in everything we do—education that evolves with the world.</p>
+        <p>Our culture promotes creativity, collaboration, and continuous improvement in everything we do—education that
+          evolves with the world.</p>
       </div>
     </div>
   </section>
@@ -111,10 +234,18 @@
   <section>
     <h2>MANAGEMENT TEAM</h2>
     <div class="grid">
-      <div class="card"><img src="https://via.placeholder.com/100" alt="CEO"><p>Rittik Raj<br/>CEO</p></div>
-      <div class="card"><img src="https://via.placeholder.com/100" alt="CTO"><p>Aarav Singh<br/>CTO</p></div>
-      <div class="card"><img src="https://via.placeholder.com/100" alt="COO"><p>Meera Das<br/>COO</p></div>
-      <div class="card"><img src="https://via.placeholder.com/100" alt="CMO"><p>Arjun Roy<br/>CMO</p></div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CEO" />
+        <p>Rittik Raj<br />CEO</p>
+      </div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CTO" />
+        <p>Aarav Singh<br />CTO</p>
+      </div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="COO" />
+        <p>Meera Das<br />COO</p>
+      </div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CMO" />
+        <p>Arjun Roy<br />CMO</p>
+      </div>
     </div>
   </section>
 
@@ -135,27 +266,54 @@
   <section>
     <h2>GENERAL EMPLOYMENT POLICIES</h2>
     <div class="grid">
-      <div class="card"><h3>Anti-Harassment</h3><p>Zero-tolerance policy towards harassment in any form.</p></div>
-      <div class="card"><h3>Equality & Inclusion</h3><p>We are committed to maintaining an inclusive, diverse environment.</p></div>
-      <div class="card"><h3>Workplace Safety</h3><p>Employee safety is our top priority, with continuous monitoring and response measures.</p></div>
+      <div class="card">
+        <h3>Anti-Harassment</h3>
+        <p>Zero-tolerance policy towards harassment in any form.</p>
+      </div>
+      <div class="card">
+        <h3>Equality & Inclusion</h3>
+        <p>We are committed to maintaining an inclusive, diverse environment.</p>
+      </div>
+      <div class="card">
+        <h3>Workplace Safety</h3>
+        <p>Employee safety is our top priority, with continuous monitoring and response measures.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>CODE OF CONDUCT</h2>
     <div class="grid">
-      <div class="card"><h3>Professionalism</h3><p>Maintain integrity, respect, and ethical behavior in all tasks.</p></div>
-      <div class="card"><h3>Confidentiality</h3><p>All internal information must remain private and secure.</p></div>
-      <div class="card"><h3>Anti-Bullying</h3><p>We ensure a positive, bully-free workplace with regular feedback mechanisms.</p></div>
+      <div class="card">
+        <h3>Professionalism</h3>
+        <p>Maintain integrity, respect, and ethical behavior in all tasks.</p>
+      </div>
+      <div class="card">
+        <h3>Confidentiality</h3>
+        <p>All internal information must remain private and secure.</p>
+      </div>
+      <div class="card">
+        <h3>Anti-Bullying</h3>
+        <p>We ensure a positive, bully-free workplace with regular feedback mechanisms.</p>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>COMPENSATION AND BENEFITS</h2>
     <div class="grid">
-      <div class="card"><h3>Compensation</h3><p>Competitive salaries based on performance and experience.</p></div>
-      <div class="card"><h3>Health & Wellness</h3><p>Inclusive plans covering mental, physical, and emotional well-being.</p></div>
-      <div class="card"><h3>Retirement</h3><p>Support for long-term goals through retirement and savings plans.</p></div>
+      <div class="card">
+        <h3>Compensation</h3>
+        <p>Competitive salaries based on performance and experience.</p>
+      </div>
+      <div class="card">
+        <h3>Health & Wellness</h3>
+        <p>Inclusive plans covering mental, physical, and emotional well-being.</p>
+      </div>
+      <div class="card">
+        <h3>Retirement</h3>
+        <p>Support for long-term goals through retirement and savings plans.</p>
+      </div>
     </div>
   </section>
 
@@ -171,9 +329,148 @@
     </div>
   </section>
 
+  <!-- New Admission Form Section -->
+  <section>
+    <h2>ADMISSION FORM</h2>
+    <form id="admission-form">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" name="fullname" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="course">Course Interested In</label>
+      <select id="course" name="course" required>
+        <option value="">Select a course</option>
+        <option value="UG">Undergraduate</option>
+        <option value="PG">Postgraduate</option>
+        <option value="Certification">Certification</option>
+      </select>
+
+      <button type="submit">Submit Admission</button>
+    </form>
+  </section>
+
+  <!-- Review Form Section -->
+  <section>
+    <h2>LEAVE A REVIEW</h2>
+    <form id="review-form">
+      <label for="reviewer-name">Your Name</label>
+      <input type="text" id="reviewer-name" name="reviewer-name" required />
+
+      <label for="review-text">Your Review</label>
+      <textarea id="review-text" name="review-text" rows="4" required></textarea>
+
+      <button type="submit">Submit Review</button>
+    </form>
+    <div id="reviews-list" style="margin-top:1rem;"></div>
+  </section>
+
+  <!-- Chatbot Button -->
+  <div id="chatbot" title="Chat with CBSN-U">💬</div>
+  <div id="chatbox">
+    <header>Chatbot</header>
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+      <input type="text" id="chat-message-input" placeholder="Ask me anything..." />
+      <button id="chat-send-btn">Send</button>
+    </div>
+  </div>
+
   <footer>
     &copy; 2025 CBSN-U. All Rights Reserved.
   </footer>
+
+  <script>
+    // Admission form handler (dummy example - replace with your backend integration)
+    document.getElementById('admission-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Admission form submitted! Thank you.');
+      this.reset();
+    });
+
+    // Review form handler
+    const reviewForm = document.getElementById('review-form');
+    const reviewsList = document.getElementById('reviews-list');
+
+    reviewForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = this['reviewer-name'].value.trim();
+      const text = this['review-text'].value.trim();
+
+      if (name && text) {
+        const reviewCard = document.createElement('div');
+        reviewCard.className = 'card';
+        reviewCard.style.marginBottom = '1rem';
+        reviewCard.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+        reviewsList.prepend(reviewCard);
+        this.reset();
+      }
+    });
+
+    // Chatbot toggle
+    const chatbotBtn = document.getElementById('chatbot');
+    const chatbox = document.getElementById('chatbox');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-message-input');
+    const chatSendBtn = document.getElementById('chat-send-btn');
+
+    chatbotBtn.addEventListener('click', () => {
+      if (chatbox.style.display === 'flex') {
+        chatbox.style.display = 'none';
+      } else {
+        chatbox.style.display = 'flex';
+        chatInput.focus();
+      }
+    });
+
+    // Simple chatbot logic (expand as needed)
+    function botReply(message) {
+      const msg = message.toLowerCase();
+      if (msg.includes('hello') || msg.includes('hi')) return 'Hello! How can I assist you today?';
+      if (msg.includes('admission')) return 'You can fill the Admission Form above to apply.';
+      if (msg.includes('review')) return 'Please use the Review Form to leave your feedback.';
+      if (msg.includes('contact')) return 'You can contact us at cyberhelper231@gmail.com or +91 8709547748.';
+      return "Sorry, I don't understand that. Please ask about admission, reviews, or contact info.";
+    }
+
+    chatSendBtn.addEventListener('click', () => {
+      const userMsg = chatInput.value.trim();
+      if (!userMsg) return;
+
+      // Show user message
+      const userDiv = document.createElement('div');
+      userDiv.style.textAlign = 'right';
+      userDiv.style.margin = '0.5rem';
+      userDiv.textContent = userMsg;
+      chatMessages.appendChild(userDiv);
+
+      // Bot reply
+      setTimeout(() => {
+        const botDiv = document.createElement('div');
+        botDiv.style.textAlign = 'left';
+        botDiv.style.margin = '0.5rem';
+        botDiv.style.background = 'rgba(168, 85, 247, 0.2)';
+        botDiv.style.borderRadius = '8px';
+        botDiv.style.padding = '0.4rem 0.6rem';
+        botDiv.textContent = botReply(userMsg);
+        chatMessages.appendChild(botDiv);
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 600);
+
+      chatInput.value = '';
+      chatInput.focus();
+    });
+
+    // Enter key sends chat message
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        chatSendBtn.click();
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 
 </html>

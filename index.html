@@ -1,264 +1,150 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CBSN-U | Cross-Border Study Network University</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CBSN-U Employee Field Guide</title>
   <style>
-    :root {
-      --primary-bg: #f4f4f4;
-      --secondary-bg: #fff;
-      --dark-bg: #222;
-      --highlight-bg: #444;
-      --accent: #007BFF;
-    }
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
-      background: var(--primary-bg);
-    }
-    header, footer {
-      background: var(--dark-bg);
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0a0a23, #1e1e3f);
       color: #fff;
-      padding: 1rem;
+    }
+    header {
       text-align: center;
+      padding: 2rem 1rem;
     }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      background: var(--highlight-bg);
-      padding: 1rem;
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
     }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-    }
-    .logo img {
-      height: 80px;
-    }
-    .section {
+    section {
       padding: 2rem;
-      background: var(--secondary-bg);
-      margin: 1rem;
-      border-radius: 8px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
+      max-width: 1200px;
       margin: auto;
     }
-    form input, textarea, select {
-      margin: 0.5rem 0;
-      padding: 0.5rem;
-    }
-    .review {
-      margin-top: 2rem;
-      background: #eee;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-    .gallery img {
-      height: 100px;
-      margin: 5px;
-      border-radius: 6px;
-    }
-    .banner img {
-      width: 100%;
-      border-radius: 8px;
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #a75aff;
+      padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
-    .icon {
-      width: 50px;
-      vertical-align: middle;
-      margin-right: 10px;
+    .grid {
+      display: grid;
+      gap: 1rem;
     }
-    .toast {
-      background: #4caf50;
-      color: white;
-      padding: 10px;
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      border-radius: 5px;
-      display: none;
+    .columns-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .columns-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+    .card {
+      background: #222251;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00000050;
+    }
+    .circle-chart {
+      margin: 1rem auto;
+      width: 150px;
+      height: 150px;
+      background: conic-gradient(#a75aff 0% 25%, #6131ff 25% 50%, #341a73 50% 75%, #8c65ff 75% 100%);
+      border-radius: 50%;
+    }
+    .team {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .team-member {
+      text-align: center;
+    }
+    .team-member img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid #a75aff;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">
-      <img src="1744649096909.png" alt="CBSN-U Logo" />
+    <div class="circle-chart"></div>
+    <h1>EMPLOYEE FIELD GUIDE</h1>
+    <p>You play a vital role in guiding CBSN-U's growth and future.</p>
+  </header>  <section>
+    <h2>Quick Links</h2>
+    <div class="grid columns-3">
+      <div class="card">Pay Details</div>
+      <div class="card">Company Tools</div>
+      <div class="card">Schedules</div>
+      <div class="card">Leave Policy</div>
+      <div class="card">Work from Home</div>
+      <div class="card">Health Insurance</div>
     </div>
-    <h1>Cross-Border Study Network University</h1>
-    <p>Set Your Limit Beyond the World</p>
-  </header>
-  <nav>
-    <a href="#admission">Admission</a>
-    <a href="#review">Review</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#login">Login</a>
-  </nav>
-  <div class="banner">
-    <img src="banner-education.jpg" alt="Educational Banner" />
-  </div>
-  <section class="section" id="admission">
-    <h2><img src="icon-admission.png" class="icon" /> Admission Form</h2>
-    <form id="admissionForm">
-      <input type="text" name="name" placeholder="Full Name" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="tel" name="phone" placeholder="Phone Number" required />
-      <input type="text" name="course" placeholder="Course Interested" required />
-      <button type="submit">Submit</button>
-    </form>
-  </section>
-  <section class="section" id="review">
-    <h2><img src="icon-review.png" class="icon" /> Leave a Review</h2>
-    <form id="reviewForm">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <textarea name="review" placeholder="Write your review here..." required></textarea>
-      <button type="submit">Post Review</button>
-    </form>
-    <div class="review" id="reviews"></div>
-  </section>
-  <section class="section" id="gallery">
-    <h2><img src="icon-gallery.png" class="icon" /> Photo Gallery</h2>
-    <input type="file" id="imageUpload" accept="image/*" multiple />
-    <div class="gallery" id="galleryImages"></div>
-  </section>
-  <section class="section" id="login">
-    <h2><img src="icon-login.png" class="icon" /> Login</h2>
-    <select id="userType">
-      <option value="student">Student</option>
-      <option value="faculty">Faculty</option>
-      <option value="admin">Admin</option>
-      <option value="parent">Parent</option>
-    </select>
-    <input type="text" id="loginUsername" placeholder="Username" />
-    <input type="password" id="loginPassword" placeholder="Password" />
-    <button onclick="handleLogin()">Login</button>
-    <p>Don't have an account? <a href="#" onclick="showSignup()">Create one</a></p>
-  </section>
-  <section class="section" id="signup" style="display:none">
-    <h2>Create Account</h2>
-    <input type="text" id="signupUsername" placeholder="Username" />
-    <input type="email" id="signupEmail" placeholder="Email" />
-    <input type="password" id="signupPassword" placeholder="Password" />
-    <button onclick="handleSignup()">Sign Up</button>
-  </section>
-  <section class="section" id="userProfile" style="display:none">
-    <h2>Welcome, <span id="profileName"></span>!</h2>
-    <p>This is your personal dashboard.</p>
-    <button onclick="logout()">Logout</button>
-  </section>
-  <footer>
-    <div class="logo">
-      <img src="1744649096909.png" alt="CBSN-U Logo" />
+  </section>  <section>
+    <h2>Letter from Our Leader</h2>
+    <p>At CBSN-U, we believe in empowering every team member. Our journey is shaped by each of you who bring passion, innovation, and drive to the table. Together, we’re not just building a company; we’re building a legacy. Let’s keep pushing boundaries.</p>
+    <p><em>- Rittik Raj, Founder & CEO</em></p>
+  </section>  <section class="grid columns-2">
+    <div>
+      <h2>History</h2>
+      <p>CBSN-U began with a vision to redefine online education. Over the years, we’ve grown through innovation and a relentless focus on student success.</p>
     </div>
-    <p>&copy; 2025 CBSN-U | All Rights Reserved</p>
+    <div>
+      <h2>Culture</h2>
+      <p>We thrive in a diverse, inclusive, and collaborative environment. We celebrate wins, learn from challenges, and respect each other’s contributions.</p>
+    </div>
+  </section>  <section>
+    <h2>Management Team</h2>
+    <div class="team">
+      <div class="team-member"><img src="team1.jpg" alt=""><p>Anita | CTO</p></div>
+      <div class="team-member"><img src="team2.jpg" alt=""><p>Riya | COO</p></div>
+      <div class="team-member"><img src="team3.jpg" alt=""><p>Sandhya | CMO</p></div>
+      <div class="team-member"><img src="team4.jpg" alt=""><p>Ashok | CFO</p></div>
+    </div>
+  </section>  <section class="grid columns-2">
+    <div>
+      <h2>Our Vision</h2>
+      <p>To become a global leader in digital education, where every learner can access world-class knowledge and thrive in their careers.</p>
+    </div>
+    <div>
+      <h2>Our Mission</h2>
+      <p>To provide accessible, high-quality, and innovative educational solutions that empower individuals across borders and cultures.</p>
+    </div>
+  </section>  <section>
+    <h2>General Employment Policies</h2>
+    <div class="grid columns-3">
+      <div class="card">Attendance and Leaves</div>
+      <div class="card">Company Property Use</div>
+      <div class="card">Remote Work Guidelines</div>
+    </div>
+  </section>  <section>
+    <h2>Code of Conduct</h2>
+    <div class="grid columns-3">
+      <div class="card">Professional Behavior</div>
+      <div class="card">Confidentiality</div>
+      <div class="card">Harassment Policy</div>
+    </div>
+  </section>  <section>
+    <h2>Compensation and Benefits</h2>
+    <div class="grid columns-3">
+      <div class="card">Compensation Structure</div>
+      <div class="card">Health & Wellness</div>
+      <div class="card">Retirement Plans</div>
+    </div>
+  </section>  <section>
+    <h2>Contact Information</h2>
+    <p>cyberhelper231@gmail.com<br>+91-8709547748<br>www.cbsnu.live</p>
+    <div class="circle-chart"></div>
+  </section>  <footer>
+    &copy; 2025 CBSN-U. All rights reserved.
   </footer>
-  <div class="toast" id="toast"></div>
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbyVclIKdRBooqzPor-gTOLJuYW4PJ75WuAfifb9Oy00dd3vHgY__tQvhIQVKKiEf2Ei/exec";
-    const users = JSON.parse(localStorage.getItem("cbsn_users")) || [];
-    const galleryImages = JSON.parse(localStorage.getItem("gallery_images")) || [];function showToast(message) {
-  const toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.style.display = "block";
-  setTimeout(() => (toast.style.display = "none"), 3000);
-}
-
-function handleSignup() {
-  const username = document.getElementById("signupUsername").value.trim();
-  const email = document.getElementById("signupEmail").value.trim();
-  const password = document.getElementById("signupPassword").value;
-  if (users.find(u => u.username === username || u.email === email)) {
-    alert("Username or email already exists!");
-    return;
-  }
-  users.push({ username, email, password });
-  localStorage.setItem("cbsn_users", JSON.stringify(users));
-  showToast("Account created successfully!");
-  showLogin();
-}
-
-function handleLogin() {
-  const username = document.getElementById("loginUsername").value.trim();
-  const password = document.getElementById("loginPassword").value;
-  const user = users.find(u => (u.username === username || u.email === username) && u.password === password);
-  if (user) {
-    ["admission", "review", "gallery", "login", "signup"].forEach(id => document.getElementById(id).style.display = "none");
-    document.getElementById("userProfile").style.display = "block";
-    document.getElementById("profileName").innerText = user.username;
-  } else {
-    alert("Invalid credentials!");
-  }
-}
-
-function logout() {
-  location.reload();
-}
-
-function showSignup() {
-  document.getElementById("login").style.display = "none";
-  document.getElementById("signup").style.display = "block";
-}
-
-function showLogin() {
-  document.getElementById("signup").style.display = "none";
-  document.getElementById("login").style.display = "block";
-}
-
-document.getElementById("admissionForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const formData = new FormData(this);
-  fetch(scriptURL, { method: "POST", body: formData })
-    .then(response => showToast("Admission form submitted!"))
-    .catch(error => alert("Error!"));
-  this.reset();
-});
-
-document.getElementById("reviewForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-  const name = this.name.value;
-  const review = this.review.value;
-  const container = document.getElementById("reviews");
-  const entry = document.createElement("div");
-  entry.innerHTML = `<strong>${name}</strong><p>${review}</p>`;
-  container.prepend(entry);
-  this.reset();
-});
-
-function loadGalleryImages() {
-  const gallery = document.getElementById("galleryImages");
-  gallery.innerHTML = "";
-  galleryImages.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    gallery.appendChild(img);
-  });
-}
-
-document.getElementById("imageUpload").addEventListener("change", function (e) {
-  const gallery = document.getElementById("galleryImages");
-  [...e.target.files].forEach(file => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const imgSrc = reader.result;
-      galleryImages.push(imgSrc);
-      localStorage.setItem("gallery_images", JSON.stringify(galleryImages));
-      const img = document.createElement("img");
-      img.src = imgSrc;
-      gallery.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-});
-
-loadGalleryImages();
-
-  </script>
 </body>
 </html>

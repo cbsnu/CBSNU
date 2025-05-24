@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CBSN-U | Cross-Border Study Network University</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
@@ -22,7 +22,7 @@
 <body>
   <header>
     <div class="logo">
-      <img src="1744649096909.png" alt="CBSN-U Logo" />
+      <img src="1744649096909.png" alt="CBSN-U Logo"/>
     </div>
     <h1>Cross-Border Study Network University</h1>
     <p>Set Your Limit Beyond the World</p>
@@ -36,11 +36,11 @@
   </nav>
 
   <div class="banner">
-    <img src="Blue Red Colorful Modern School Admission Promotion Banner_20250524_003344_0000.png" alt="Educational Banner" />
+    <img src="banner-education.jpg" alt="Educational Banner"/>
   </div>
 
   <section class="section" id="admission">
-    <h2><img src="icon-admission.png" class="icon" /> Admission Form</h2>
+    <h2><img src="icon-admission.png" class="icon"/> Admission Form</h2>
     <form id="admissionForm">
       <input type="text" name="name" placeholder="Full Name" required />
       <input type="email" name="email" placeholder="Email" required />
@@ -51,7 +51,7 @@
   </section>
 
   <section class="section" id="review">
-    <h2><img src="icon-review.png" class="icon" /> Leave a Review</h2>
+    <h2><img src="icon-review.png" class="icon"/> Leave a Review</h2>
     <form id="reviewForm">
       <input type="text" name="name" placeholder="Your Name" required />
       <textarea name="review" placeholder="Write your review here..." required></textarea>
@@ -61,16 +61,15 @@
   </section>
 
   <section class="section" id="gallery">
-    <h2><img src="icon-gallery.png" class="icon" /> Photo Gallery</h2>
-    <input type="file" id="imageUpload" accept="image/*" multiple />
+    <h2><img src="icon-gallery.png" class="icon"/> Photo Gallery</h2>
+    <input type="file" id="imageUpload" accept="image/*" />
     <div class="gallery" id="galleryImages">
-      <img src="sample-1.jpg" alt="Sample Image 1" />
-      <img src="sample-2.jpg" alt="Sample Image 2" />
+      <!-- Loaded images will appear here -->
     </div>
   </section>
 
   <section class="section" id="login">
-    <h2><img src="icon-login.png" class="icon" /> Login</h2>
+    <h2><img src="icon-login.png" class="icon"/> Login</h2>
     <select id="userType">
       <option value="student">Student</option>
       <option value="faculty">Faculty</option>
@@ -105,7 +104,7 @@
   </footer>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxddjI9Jw8V0nYh3HKq5Ufp2WWM7ie-WGjnLKoWXZWYRxhci3XrnTwuJgW_HiUltrM/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyVclIKdRBooqzPor-gTOLJuYW4PJ75WuAfifb9Oy00dd3vHgY__tQvhIQVKKiEf2Ei/exec";
     const users = JSON.parse(localStorage.getItem("cbsn_users")) || [];
 
     function handleSignup() {
@@ -175,18 +174,43 @@
       this.reset();
     });
 
+    // Gallery Image Upload to Google Sheet
     document.getElementById("imageUpload").addEventListener("change", function (e) {
-      const gallery = document.getElementById("galleryImages");
-      [...e.target.files].forEach(file => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const img = document.createElement("img");
-          img.src = reader.result;
-          gallery.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      });
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const base64Image = reader.result;
+        const formData = new FormData();
+        formData.append("image", base64Image);
+        formData.append("type", "galleryImage");
+
+        fetch(scriptURL, { method: "POST", body: formData })
+          .then(res => {
+            alert("Image uploaded!");
+            loadGalleryImages(); // Refresh gallery
+          })
+          .catch(() => alert("Upload failed"));
+      };
+      reader.readAsDataURL(file);
     });
+
+    function loadGalleryImages() {
+      fetch(scriptURL + "?type=galleryImage")
+        .then(res => res.json())
+        .then(data => {
+          const gallery = document.getElementById("galleryImages");
+          gallery.innerHTML = "";
+          data.reverse().forEach(img => {
+            const image = document.createElement("img");
+            image.src = img;
+            gallery.appendChild(image);
+          });
+        });
+    }
+
+    window.onload = loadGalleryImages;
   </script>
 </body>
 </html>

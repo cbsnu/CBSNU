@@ -1,150 +1,179 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CBSN-U Employee Field Guide</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CBSN-U | Home</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #0a0a23, #1e1e3f);
-      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #0d0c1d, #302b63, #24243e);
+      color: white;
+      line-height: 1.6;
     }
+
     header {
       text-align: center;
-      padding: 2rem 1rem;
-    }
-    header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #ffffff;
-    }
-    section {
       padding: 2rem;
-      max-width: 1200px;
-      margin: auto;
+      background: rgba(0, 0, 0, 0.5);
     }
-    h2 {
-      font-size: 1.5rem;
-      border-bottom: 2px solid #a75aff;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1rem;
+
+    header img {
+      height: 80px;
     }
-    .grid {
-      display: grid;
-      gap: 1rem;
-    }
-    .columns-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .columns-3 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-    .card {
-      background: #222251;
-      padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #00000050;
-    }
-    .circle-chart {
-      margin: 1rem auto;
-      width: 150px;
-      height: 150px;
-      background: conic-gradient(#a75aff 0% 25%, #6131ff 25% 50%, #341a73 50% 75%, #8c65ff 75% 100%);
-      border-radius: 50%;
-    }
-    .team {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .team-member {
+
+    h1, h2, h3 {
+      color: #a855f7;
       text-align: center;
     }
-    .team-member img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid #a75aff;
+
+    section {
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: auto;
     }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .circle-graphic, .bar-graphic {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
     footer {
       text-align: center;
       padding: 2rem;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #bbb;
     }
   </style>
 </head>
+
 <body>
   <header>
-    <div class="circle-chart"></div>
+    <img src="1744649096909.png" alt="CBSN-U Logo" />
     <h1>EMPLOYEE FIELD GUIDE</h1>
-    <p>You play a vital role in guiding CBSN-U's growth and future.</p>
-  </header>  <section>
-    <h2>Quick Links</h2>
-    <div class="grid columns-3">
-      <div class="card">Pay Details</div>
+    <p>Your guide to navigating life with CBSN-U.</p>
+  </header>
+
+  <section class="circle-graphic">
+    <img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="Infographic" width="150" />
+  </section>
+
+  <section>
+    <h2>QUICK LINKS</h2>
+    <div class="grid">
+      <div class="card">HR Portal</div>
       <div class="card">Company Tools</div>
-      <div class="card">Schedules</div>
-      <div class="card">Leave Policy</div>
-      <div class="card">Work from Home</div>
-      <div class="card">Health Insurance</div>
+      <div class="card">Onboarding</div>
+      <div class="card">Knowledgebase</div>
     </div>
-  </section>  <section>
-    <h2>Letter from Our Leader</h2>
-    <p>At CBSN-U, we believe in empowering every team member. Our journey is shaped by each of you who bring passion, innovation, and drive to the table. Together, we’re not just building a company; we’re building a legacy. Let’s keep pushing boundaries.</p>
-    <p><em>- Rittik Raj, Founder & CEO</em></p>
-  </section>  <section class="grid columns-2">
-    <div>
-      <h2>History</h2>
-      <p>CBSN-U began with a vision to redefine online education. Over the years, we’ve grown through innovation and a relentless focus on student success.</p>
+  </section>
+
+  <section>
+    <h2>LETTER FROM OUR LEADER</h2>
+    <div class="card">
+      <p>Welcome to the CBSN-U family! We're excited to embark on this journey with you. Together, we'll build a legacy of excellence, learning, and growth. Let's shape the future—one student at a time.</p>
+      <p><strong>— Rittik Raj, Founder & CEO</strong></p>
     </div>
-    <div>
-      <h2>Culture</h2>
-      <p>We thrive in a diverse, inclusive, and collaborative environment. We celebrate wins, learn from challenges, and respect each other’s contributions.</p>
+  </section>
+
+  <section>
+    <h2>COMPANY INFORMATION</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>History</h3>
+        <p>CBSN-U was founded with the vision to provide quality cross-border education using innovative and accessible technologies.</p>
+      </div>
+      <div class="card">
+        <h3>Culture</h3>
+        <p>Our culture promotes creativity, collaboration, and continuous improvement in everything we do—education that evolves with the world.</p>
+      </div>
     </div>
-  </section>  <section>
-    <h2>Management Team</h2>
-    <div class="team">
-      <div class="team-member"><img src="team1.jpg" alt=""><p>Anita | CTO</p></div>
-      <div class="team-member"><img src="team2.jpg" alt=""><p>Riya | COO</p></div>
-      <div class="team-member"><img src="team3.jpg" alt=""><p>Sandhya | CMO</p></div>
-      <div class="team-member"><img src="team4.jpg" alt=""><p>Ashok | CFO</p></div>
+  </section>
+
+  <section>
+    <h2>MANAGEMENT TEAM</h2>
+    <div class="grid">
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CEO"><p>Rittik Raj<br/>CEO</p></div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CTO"><p>Aarav Singh<br/>CTO</p></div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="COO"><p>Meera Das<br/>COO</p></div>
+      <div class="card"><img src="https://via.placeholder.com/100" alt="CMO"><p>Arjun Roy<br/>CMO</p></div>
     </div>
-  </section>  <section class="grid columns-2">
-    <div>
-      <h2>Our Vision</h2>
-      <p>To become a global leader in digital education, where every learner can access world-class knowledge and thrive in their careers.</p>
+  </section>
+
+  <section>
+    <h2>VISION AND MISSION</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Our Vision</h3>
+        <p>To redefine learning by connecting knowledge, technology, and accessibility for every student across borders.</p>
+      </div>
+      <div class="card">
+        <h3>Our Mission</h3>
+        <p>We strive to empower students and educators through seamless access to quality education platforms and support.</p>
+      </div>
     </div>
-    <div>
-      <h2>Our Mission</h2>
-      <p>To provide accessible, high-quality, and innovative educational solutions that empower individuals across borders and cultures.</p>
+  </section>
+
+  <section>
+    <h2>GENERAL EMPLOYMENT POLICIES</h2>
+    <div class="grid">
+      <div class="card"><h3>Anti-Harassment</h3><p>Zero-tolerance policy towards harassment in any form.</p></div>
+      <div class="card"><h3>Equality & Inclusion</h3><p>We are committed to maintaining an inclusive, diverse environment.</p></div>
+      <div class="card"><h3>Workplace Safety</h3><p>Employee safety is our top priority, with continuous monitoring and response measures.</p></div>
     </div>
-  </section>  <section>
-    <h2>General Employment Policies</h2>
-    <div class="grid columns-3">
-      <div class="card">Attendance and Leaves</div>
-      <div class="card">Company Property Use</div>
-      <div class="card">Remote Work Guidelines</div>
+  </section>
+
+  <section>
+    <h2>CODE OF CONDUCT</h2>
+    <div class="grid">
+      <div class="card"><h3>Professionalism</h3><p>Maintain integrity, respect, and ethical behavior in all tasks.</p></div>
+      <div class="card"><h3>Confidentiality</h3><p>All internal information must remain private and secure.</p></div>
+      <div class="card"><h3>Anti-Bullying</h3><p>We ensure a positive, bully-free workplace with regular feedback mechanisms.</p></div>
     </div>
-  </section>  <section>
-    <h2>Code of Conduct</h2>
-    <div class="grid columns-3">
-      <div class="card">Professional Behavior</div>
-      <div class="card">Confidentiality</div>
-      <div class="card">Harassment Policy</div>
+  </section>
+
+  <section>
+    <h2>COMPENSATION AND BENEFITS</h2>
+    <div class="grid">
+      <div class="card"><h3>Compensation</h3><p>Competitive salaries based on performance and experience.</p></div>
+      <div class="card"><h3>Health & Wellness</h3><p>Inclusive plans covering mental, physical, and emotional well-being.</p></div>
+      <div class="card"><h3>Retirement</h3><p>Support for long-term goals through retirement and savings plans.</p></div>
     </div>
-  </section>  <section>
-    <h2>Compensation and Benefits</h2>
-    <div class="grid columns-3">
-      <div class="card">Compensation Structure</div>
-      <div class="card">Health & Wellness</div>
-      <div class="card">Retirement Plans</div>
+  </section>
+
+  <section>
+    <h2>CONTACT INFORMATION</h2>
+    <div class="grid">
+      <div class="card">cyberhelper231@gmail.com</div>
+      <div class="card">+91 8709547748</div>
+      <div class="card">www.cbsnu.live</div>
     </div>
-  </section>  <section>
-    <h2>Contact Information</h2>
-    <p>cyberhelper231@gmail.com<br>+91-8709547748<br>www.cbsnu.live</p>
-    <div class="circle-chart"></div>
-  </section>  <footer>
-    &copy; 2025 CBSN-U. All rights reserved.
+    <div class="circle-graphic">
+      <img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="Graphic" width="150" />
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 CBSN-U. All Rights Reserved.
   </footer>
 </body>
+
 </html>

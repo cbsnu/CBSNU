@@ -1,276 +1,130 @@
-# Educational Website
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CBSN-U | Portal</title>
+  <meta charset="UTF-8">
+  <title>CBSN-U | Secure Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <!-- Styling -->
   <style>
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f4f6f8;
-    }
-
-    /* NAVBAR */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #2c3e50;
-      padding: 10px 20px;
-      color: white;
-    }
-
-    .navbar .logo {
-      font-weight: bold;
-      font-size: 1.4rem;
-    }
-
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 5px;
-    }
-
-    .navbar a:hover {
-      background: #2980b9;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      text-align: center;
-      color: #2c3e50;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0 20px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: #2980b9;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #1e70a2;
-    }
-
-    .nav-link {
-      cursor: pointer;
-      text-decoration: underline;
-      color: #2980b9;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .message {
-      text-align: center;
-      margin-top: 20px;
-      font-weight: bold;
-      color: green;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #2c3e50;
-      color: white;
-      margin-top: 40px;
-    }
-
-    /* GRAPHICS */
-    .graphic {
-      width: 100%;
-      height: auto;
-      margin: 20px 0;
-    }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
+    header, footer { background: #1a237e; color: white; text-align: center; padding: 1em; }
+    .container { max-width: 400px; margin: 30px auto; background: white; padding: 2em; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    input, select, button { width: 100%; padding: 0.8em; margin: 0.5em 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #1a237e; color: white; border: none; cursor: pointer; }
+    button:hover { background: #3949ab; }
+    .msg { margin-top: 1em; font-weight: bold; text-align: center; }
   </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">CBSN-U</div>
-  <img src="1744649096909.png" alt="Educational Graphic" class="graphic" />
-  <div>
-    <a onclick="showPage('home')">Home</a>
-    <a onclick="showPage('login')">Login</a>
-    <a onclick="showPage('signup')">Sign Up</a>
-    <a onclick="showPage('faculty')">Faculty</a>
-  </div>
-</div>
+<header>
+  <h1>CBSN-U</h1>
+  <p>Cross Border Study Network University</p>
+</header>
 
-<!-- HOME PAGE -->
-<div id="home" class="container">
-  <h2>Welcome to CBSN-U</h2>
-  <img src="path/to/your/image.jpg" alt="Educational Graphic" class="graphic" />
-  <p>Empowering global learning. Click login or sign up to continue.</p>
-</div>
-
-<!-- LOGIN PAGE -->
-<div id="login" class="container hidden">
-  <h2>Login to CBSN-U</h2>
-  <img src="path/to/your/image.jpg" alt="Login Graphic" class="graphic" />
-  <input type="text" id="loginUsername" placeholder="Username" />
-  <input type="password" id="loginPassword" placeholder="Password" />
+<div class="container">
+  <h2>Login / Signup</h2>
+  <input type="text" id="name" placeholder="Full Name (for signup only)">
+  <input type="email" id="email" placeholder="Email" required>
+  <input type="password" id="password" placeholder="Password" required>
+  <input type="tel" id="phone" placeholder="Phone (for signup only)">
+  <select id="role">
+    <option value="Student">Student</option>
+    <option value="Faculty">Faculty</option>
+    <option value="Admin">Admin</option>
+    <option value="Parent">Parent</option>
+  </select>
+  <button onclick="signup()">Signup</button>
   <button onclick="login()">Login</button>
-  <div class="message" id="loginMessage"></div>
-  <div class="nav-link" onclick="showPage('forgotPassword')">Forgot Password?</div>
+  <div class="msg" id="messageBox"></div>
 </div>
 
-<!-- SIGNUP PAGE -->
-<div id="signup" class="container hidden">
-  <h2>Create CBSN-U Account</h2>
-  <img src="path/to/your/image.jpg" alt="Signup Graphic" class="graphic" />
-  <input type="text" id="regUsername" placeholder="Username" />
-  <input type="email" id="regEmail" placeholder="Email Address" />
-  <input type="tel" id="regPhone" placeholder="Phone Number" />
-  <input type="password" id="regPassword" placeholder="Password" />
-  <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password
-  <label>Enter CAPTCHA: <span id="captchaText"></span></label>
-  <input type="text" id="captchaInput" placeholder="Enter above text" />
-  <button onclick="sendOtp()">Verify & Sign Up</button>
-  <div class="message" id="signupMessage"></div>
-</div>
-
-<!-- FACULTY PAGE -->
-<div id="faculty" class="container hidden">
-  <h2>Faculty Information</h2>
-  <img src="path/to/your/image.jpg" alt="Faculty Graphic" class="graphic" />
-  <p>Details about faculty members will be displayed here.</p>
-</div>
-
-<!-- FORGOT PASSWORD PAGE -->
-<div id="forgotPassword" class="container hidden">
-  <h2>Retrieve Password</h2>
-  <img src="path/to/your/image.jpg" alt="Forgot Password Graphic" class="graphic" />
-  <input type="email" id="forgotEmail" placeholder="Enter your email" />
-  <button onclick="retrievePassword()">Retrieve Password</button>
-  <div class="message" id="forgotMessage"></div>
-</div>
-
-<!-- USER DASHBOARD -->
-<div id="dashboard" class="container hidden">
-  <h2>User Dashboard</h2>
-  <img src="path/to/your/image.jpg" alt="Dashboard Graphic" class="graphic" />
-  <p>Welcome to your dashboard!</p>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  &copy; 2025 CBSN-U | All Rights Reserved
+  <p>Contact: cyberhelper231@gmail.com | +91 8709547748</p>
+  <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
 </footer>
 
-<!-- SCRIPT -->
 <script>
-  let users = []; // in-memory user storage
-  let currentCaptcha = "";
+  // ==== FIREBASE CONFIG (REPLACE THIS) ====
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
 
-  function showPage(page) {
-    document.querySelectorAll('.container').forEach(div => div.classList.add('hidden'));
-    document.getElementById(page).classList.remove('hidden');
-    if (page === 'signup') generateCaptcha();
+  // ==== GOOGLE SHEET SCRIPT URL ====
+  const sheetURL = "https://script.google.com/macros/s/AKfycbyVclIKdRBooqzPor-gTOLJuYW4PJ75WuAfifb9Oy00dd3vHgY__tQvhIQVKKiEf2Ei/exec";
+
+  // ==== ADMIN EMAILS ====
+  const adminEmails = ["cyberhelper231@gmail.com", "rittikraj@cbsnu.edu"];
+
+  function showMessage(msg, color = "green") {
+    const box = document.getElementById("messageBox");
+    box.innerText = msg;
+    box.style.color = color;
   }
 
-  function generateCaptcha() {
-    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-    currentCaptcha = Array.from({length: 5}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
-    document.getElementById("captchaText").innerText = currentCaptcha;
-  }
+  function signup() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const role = document.getElementById("role").value;
 
-  function sendOtp() {
-    const username = document.getElementById("regUsername").value.trim();
-    const email = document.getElementById("regEmail").value.trim();
-    const phone = document.getElementById("regPhone").value.trim();
-    const password = document.getElementById("regPassword").value;
-    const captchaInput = document.getElementById("captchaInput").value.trim();
-
-    // Validations
-    if (!username || !email || !phone || !password || !captchaInput) {
-      alert("All fields are required.");
+    if (!name || !email || !password || !phone) {
+      showMessage("Fill all signup fields!", "red");
       return;
     }
 
-    if (captchaInput !== currentCaptcha) {
-      alert("CAPTCHA is incorrect.");
-      generateCaptcha();
-      return;
-    }
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        const assignedRole = adminEmails.includes(email) ? "Admin" : role;
 
-    if (users.some(u => u.username === username || u.email === email || u.phone === phone)) {
-      alert("Username, email, or phone already exists.");
-      return;
-    }
+        // Send to Google Sheet
+        const formData = new FormData();
+        formData.append("Name", name);
+        formData.append("Email", email);
+        formData.append("Phone", phone);
+        formData.append("Username", email.split("@")[0]);
+        formData.append("Password", password);
+        formData.append("Role", assignedRole);
 
-    // Simulated OTP check
-    const emailOtp = Math.floor(100000 + Math.random() * 900000);
-    const phoneOtp = Math.floor(100000 + Math.random() * 900000);
-    alert(`Email OTP: ${emailOtp}\nPhone OTP: ${phoneOtp}`);
-
-    const enteredEmailOtp = prompt("Enter Email OTP:");
-    const enteredPhoneOtp = prompt("Enter Phone OTP:");
-
-    if (enteredEmailOtp == emailOtp && enteredPhoneOtp == phoneOtp) {
-      users.push({ username, email, phone, password });
-      document.getElementById("signupMessage").innerText = "Sign up successful! Please login.";
-      showPage('login');
-    } else {
-      alert("OTP verification failed.");
-    }
+        fetch(sheetURL, { method: "POST", body: formData })
+          .then(() => showMessage("Signup successful & saved!", "green"))
+          .catch(() => showMessage("Signup done. Sheet error.", "orange"));
+      })
+      .catch(error => {
+        showMessage(error.message, "red");
+      });
   }
 
   function login() {
-    const username = document.getElementById("loginUsername").value.trim();
-    const password = document.getElementById("loginPassword").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const role = document.getElementById("role").value;
 
-    const user = users.find(u => u.username === username && u.password === password);
-    const msg = document.getElementById("loginMessage");
-
-    if (user) {
-      msg.innerText = `Welcome back, ${user.username}! Login successful.`;
-      showPage('dashboard');
-    } else {
-      msg.innerText = "Invalid credentials.";
+    if (!email || !password) {
+      showMessage("Fill email and password!", "red");
+      return;
     }
-  }
 
-  function retrievePassword() {
-    const email = document.getElementById("forgotEmail").value.trim();
-    const user = users.find(u => u.email === email);
-    const msg = document.getElementById("forgotMessage");
-
-    if (user) {
-      msg.innerText = `Your password is: ${user.password}`;
-    } else {
-      msg.innerText = "Email not found.";
-    }
-  }
-
-  function togglePasswordVisibility() {
-    const passwordField = document.getElementById("regPassword");
-    passwordField.type = passwordField.type === "password" ? "text" : "password";
+    auth.signInWithEmailAndPassword(email, password)
+      .then(user => {
+        const detectedRole = adminEmails.includes(email) ? "Admin" : role;
+        showMessage("Login success as " + detectedRole, "green");
+        // TODO: Redirect to dashboard or show content based on role
+      })
+      .catch(error => {
+        showMessage(error.message, "red");
+      });
   }
 </script>
 

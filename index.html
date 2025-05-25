@@ -1,58 +1,62 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CBSN-U | Cross Border Study Network University</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f0f4f8; }
-    header { background: #003366; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-    header h1 { margin: 0; font-size: 1.5rem; }
-    nav a { color: #fff; text-decoration: none; margin-left: 1rem; font-weight: bold; cursor: pointer; }
-    nav a:hover { text-decoration: underline; }
-    section { display: none; padding: 2rem; max-width: 900px; margin: 1rem auto; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    section.active { display: block; }
-    .slogan { font-style: italic; margin-top: 0.5rem; color: #88b0d3; }
-    .btn { background: #003366; color: #fff; padding: 0.7rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-    .btn:hover { background: #0055aa; }
-    input, select, textarea { width: 100%; padding: 0.5rem; margin: 0.4rem 0 1rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
-    label { font-weight: bold; }
-    .qr-code { text-align: center; margin-top: 1rem; }
-    .payment-link-container { text-align: center; margin-top: 1rem; }
-    .payment-link { background: #007bff; color: #fff; padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
-    .payment-link:hover { background: #0056b3; text-decoration: none; color: #fff; }
-    .timer { font-size: 1.2rem; font-weight: bold; color: #cc0000; margin-top: 0.5rem; text-align: center; }
-    footer { background: #003366; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
-    .error { color: #cc0000; font-weight: bold; text-align: center; }
+    body { font-family: Arial, sans-serif; margin:0; background:#f0f4f8; }
+    header { background:#003366; color:#fff; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
+    header h1 { margin:0; font-size:1.5rem; display:flex; align-items:center; }
+    header img.logo { height:40px; margin-right:10px; }
+    nav a { color:#fff; text-decoration:none; margin-left:1rem; font-weight:bold; cursor:pointer; }
+    nav a:hover { text-decoration:underline; }
+    section { display:none; padding:2rem; max-width:900px; margin:1rem auto; background:#fff; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    section.active { display:block; }
+    .slogan { font-style:italic; margin-top:0.5rem; color:#88b0d3; }
+    .btn { background:#003366; color:#fff; padding:0.7rem 1.5rem; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
+    .btn:hover { background:#0055aa; }
+    input, select, textarea { width:100%; padding:0.5rem; margin:0.4rem 0 1rem; border:1px solid #ccc; border-radius:4px; font-size:1rem; }
+    label { font-weight:bold; }
+    .qr-code, .payment-link-container, .timer, .error, .ceo-image { text-align:center; margin-top:1rem; }
+    .ceo-image { max-width: 200px; border-radius: 10px; }
+    footer { background:#003366; color:#fff; text-align:center; padding:1rem 0; margin-top:2rem; }
+    .error { color:#cc0000; font-weight:bold; }
   </style>
 </head>
 <body>
 <header>
-  <div>
+  <div style="display: flex; align-items: center;">
+    <img src="1744649096909.png" class="logo" alt="CBSN-U Logo">
     <h1>CBSN-U</h1>
-    <div class="slogan">Set your limits beyond the sky.</div>
   </div>
   <nav>
-    <a data-target="about">About</a>
+    <a data-target="home">Home</a>
     <a data-target="enroll">Enroll Now</a>
     <a data-target="login">Login</a>
     <a data-target="contact">Contact</a>
   </nav>
-</header><section id="about" class="active">
-  <h2>About Us</h2>
-  <h3>Meet the Founder</h3>
-  <p><strong>Ritik Raj</strong>, Founder & CEO of CBSN-U</p>
-  <p>"As the Founder and CEO of CBSN-U, I'm excited to introduce you to a new era of educational possibilities. My vision is to empower coaching institutes and schools up to the 12th grade by providing a dynamic online platform designed to enhance their reach and impact. We're dedicated to conducting comprehensive examinations, including monthly tests and scholarship assessments, tailored for students within our partner schools and beyond. At CBSN-U, we're committed to fostering academic excellence and creating opportunities for every student to thrive."</p>
+</header><section id="home" class="active">
+  <h2>Welcome to CBSN-U</h2>
+  <p><strong>Email:</strong> cbsnu@gmail.com</p>
+  <h3>About Us</h3>
+  <img src="CEO.jpg" alt="CEO Ritik Raj" class="ceo-image">
+  <p><strong>Meet the Founder</strong></p>
+  <p>As the Founder and CEO of CBSN-U, I'm excited to introduce you to a new era of educational possibilities...</p>
+  <p><strong>Company Overview</strong></p>
   <ul>
+    <li><strong>Company Name:</strong> CBSN-U (Cross Border Study Network University)</li>
+    <li><strong>Slogan:</strong> Set your limits beyond the sky.</li>
     <li><strong>Company Type:</strong> OPC (One Person Company)</li>
     <li><strong>Address:</strong> Begusarai, Bihar 851101, India</li>
     <li><strong>Second Address:</strong> 20656 But Not C I R, Porter Ranch, CA 91326, USA</li>
     <li><strong>Contact:</strong> +1 8183 8820 65 / +91 870 954 7748</li>
-    <li><strong>Email:</strong> cbsnu@gmail.com, cbsnu.contact@gmail.com</li>
-    <li><strong>Education:</strong> B.Sc. Agriculture, Ghanshyam Urvashi PG College, Prayagraj</li>
+    <li><strong>Emails:</strong> cbsnu@gmail.com, cbsnu.contact@gmail.com</li>
+    <li><strong>CEO:</strong> Ritik Raj (B.Sc. Agriculture, Ghanshyam Urvashi PG College, Prayagraj)</li>
     <li><strong>Security Training:</strong> Fibre Security, Cross Our Security, Delhi</li>
   </ul>
 </section><section id="enroll">
-  <h2>Enroll in CBSN-U Courses</h2>
+  <h2>Enroll in Courses</h2>
   <form id="enrollForm">
     <label for="fullName">Full Name *</label>
     <input type="text" id="fullName" name="fullName" required />
@@ -60,166 +64,155 @@
     <input type="email" id="email" name="email" required />
     <label for="phone">Phone Number *</label>
     <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10 digit number" />
-    <label for="courses">Select Courses (Multiple Allowed) *</label>
-    <select id="courses" name="courses" multiple size="8" required>
-      <option value="600" data-name="CLASS X ENGLISH: LANGUAGE & LITERATURE">CLASS X ENGLISH: LANGUAGE & LITERATURE - Rs. 600/month</option>
-      <option value="600" data-name="CLASS X SOCIAL SCIENCE">CLASS X SOCIAL SCIENCE - Rs. 600/month</option>
-      <option value="2100" data-name="CLASS X SCIENCE">CLASS X SCIENCE - Rs. 2100/month</option>
-      <option value="3000" data-name="CLASS X COMBO (All 3 subjects)">CLASS X COMBO (All 3 subjects) - Rs. 3000/month</option>
-      <option value="600" data-name="CLASS IX ENGLISH: LANGUAGE & LITERATURE">CLASS IX ENGLISH: LANGUAGE & LITERATURE - Rs. 600/month</option>
-      <option value="600" data-name="CLASS IX SOCIAL SCIENCE">CLASS IX SOCIAL SCIENCE - Rs. 600/month</option>
-      <option value="2100" data-name="CLASS IX SCIENCE">CLASS IX SCIENCE - Rs. 2100/month</option>
-      <option value="3000" data-name="CLASS IX COMBO (All 3 subjects)">CLASS IX COMBO (All 3 subjects) - Rs. 3000/month</option>
+    <label for="courses">Select Courses *</label>
+    <select id="courses" name="courses" multiple required size="8">
+      <option value="600">CLASS X ENGLISH: Rs. 600/month</option>
+      <option value="600">CLASS X SOCIAL SCIENCE: Rs. 600/month</option>
+      <option value="2100">CLASS X SCIENCE: Rs. 2100/month</option>
+      <option value="3000">CLASS X COMBO (All): Rs. 3000/month</option>
+      <option value="600">CLASS IX ENGLISH: Rs. 600/month</option>
+      <option value="125">CLASS IX SOCIAL SCIENCE: Rs. 125/month</option>
+      <option value="2100">CLASS IX SCIENCE: Rs. 2100/month</option>
+      <option value="3000">CLASS IX COMBO (All): Rs. 3000/month</option>
     </select>
-    <button type="submit" class="btn">Submit and Pay</button>
+    <button type="submit" class="btn">Submit & Pay</button>
   </form>
   <div id="paymentSection" style="display:none;">
-    <h3>Scan the QR Code to Pay</h3>
+    <h3>Scan QR to Pay</h3>
     <div class="qr-code" id="qrCode"></div>
     <div class="payment-link-container" id="paymentLinkContainer"></div>
     <div class="timer" id="timer"></div>
     <div class="error" id="paymentStatus"></div>
   </div>
-</section>
-<section id="login">
+</section><section id="login">
   <h2>Login</h2>
   <form id="loginForm">
     <label for="loginId">Email or Phone *</label>
     <input type="text" id="loginId" name="loginId" required />
     <button type="button" class="btn" id="sendOtpBtn">Send OTP</button>
   </form>
-  <form id="otpForm" style="display:none; margin-top:1rem;">
+  <form id="otpForm" style="display:none;">
     <label for="otpInput">Enter OTP *</label>
-    <input type="text" id="otpInput" name="otpInput" maxlength="6" required />
+    <input type="text" id="otpInput" maxlength="6" required />
     <button type="button" class="btn" id="verifyOtpBtn">Verify OTP</button>
   </form>
-  <div id="loginMessage" style="margin-top:1rem;"></div>
-  <div id="userDashboard" style="display:none; margin-top:2rem;">
+  <div id="loginMessage"></div>
+  <div id="userDashboard" style="display:none;">
     <h3>Welcome, <span id="userName"></span></h3>
-    <p><strong>Enrolled Courses:</strong></p>
     <ul id="userCourses"></ul>
-    <p><strong>Last Fee Payment:</strong> <span id="lastPayment">No payment yet</span></p>
-    <p><strong>Upcoming Fee Payment:</strong> Rs. <span id="upcomingPayment">0</span></p>
+    <p><strong>Last Payment:</strong> <span id="lastPayment"></span></p>
+    <p><strong>Upcoming Payment:</strong> <span id="upcomingPayment"></span></p>
     <button class="btn" id="logoutBtn">Logout</button>
   </div>
-</section>
-<section id="contact">
+</section><section id="contact">
   <h2>Contact Us</h2>
-  <p>If you have any queries, please fill the form below:</p>
   <form id="contactForm">
     <label for="contactName">Full Name *</label>
-    <input type="text" id="contactName" name="contactName" required />
-    <label for="contactEmail">Email Address *</label>
-    <input type="email" id="contactEmail" name="contactEmail" required />
+    <input type="text" id="contactName" required />
+    <label for="contactEmail">Email *</label>
+    <input type="email" id="contactEmail" required />
     <label for="contactMessage">Message *</label>
-    <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
-    <button type="submit" class="btn">Send Message</button>
+    <textarea id="contactMessage" rows="4" required></textarea>
+    <button class="btn" type="submit">Send Message</button>
   </form>
-  <div id="contactStatus" style="margin-top:1rem;"></div>
+  <div id="contactStatus"></div>
 </section><footer>
-  CBSN-U © 2025 | cbsnu@gmail.com | cbsnu.contact@gmail.com
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
-  const MOCK_OTP = '123456';
-  const otpForm = document.getElementById('otpForm');
-  const loginForm = document.getElementById('loginForm');
-  const loginMessage = document.getElementById('loginMessage');
-  const sendOtpBtn = document.getElementById('sendOtpBtn');
-  const verifyOtpBtn = document.getElementById('verifyOtpBtn');
-  const userDashboard = document.getElementById('userDashboard');
-  const userNameSpan = document.getElementById('userName');
-  const userCoursesList = document.getElementById('userCourses');
-  const lastPaymentSpan = document.getElementById('lastPayment');
-  const upcomingPaymentSpan = document.getElementById('upcomingPayment');
-  const logoutBtn = document.getElementById('logoutBtn');
-  let currentLoginId = null;sendOtpBtn.addEventListener('click', () => { const loginId = loginForm.loginId.value.trim(); if (!loginId) { loginMessage.textContent = 'Please enter your email or phone number.'; return; } loginMessage.textContent = OTP sent to ${loginId} (Use ${MOCK_OTP}); otpForm.style.display = 'block'; currentLoginId = loginId; });
-
-verifyOtpBtn.addEventListener('click', () => { const enteredOtp = document.getElementById('otpInput').value.trim(); if (enteredOtp === MOCK_OTP) { loginMessage.textContent = 'Login successful!'; const data = JSON.parse(localStorage.getItem('enrollmentData')); if (data && (data.email === currentLoginId || data.phone === currentLoginId)) { userNameSpan.textContent = data.fullName; userCoursesList.innerHTML = ''; data.courses.forEach(course => { const li = document.createElement('li'); li.textContent = course; userCoursesList.appendChild(li); }); lastPaymentSpan.textContent = data.lastPaymentDate ?? 'No payment yet'; upcomingPaymentSpan.textContent = data.upcomingPayment ?? 0; } else { userNameSpan.textContent = currentLoginId; userCoursesList.innerHTML = '<li>No courses enrolled</li>'; lastPaymentSpan.textContent = 'No payment yet'; upcomingPaymentSpan.textContent = '0'; } loginForm.style.display = 'none'; otpForm.style.display = 'none'; userDashboard.style.display = 'block'; } else { loginMessage.textContent = 'Invalid OTP. Please try again.'; } });
-
-logoutBtn.addEventListener('click', () => { currentLoginId = null; loginMessage.textContent = ''; loginForm.style.display = 'block'; otpForm.style.display = 'none'; userDashboard.style.display = 'none'; loginForm.loginId.value = ''; document.getElementById('otpInput').value = ''; });
-
-const contactForm = document.getElementById('contactForm'); const contactStatus = document.getElementById('contactStatus'); contactForm.addEventListener('submit', (e) => { e.preventDefault(); const name = contactForm.contactName.value.trim(); const email = contactForm.contactEmail.value.trim(); const message = contactForm.contactMessage.value.trim(); if (!name || !email || !message) { contactStatus.textContent = 'Please fill all fields.'; return; } contactStatus.textContent = 'Thank you for contacting us. We will respond soon.'; contactForm.reset(); });
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const navLinks = document.querySelectorAll('nav a');
-  const sections = document.querySelectorAll('section');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      const target = link.getAttribute('data-target');
-      sections.forEach(sec => {
-        sec.classList.remove('active');
-        if (sec.id === target) sec.classList.add('active');
+  CBSN-U © 2025 | cbsnu@gmail.com
+</footer><script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('section');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const target = link.getAttribute('data-target');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
       });
     });
-  });
 
-  const enrollForm = document.getElementById('enrollForm');
-  const paymentSection = document.getElementById('paymentSection');
-  const qrCodeDiv = document.getElementById('qrCode');
-  const paymentLinkContainer = document.getElementById('paymentLinkContainer');
-  const timerDisplay = document.getElementById('timer');
-  const paymentStatus = document.getElementById('paymentStatus');
+    const enrollForm = document.getElementById('enrollForm');
+    const qrCodeDiv = document.getElementById('qrCode');
+    const paymentLinkContainer = document.getElementById('paymentLinkContainer');
+    const timerDiv = document.getElementById('timer');
+    const paymentSection = document.getElementById('paymentSection');
+    const paymentStatus = document.getElementById('paymentStatus');
 
-  enrollForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const fullName = enrollForm.fullName.value.trim();
-    const email = enrollForm.email.value.trim();
-    const phone = enrollForm.phone.value.trim();
-    const selectedOptions = Array.from(enrollForm.courses.selectedOptions);
-    if (!fullName || !email || !phone || selectedOptions.length === 0) {
-      alert('Please fill all required fields and select at least one course.');
-      return;
-    }
-    let totalFee = 0;
-    let courseNames = [];
-    selectedOptions.forEach(option => {
-      totalFee += parseInt(option.value, 10);
-      courseNames.push(option.getAttribute('data-name'));
+    enrollForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const selectedOptions = [...enrollForm.courses.selectedOptions];
+      let total = 0;
+      selectedOptions.forEach(opt => total += parseFloat(opt.value));
+      const upiUrl = `upi://pay?pa=cbsnu@axl&pn=CBSN-U&am=${total.toFixed(2)}&tn=Course%20Fee`;
+
+      qrCodeDiv.innerHTML = '';
+      QRCode.toCanvas(upiUrl, { width: 200 }, (err, canvas) => {
+        if (!err) qrCodeDiv.appendChild(canvas);
+      });
+
+      paymentLinkContainer.innerHTML = `<a href="${upiUrl}" target="_blank" class="btn">Pay Now</a>`;
+      paymentSection.style.display = 'block';
+
+      let timeLeft = 300;
+      const countdown = setInterval(() => {
+        const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const sec = String(timeLeft % 60).padStart(2, '0');
+        timerDiv.textContent = `Time left: ${min}:${sec}`;
+        if (--timeLeft < 0) {
+          clearInterval(countdown);
+          paymentSection.style.display = 'none';
+          paymentStatus.textContent = 'Time expired. Please retry.';
+        }
+      }, 1000);
     });
 
-    const upiID = 'cbsnu@axy';
-    const name = 'CBSN-U';
-    const txnRef = 'CBSNU' + Date.now();
-    const upiUrl = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(name)}&tr=${txnRef}&am=${totalFee.toFixed(2)}&cu=INR`;
+    const sendOtpBtn = document.getElementById('sendOtpBtn');
+    const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+    const loginMessage = document.getElementById('loginMessage');
+    const otpForm = document.getElementById('otpForm');
+    const loginForm = document.getElementById('loginForm');
+    const userDashboard = document.getElementById('userDashboard');
+    const userName = document.getElementById('userName');
+    const userCourses = document.getElementById('userCourses');
+    const lastPayment = document.getElementById('lastPayment');
+    const upcomingPayment = document.getElementById('upcomingPayment');
+    const logoutBtn = document.getElementById('logoutBtn');
 
-    qrCodeDiv.innerHTML = '';
-    paymentLinkContainer.innerHTML = '';
-    QRCode.toCanvas(upiUrl, { width: 220 }, function (error, canvas) {
-      if (error) {
-        console.error(error);
-        paymentStatus.textContent = 'Error generating QR code.';
-        return;
-      }
-      qrCodeDiv.appendChild(canvas);
-      const link = document.createElement('a');
-      link.href = upiUrl;
-      link.className = 'payment-link';
-      link.target = '_blank';
-      link.innerText = 'Pay via UPI App';
-      paymentLinkContainer.appendChild(link);
+    let simulatedOtp = '123456';
+
+    sendOtpBtn.addEventListener('click', () => {
+      const id = document.getElementById('loginId').value;
+      if (!id) return loginMessage.textContent = 'Enter email or phone';
+      otpForm.style.display = 'block';
+      loginMessage.textContent = `OTP sent to ${id}. (Use ${simulatedOtp})`;
     });
 
-    paymentSection.style.display = 'block';
-    let countdown = 300;
-    timerDisplay.textContent = formatTime(countdown);
-    const interval = setInterval(() => {
-      countdown--;
-      timerDisplay.textContent = formatTime(countdown);
-      if (countdown <= 0) {
-        clearInterval(interval);
-        paymentStatus.textContent = 'Payment time expired. Please submit the form again.';
-        qrCodeDiv.innerHTML = '';
-        paymentLinkContainer.innerHTML = '';
+    verifyOtpBtn.addEventListener('click', () => {
+      const otp = document.getElementById('otpInput').value;
+      if (otp === simulatedOtp) {
+        loginForm.style.display = 'none';
+        otpForm.style.display = 'none';
+        userDashboard.style.display = 'block';
+        userName.textContent = 'Student User';
+        userCourses.innerHTML = '<li>CLASS X ENGLISH</li>';
+        lastPayment.textContent = 'Rs. 600';
+        upcomingPayment.textContent = 'Rs. 600';
+        loginMessage.textContent = 'Login successful!';
+      } else {
+        loginMessage.textContent = 'Invalid OTP';
       }
-    }, 1000);
-  });
+    });
 
-  function formatTime(sec) {
-    const m = Math.floor(sec / 60).toString().padStart(2, '0');
-    const s = (sec % 60).toString().padStart(2, '0');
-    return `${m}:${s}`;
-  }
-});
+    logoutBtn.addEventListener('click', () => {
+      loginForm.style.display = 'block';
+      otpForm.style.display = 'none';
+      userDashboard.style.display = 'none';
+      loginMessage.textContent = 'Logged out.';
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('contactStatus').textContent = 'Thanks for contacting us!';
+    });
+  });
 </script></body>
 </html>

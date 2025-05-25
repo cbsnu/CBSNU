@@ -1,132 +1,225 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CBSN-U | Secure Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <!-- Styling -->
+  <title>CBSN-U | Cross Border Study Network University</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; margin: 0; padding: 0; }
-    header, footer { background: #1a237e; color: white; text-align: center; padding: 1em; }
-    .container { max-width: 400px; margin: 30px auto; background: white; padding: 2em; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    input, select, button { width: 100%; padding: 0.8em; margin: 0.5em 0; border-radius: 5px; border: 1px solid #ccc; }
-    button { background: #1a237e; color: white; border: none; cursor: pointer; }
-    button:hover { background: #3949ab; }
-    .msg { margin-top: 1em; font-weight: bold; text-align: center; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f0f4f8; }
+    header { background: #003366; color: #fff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 1.5rem; }
+    nav a { color: #fff; text-decoration: none; margin-left: 1rem; font-weight: bold; cursor: pointer; }
+    nav a:hover { text-decoration: underline; }
+    section { display: none; padding: 2rem; max-width: 900px; margin: 1rem auto; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    section.active { display: block; }
+    .slogan { font-style: italic; margin-top: 0.5rem; color: #88b0d3; }
+    .btn { background: #003366; color: #fff; padding: 0.7rem 1.5rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .btn:hover { background: #0055aa; }
+    input, select, textarea { width: 100%; padding: 0.5rem; margin: 0.4rem 0 1rem; border: 1px solid #ccc; border-radius: 4px; font-size: 1rem; }
+    label { font-weight: bold; }
+    .qr-code { text-align: center; margin-top: 1rem; }
+    .payment-link-container { text-align: center; margin-top: 1rem; }
+    .payment-link { background: #007bff; color: #fff; padding: 0.6rem 1.2rem; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-decoration: none; display: inline-block; }
+    .payment-link:hover { background: #0056b3; text-decoration: none; color: #fff; }
+    .timer { font-size: 1.2rem; font-weight: bold; color: #cc0000; margin-top: 0.5rem; text-align: center; }
+    footer { background: #003366; color: #fff; text-align: center; padding: 1rem 0; margin-top: 2rem; }
+    .error { color: #cc0000; font-weight: bold; text-align: center; }
   </style>
 </head>
 <body>
-
 <header>
-  <h1>CBSN-U</h1>
-  <p>Cross Border Study Network University</p>
-</header>
-
-<div class="container">
-  <h2>Login / Signup</h2>
-  <input type="text" id="name" placeholder="Full Name (for signup only)">
-  <input type="email" id="email" placeholder="Email" required>
-  <input type="password" id="password" placeholder="Password" required>
-  <input type="tel" id="phone" placeholder="Phone (for signup only)">
-  <select id="role">
-    <option value="Student">Student</option>
-    <option value="Faculty">Faculty</option>
-    <option value="Admin">Admin</option>
-    <option value="Parent">Parent</option>
-  </select>
-  <button onclick="signup()">Signup</button>
-  <button onclick="login()">Login</button>
-  <div class="msg" id="messageBox"></div>
-</div>
-
-<footer>
-  <p>Contact: cyberhelper231@gmail.com | +91 8709547748</p>
-  <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
+  <div>
+    <h1>CBSN-U</h1>
+    <div class="slogan">Set your limits beyond the sky.</div>
+  </div>
+  <nav>
+    <a data-target="about">About</a>
+    <a data-target="enroll">Enroll Now</a>
+    <a data-target="login">Login</a>
+    <a data-target="contact">Contact</a>
+  </nav>
+</header><section id="about" class="active">
+  <h2>About Us</h2>
+  <h3>Meet the Founder</h3>
+  <p><strong>Ritik Raj</strong>, Founder & CEO of CBSN-U</p>
+  <p>"As the Founder and CEO of CBSN-U, I'm excited to introduce you to a new era of educational possibilities. My vision is to empower coaching institutes and schools up to the 12th grade by providing a dynamic online platform designed to enhance their reach and impact. We're dedicated to conducting comprehensive examinations, including monthly tests and scholarship assessments, tailored for students within our partner schools and beyond. At CBSN-U, we're committed to fostering academic excellence and creating opportunities for every student to thrive."</p>
+  <ul>
+    <li><strong>Company Type:</strong> OPC (One Person Company)</li>
+    <li><strong>Address:</strong> Begusarai, Bihar 851101, India</li>
+    <li><strong>Second Address:</strong> 20656 But Not C I R, Porter Ranch, CA 91326, USA</li>
+    <li><strong>Contact:</strong> +1 8183 8820 65 / +91 870 954 7748</li>
+    <li><strong>Email:</strong> cbsnu@gmail.com, cbsnu.contact@gmail.com</li>
+    <li><strong>Education:</strong> B.Sc. Agriculture, Ghanshyam Urvashi PG College, Prayagraj</li>
+    <li><strong>Security Training:</strong> Fibre Security, Cross Our Security, Delhi</li>
+  </ul>
+</section><section id="enroll">
+  <h2>Enroll in CBSN-U Courses</h2>
+  <form id="enrollForm">
+    <label for="fullName">Full Name *</label>
+    <input type="text" id="fullName" name="fullName" required />
+    <label for="email">Email Address *</label>
+    <input type="email" id="email" name="email" required />
+    <label for="phone">Phone Number *</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required placeholder="10 digit number" />
+    <label for="courses">Select Courses (Multiple Allowed) *</label>
+    <select id="courses" name="courses" multiple size="8" required>
+      <option value="600" data-name="CLASS X ENGLISH: LANGUAGE & LITERATURE">CLASS X ENGLISH: LANGUAGE & LITERATURE - Rs. 600/month</option>
+      <option value="600" data-name="CLASS X SOCIAL SCIENCE">CLASS X SOCIAL SCIENCE - Rs. 600/month</option>
+      <option value="2100" data-name="CLASS X SCIENCE">CLASS X SCIENCE - Rs. 2100/month</option>
+      <option value="3000" data-name="CLASS X COMBO (All 3 subjects)">CLASS X COMBO (All 3 subjects) - Rs. 3000/month</option>
+      <option value="600" data-name="CLASS IX ENGLISH: LANGUAGE & LITERATURE">CLASS IX ENGLISH: LANGUAGE & LITERATURE - Rs. 600/month</option>
+      <option value="600" data-name="CLASS IX SOCIAL SCIENCE">CLASS IX SOCIAL SCIENCE - Rs. 600/month</option>
+      <option value="2100" data-name="CLASS IX SCIENCE">CLASS IX SCIENCE - Rs. 2100/month</option>
+      <option value="3000" data-name="CLASS IX COMBO (All 3 subjects)">CLASS IX COMBO (All 3 subjects) - Rs. 3000/month</option>
+    </select>
+    <button type="submit" class="btn">Submit and Pay</button>
+  </form>
+  <div id="paymentSection" style="display:none;">
+    <h3>Scan the QR Code to Pay</h3>
+    <div class="qr-code" id="qrCode"></div>
+    <div class="payment-link-container" id="paymentLinkContainer"></div>
+    <div class="timer" id="timer"></div>
+    <div class="error" id="paymentStatus"></div>
+  </div>
+</section>
+<section id="login">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="loginId">Email or Phone *</label>
+    <input type="text" id="loginId" name="loginId" required />
+    <button type="button" class="btn" id="sendOtpBtn">Send OTP</button>
+  </form>
+  <form id="otpForm" style="display:none; margin-top:1rem;">
+    <label for="otpInput">Enter OTP *</label>
+    <input type="text" id="otpInput" name="otpInput" maxlength="6" required />
+    <button type="button" class="btn" id="verifyOtpBtn">Verify OTP</button>
+  </form>
+  <div id="loginMessage" style="margin-top:1rem;"></div>
+  <div id="userDashboard" style="display:none; margin-top:2rem;">
+    <h3>Welcome, <span id="userName"></span></h3>
+    <p><strong>Enrolled Courses:</strong></p>
+    <ul id="userCourses"></ul>
+    <p><strong>Last Fee Payment:</strong> <span id="lastPayment">No payment yet</span></p>
+    <p><strong>Upcoming Fee Payment:</strong> Rs. <span id="upcomingPayment">0</span></p>
+    <button class="btn" id="logoutBtn">Logout</button>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>If you have any queries, please fill the form below:</p>
+  <form id="contactForm">
+    <label for="contactName">Full Name *</label>
+    <input type="text" id="contactName" name="contactName" required />
+    <label for="contactEmail">Email Address *</label>
+    <input type="email" id="contactEmail" name="contactEmail" required />
+    <label for="contactMessage">Message *</label>
+    <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+    <button type="submit" class="btn">Send Message</button>
+  </form>
+  <div id="contactStatus" style="margin-top:1rem;"></div>
+</section><footer>
+  CBSN-U © 2025 | cbsnu@gmail.com | cbsnu.contact@gmail.com
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+  const MOCK_OTP = '123456';
+  const otpForm = document.getElementById('otpForm');
+  const loginForm = document.getElementById('loginForm');
+  const loginMessage = document.getElementById('loginMessage');
+  const sendOtpBtn = document.getElementById('sendOtpBtn');
+  const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+  const userDashboard = document.getElementById('userDashboard');
+  const userNameSpan = document.getElementById('userName');
+  const userCoursesList = document.getElementById('userCourses');
+  const lastPaymentSpan = document.getElementById('lastPayment');
+  const upcomingPaymentSpan = document.getElementById('upcomingPayment');
+  const logoutBtn = document.getElementById('logoutBtn');
+  let currentLoginId = null;sendOtpBtn.addEventListener('click', () => { const loginId = loginForm.loginId.value.trim(); if (!loginId) { loginMessage.textContent = 'Please enter your email or phone number.'; return; } loginMessage.textContent = OTP sent to ${loginId} (Use ${MOCK_OTP}); otpForm.style.display = 'block'; currentLoginId = loginId; });
+
+verifyOtpBtn.addEventListener('click', () => { const enteredOtp = document.getElementById('otpInput').value.trim(); if (enteredOtp === MOCK_OTP) { loginMessage.textContent = 'Login successful!'; const data = JSON.parse(localStorage.getItem('enrollmentData')); if (data && (data.email === currentLoginId || data.phone === currentLoginId)) { userNameSpan.textContent = data.fullName; userCoursesList.innerHTML = ''; data.courses.forEach(course => { const li = document.createElement('li'); li.textContent = course; userCoursesList.appendChild(li); }); lastPaymentSpan.textContent = data.lastPaymentDate ?? 'No payment yet'; upcomingPaymentSpan.textContent = data.upcomingPayment ?? 0; } else { userNameSpan.textContent = currentLoginId; userCoursesList.innerHTML = '<li>No courses enrolled</li>'; lastPaymentSpan.textContent = 'No payment yet'; upcomingPaymentSpan.textContent = '0'; } loginForm.style.display = 'none'; otpForm.style.display = 'none'; userDashboard.style.display = 'block'; } else { loginMessage.textContent = 'Invalid OTP. Please try again.'; } });
+
+logoutBtn.addEventListener('click', () => { currentLoginId = null; loginMessage.textContent = ''; loginForm.style.display = 'block'; otpForm.style.display = 'none'; userDashboard.style.display = 'none'; loginForm.loginId.value = ''; document.getElementById('otpInput').value = ''; });
+
+const contactForm = document.getElementById('contactForm'); const contactStatus = document.getElementById('contactStatus'); contactForm.addEventListener('submit', (e) => { e.preventDefault(); const name = contactForm.contactName.value.trim(); const email = contactForm.contactEmail.value.trim(); const message = contactForm.contactMessage.value.trim(); if (!name || !email || !message) { contactStatus.textContent = 'Please fill all fields.'; return; } contactStatus.textContent = 'Thank you for contacting us. We will respond soon.'; contactForm.reset(); });
 
 <script>
-  // ==== FIREBASE CONFIG (REPLACE THIS) ====
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      const target = link.getAttribute('data-target');
+      sections.forEach(sec => {
+        sec.classList.remove('active');
+        if (sec.id === target) sec.classList.add('active');
+      });
+    });
+  });
 
-  // ==== GOOGLE SHEET SCRIPT URL ====
-  const sheetURL = "https://script.google.com/macros/s/AKfycbyVclIKdRBooqzPor-gTOLJuYW4PJ75WuAfifb9Oy00dd3vHgY__tQvhIQVKKiEf2Ei/exec";
+  const enrollForm = document.getElementById('enrollForm');
+  const paymentSection = document.getElementById('paymentSection');
+  const qrCodeDiv = document.getElementById('qrCode');
+  const paymentLinkContainer = document.getElementById('paymentLinkContainer');
+  const timerDisplay = document.getElementById('timer');
+  const paymentStatus = document.getElementById('paymentStatus');
 
-  // ==== ADMIN EMAILS ====
-  const adminEmails = ["cyberhelper231@gmail.com", "rittikraj@cbsnu.edu"];
-
-  function showMessage(msg, color = "green") {
-    const box = document.getElementById("messageBox");
-    box.innerText = msg;
-    box.style.color = color;
-  }
-
-  function signup() {
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const role = document.getElementById("role").value;
-
-    if (!name || !email || !password || !phone) {
-      showMessage("Fill all signup fields!", "red");
+  enrollForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fullName = enrollForm.fullName.value.trim();
+    const email = enrollForm.email.value.trim();
+    const phone = enrollForm.phone.value.trim();
+    const selectedOptions = Array.from(enrollForm.courses.selectedOptions);
+    if (!fullName || !email || !phone || selectedOptions.length === 0) {
+      alert('Please fill all required fields and select at least one course.');
       return;
     }
+    let totalFee = 0;
+    let courseNames = [];
+    selectedOptions.forEach(option => {
+      totalFee += parseInt(option.value, 10);
+      courseNames.push(option.getAttribute('data-name'));
+    });
 
-    auth.createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        const assignedRole = adminEmails.includes(email) ? "Admin" : role;
+    const upiID = 'cbsnu@axy';
+    const name = 'CBSN-U';
+    const txnRef = 'CBSNU' + Date.now();
+    const upiUrl = `upi://pay?pa=${encodeURIComponent(upiID)}&pn=${encodeURIComponent(name)}&tr=${txnRef}&am=${totalFee.toFixed(2)}&cu=INR`;
 
-        // Send to Google Sheet
-        const formData = new FormData();
-        formData.append("Name", name);
-        formData.append("Email", email);
-        formData.append("Phone", phone);
-        formData.append("Username", email.split("@")[0]);
-        formData.append("Password", password);
-        formData.append("Role", assignedRole);
+    qrCodeDiv.innerHTML = '';
+    paymentLinkContainer.innerHTML = '';
+    QRCode.toCanvas(upiUrl, { width: 220 }, function (error, canvas) {
+      if (error) {
+        console.error(error);
+        paymentStatus.textContent = 'Error generating QR code.';
+        return;
+      }
+      qrCodeDiv.appendChild(canvas);
+      const link = document.createElement('a');
+      link.href = upiUrl;
+      link.className = 'payment-link';
+      link.target = '_blank';
+      link.innerText = 'Pay via UPI App';
+      paymentLinkContainer.appendChild(link);
+    });
 
-        fetch(sheetURL, { method: "POST", body: formData })
-          .then(() => showMessage("Signup successful & saved!", "green"))
-          .catch(() => showMessage("Signup done. Sheet error.", "orange"));
-      })
-      .catch(error => {
-        showMessage(error.message, "red");
-      });
+    paymentSection.style.display = 'block';
+    let countdown = 300;
+    timerDisplay.textContent = formatTime(countdown);
+    const interval = setInterval(() => {
+      countdown--;
+      timerDisplay.textContent = formatTime(countdown);
+      if (countdown <= 0) {
+        clearInterval(interval);
+        paymentStatus.textContent = 'Payment time expired. Please submit the form again.';
+        qrCodeDiv.innerHTML = '';
+        paymentLinkContainer.innerHTML = '';
+      }
+    }, 1000);
+  });
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const s = (sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
   }
-
-  function login() {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const role = document.getElementById("role").value;
-
-    if (!email || !password) {
-      showMessage("Fill email and password!", "red");
-      return;
-    }
-
-    auth.signInWithEmailAndPassword(email, password)
-      .then(user => {
-        const detectedRole = adminEmails.includes(email) ? "Admin" : role;
-        showMessage("Login success as " + detectedRole, "green");
-        // TODO: Redirect to dashboard or show content based on role
-      })
-      .catch(error => {
-        showMessage(error.message, "red");
-      });
-  }
-</script>
-
-</body>
+});
+</script></body>
 </html>

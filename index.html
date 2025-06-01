@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSN-U: Set Your Limits Beyond The Sky</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>CBSN-U: Set Your Limits Beyond The Sky</title> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -48,7 +46,7 @@
 
         h1, h2, h3 {
             font-family: 'Montserrat', sans-serif;
-            color: #FF6B6B; /* Brand color for headings */
+            color: #FF6B6B;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -57,9 +55,9 @@
             font-size: 2.5em;
         }
 
-        /* Navigation Bar */
+        /* Navbar Styling */
         .navbar {
-            background-color: #0F0F1A; /* Darker background for nav */
+            background-color: #0F0F1A;
             color: #fff;
             padding: 10px 0;
             position: fixed;
@@ -84,7 +82,7 @@
         }
 
         .navbar .logo img {
-            height: 40px; /* Adjust logo height as needed */
+            height: 40px;
             margin-right: 10px;
         }
 
@@ -114,7 +112,7 @@
 
         /* Hero Section */
         #hero {
-            background: url('https://placehold.co/1920x1080/1a1a2e/FFFFFF?text=Hero+Image') no-repeat center center/cover; /* Placeholder hero image */
+            background: url('https://placehold.co/1920x1080/1a1a2e/FFFFFF?text=Hero+Image') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -122,7 +120,7 @@
             text-align: center;
             color: #fff;
             position: relative;
-            margin-top: -60px; /* Adjust based on navbar height */
+            margin-top: -60px; /* Adjust for fixed navbar height */
             flex-direction: column;
         }
 
@@ -133,7 +131,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.6); /* Dark overlay */
+            background-color: rgba(0,0,0,0.6);
         }
 
         #hero .hero-content {
@@ -227,7 +225,7 @@
 
         #academics .academic-item {
             flex: 0 0 auto;
-            width: 300px; /* Fixed width for carousel items */
+            width: 300px;
             scroll-snap-align: start;
             background-color: #2a2a3e;
             border-radius: 8px;
@@ -363,7 +361,7 @@
             font-size: 1em;
         }
 
-        /* Testimonials/Feedbacks Section */
+        /* Feedbacks/Testimonials Section */
         #feedbacks {
             background-color: #2a2a3e;
         }
@@ -518,7 +516,7 @@
             color: #fff;
         }
 
-        /* Footer */
+        /* Footer Styling */
         .footer {
             background-color: #0F0F1A;
             color: #fff;
@@ -543,7 +541,7 @@
             color: #FF6B6B;
         }
 
-        /* Chatbot Icon */
+        /* Chatbot Styling */
         .chatbot-icon {
             position: fixed;
             bottom: 30px;
@@ -567,10 +565,9 @@
             transform: scale(1.1);
         }
 
-        /* Chatbot Popup */
         .chatbot-popup {
             position: fixed;
-            bottom: 100px; /* Above the icon */
+            bottom: 100px;
             right: 30px;
             width: 350px;
             height: 450px;
@@ -681,14 +678,14 @@
             background-color: #E65A5A;
         }
 
-        /* Admin Dashboard Styles */
+        /* Dashboard Styling */
         .dashboard-container {
             padding: 20px;
             background-color: #2a2a3e;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             margin-top: 50px;
-            min-height: calc(100vh - 180px);
+            min-height: calc(100vh - 180px); /* Adjust to fill screen minus header/footer */
         }
 
         .dashboard-container h2 {
@@ -762,7 +759,6 @@
             background-color: #c82333;
         }
 
-        /* Forms for uploads */
         .upload-form {
             display: flex;
             flex-direction: column;
@@ -795,14 +791,15 @@
             background-color: #E65A5A;
         }
 
-        /* Auth Forms */
+        /* Auth Modals/Pages Styling (Adjusted for multipage) */
+        /* For login.html, you'd set display: block for the primary auth container */
         .auth-container {
             background-color: #2a2a3e;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             max-width: 400px;
-            margin: 80px auto;
+            margin: 80px auto; /* Centered for a dedicated login page */
             text-align: center;
         }
 
@@ -920,24 +917,24 @@
                 font-size: 1.8em;
             }
         }
-
     </style>
 </head>
 <body>
     <header class="navbar">
-        <a href="#" class="logo">
-            <img src="images/1744649096909.png" alt="CBSN-U Logo"> CBSN-U
+        <a href="index.html" class="logo">
+            <img src="images/1744649096909.png" alt="CBSN-U Logo">
+            CBSN-U
         </a>
         <nav>
             <ul>
-                <li><a href="#hero" class="active">Home</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#academics">Academics</a></li>
-                <li><a href="#photo-gallery">Gallery</a></li>
-                <li><a href="#announcements">Announcements</a></li>
-                <li><a href="#feedbacks">Feedbacks</a></li>
-                <li><a href="#contact-us">Contact Us</a></li>
-                <li><a href="#" id="loginBtn">Login</a></li>
+                <li><a href="index.html" class="nav-link" data-page="index">Home</a></li>
+                <li><a href="about.html" class="nav-link" data-page="about">About Us</a></li>
+                <li><a href="academics.html" class="nav-link" data-page="academics">Academics</a></li>
+                <li><a href="gallery.html" class="nav-link" data-page="gallery">Gallery</a></li>
+                <li><a href="announcements.html" class="nav-link" data-page="announcements">Announcements</a></li>
+                <li><a href="feedbacks.html" class="nav-link" data-page="feedbacks">Feedbacks</a></li>
+                <li><a href="contact.html" class="nav-link" data-page="contact">Contact Us</a></li>
+                <li><a href="login.html" class="nav-link" data-page="login" id="loginNavLink">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -946,15 +943,15 @@
         <section id="hero">
             <div class="hero-content">
                 <h1>Welcome to CBSN-U</h1>
-                <p>Set Your Limits Beyond The Sky. [cite: 1]</p>
-                <a href="#academics" class="btn">Explore Programs</a>
+                <p>Set Your Limits Beyond The Sky.</p>
+                <a href="#about-us" class="btn">Learn More</a>
             </div>
         </section>
 
         <section id="about-us" class="container">
             <h2>About CBSN-U</h2>
-            <p>CBSN-U (Cross Border Study Network -U) is dedicated to providing high-quality education and fostering a global learning environment. [cite: 1]</p>
-            <p>Founded by Rittik Raj, we aim to bridge educational gaps and empower students to achieve their full potential. [cite: 2] Our head office is in Begusarai, Bihar, India, with a secondary office in California, USA. [cite: 2, 8]</p>
+            <p>CBSN-U (Cross Border Study Network -U) is dedicated to providing high-quality education and fostering a global learning environment.</p>
+            <p>Founded by Rittik Raj, we aim to bridge educational gaps and empower students to achieve their full potential. Our head office is in Begusarai, Bihar, India, with a secondary office in California, USA (20656 but not c i r Potter and, CA 91326 USA).</p>
 
             <div class="stats-grid">
                 <div class="stat-item">
@@ -973,75 +970,107 @@
         </section>
 
         <section id="academics" class="container">
-            <h2>Our Academic Programs</h2>
+            <h2>Academic Programs & Results</h2>
             <div class="academic-carousel">
                 <div class="academic-item">
-                    <img src="images/2.png" alt="Program 1">
-                    <h3>Program Title 1</h3>
-                    <p>Brief description of the academic program, its benefits, and what students will learn.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+1" alt="Academic Program 1">
+                    <h3>Course Title 1</h3>
+                    <p>Brief description of the course, its objectives, and what students will learn.</p>
                 </div>
                 <div class="academic-item">
-                    <img src="images/1.png" alt="Program 2">
-                    <h3>Program Title 2</h3>
-                    <p>Brief description of the academic program, its benefits, and what students will learn.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+2" alt="Academic Program 2">
+                    <h3>Course Title 2</h3>
+                    <p>Detailed overview of another academic program offered at CBSN-U.</p>
                 </div>
                 <div class="academic-item">
-                    <img src="images/3.png" alt="Program 3">
-                    <h3>Program Title 3</h3>
-                    <p>Brief description of the academic program, its benefits, and what students will learn.</p>
-                    <a href="#" class="btn">Learn More</a>
+                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+3" alt="Academic Program 3">
+                    <h3>Course Title 3</h3>
+                    <p>Information about the curriculum, duration, and career prospects.</p>
                 </div>
                 </div>
 
-            <h2 style="margin-top: 50px;">Results & Certificates</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px auto;">
-                Access your examination results and download your certificates here.
-                Actual PDF links will need to be managed via Firebase Storage and a backend.
-            </p>
-            <div class="downloads-grid" id="academicDownloads">
+            <h3>Results & Certificates</h3>
+            <div class="downloads-grid">
                 <div class="download-item">
-                    <h3>Exam Results 2024</h3>
-                    <a href="#">Download PDF</a>
+                    <i class="fas fa-file-pdf"></i>
+                    <p>Annual Exam Results 2024</p>
+                    <a href="path/to/results2024.pdf" target="_blank">Download PDF</a>
                 </div>
                 <div class="download-item">
-                    <h3>Course Completion Certificate</h3>
-                    <a href="#">Download PDF</a>
+                    <i class="fas fa-award"></i>
+                    <p>Student Certificates Guidelines</p>
+                    <a href="path/to/certificates_guidelines.pdf" target="_blank">View Details</a>
                 </div>
-            </div>
+                <div class="download-item">
+                    <i class="fas fa-file-alt"></i>
+                    <p>Admissions Prospectus 2025</p>
+                    <a href="path/to/prospectus2025.pdf" target="_blank">Download PDF</a>
+                </div>
+                </div>
         </section>
 
         <section id="photo-gallery" class="container">
             <h2>Photo Gallery</h2>
-            <div class="gallery-grid" id="homePhotoGallery">
+            <div class="gallery-grid" id="photoGalleryGrid">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Event+1" alt="Event 1">
+                    <div class="overlay">Event Name 1 - Description</div>
                 </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Campus" alt="Campus">
+                    <div class="overlay">Campus Life - Spring 2024</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Graduation" alt="Graduation">
+                    <div class="overlay">Graduation Ceremony 2024</div>
+                </div>
+            </div>
         </section>
 
         <section id="announcements" class="container">
-            <h2>Latest Announcements</h2>
+            <h2>Announcements</h2>
             <div class="announcement-list" id="announcementList">
+                <div class="announcement-item">
+                    <div class="date">June 1, 2025</div>
+                    <p>Important: Summer break starts on June 15th. Classes resume August 1st.</p>
                 </div>
+                <div class="announcement-item">
+                    <div class="date">May 28, 2025</div>
+                    <p>Workshop on AI in Education next Friday. Register now!</p>
+                </div>
+            </div>
         </section>
 
         <section id="feedbacks" class="container">
-            <h2>Student & Faculty Feedbacks</h2>
+            <h2>What Our Students Say</h2>
             <div class="feedback-grid" id="feedbackGrid">
+                <div class="feedback-item">
+                    <p>"CBSN-U provided me with excellent learning opportunities and supportive faculty. Highly recommend!"</p>
+                    <div class="author">- John Doe, Alumni</div>
                 </div>
+                <div class="feedback-item">
+                    <p>"The online learning platform is very intuitive, and the courses are well-structured. Great experience."</p>
+                    <div class="author">- Jane Smith, Student</div>
+                </div>
+            </div>
 
-            <div class="contact-form-container" style="margin-top: 50px;">
-                <h3>Submit Your Feedback</h3>
+            <h3>Submit Your Feedback</h3>
+            <div class="contact-form-container">
                 <form id="feedbackForm">
                     <div class="form-group">
                         <label for="feedbackName">Your Name:</label>
-                        <input type="text" id="feedbackName" name="feedbackName" required>
+                        <input type="text" id="feedbackName" required>
                     </div>
                     <div class="form-group">
-                        <label for="feedbackContent">Your Feedback:</label>
-                        <textarea id="feedbackContent" name="feedbackContent" required></textarea>
+                        <label for="feedbackEmail">Your Email:</label>
+                        <input type="email" id="feedbackEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackMessage">Your Feedback:</label>
+                        <textarea id="feedbackMessage" required></textarea>
                     </div>
                     <button type="submit" class="btn">Submit Feedback</button>
-                    <div id="feedbackMessageStatus" class="message-status"></div>
+                    <div id="feedbackMessageStatus" class="message-status" style="display: none;"></div>
                 </form>
             </div>
         </section>
@@ -1051,52 +1080,250 @@
             <div class="contact-grid">
                 <div class="contact-info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h3>Head Office [cite: 2]</h3>
-                    <p>Begusarai, Bihar, 851101, India [cite: 2]</p>
+                    <h3>Head Office</h3>
+                    <p>Begusarai, Bihar, 851101, India</p>
                 </div>
                 <div class="contact-info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <h3>Secondary Office [cite: 8]</h3>
-                    <p>20656 but not c i r Potter and, CA 91326 USA [cite: 8]</p>
+                    <h3>Secondary Office</h3>
+                    <p>20656 but not c i r Potter and, CA 91326 USA</p>
                 </div>
                 <div class="contact-info-item">
-                    <i class="fas fa-phone"></i>
-                    <h3>Phone [cite: 2, 8]</h3>
-                    <p>+91 8709547748 [cite: 2]</p>
-                    <p>+1 8183 882065 [cite: 8]</p>
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Phone Numbers</h3>
+                    <p>+91 8709547748</p>
+                    <p>+1 8183 8820 65</p>
                 </div>
                 <div class="contact-info-item">
                     <i class="fas fa-envelope"></i>
-                    <h3>Email [cite: 2, 8]</h3>
-                    <p><a href="mailto:contact.cbsnu@gmail.com">contact.cbsnu@gmail.com</a> [cite: 2]</p>
-                    <p><a href="mailto:cbsnu@gmail.com">cbsnu@gmail.com</a> [cite: 8]</p>
+                    <h3>Email Addresses</h3>
+                    <p><a href="mailto:contact.cbsnu@gmail.com">contact.cbsnu@gmail.com</a></p>
+                    <p><a href="mailto:cbsnu@gmail.com">cbsnu@gmail.com</a></p>
+                    <p><a href="mailto:cbsnu.contact@gmail.com">cbsnu.contact@gmail.com</a></p>
                 </div>
             </div>
 
-            <div class="contact-form-container" style="margin-top: 50px;">
-                <h3>Submit a Complaint</h3>
+            <h3>Submit a Complaint or Query</h3>
+            <div class="contact-form-container">
                 <form id="complaintForm">
                     <div class="form-group">
                         <label for="complaintName">Your Name:</label>
-                        <input type="text" id="complaintName" name="user_name" required>
+                        <input type="text" id="complaintName" required>
                     </div>
                     <div class="form-group">
                         <label for="complaintEmail">Your Email:</label>
-                        <input type="email" id="complaintEmail" name="user_email" required>
+                        <input type="email" id="complaintEmail" required>
                     </div>
                     <div class="form-group">
                         <label for="complaintSubject">Subject:</label>
-                        <input type="text" id="complaintSubject" name="subject" required>
+                        <input type="text" id="complaintSubject" required>
                     </div>
                     <div class="form-group">
-                        <label for="complaintMessage">Your Complaint:</label>
-                        <textarea id="complaintMessage" name="message" required></textarea>
+                        <label for="complaintMessage">Message:</label>
+                        <textarea id="complaintMessage" required></textarea>
                     </div>
-                    <button type="submit" class="btn">Submit Complaint</button>
-                    <div id="complaintMessageStatus" class="message-status"></div>
+                    <button type="submit" class="btn">Submit</button>
+                    <div id="complaintMessageStatus" class="message-status" style="display: none;"></div>
                 </form>
             </div>
         </section>
+
+        <div id="authModal" style="display: none;"> <div class="auth-container">
+                <button class="close-btn" id="closeAuthModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
+                <h2>User Authentication</h2>
+
+                <div id="loginSection">
+                    <h3>Login</h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email:</label>
+                            <input type="email" id="loginEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password:</label>
+                            <input type="password" id="loginPassword" required>
+                        </div>
+                        <button type="submit" class="btn">Login</button>
+                    </form>
+                    <a href="#" class="toggle-link" id="showSignup">Don't have an account? Sign Up</a>
+                    <a href="#" class="toggle-link" id="showAdminLogin">Admin Login</a>
+                    <a href="#" class="toggle-link" id="showClientLogin">Client Login</a>
+                    <div id="loginMessageStatus" class="message-status" style="display: none;"></div>
+                </div>
+
+                <div id="signupSection" style="display: none;">
+                    <h3>Sign Up</h3>
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupName">Full Name:</label>
+                            <input type="text" id="signupName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email:</label>
+                            <input type="email" id="signupEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password:</label>
+                            <input type="password" id="signupPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupRole">Role:</label>
+                            <select id="signupRole" required>
+                                <option value="">Select Role</option>
+                                <option value="student">Student</option>
+                                <option value="faculty">Faculty</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </form>
+                    <a href="#" class="toggle-link" id="showLogin">Already have an account? Login</a>
+                    <div id="signupMessageStatus" class="message-status" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="adminLoginModal" style="display: none;">
+            <div class="auth-container">
+                <button class="close-btn" id="closeAdminLoginModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
+                <h3>Admin Login</h3>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminEmail">Email:</label>
+                        <input type="email" id="adminEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adminPassword">Password:</label>
+                        <input type="password" id="adminPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Login as Admin</button>
+                </form>
+                <div id="adminLoginMessageStatus" class="message-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div id="clientLoginModal" style="display: none;">
+            <div class="auth-container">
+                <button class="close-btn" id="closeClientLoginModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
+                <h3>Client Login</h3>
+                <form id="clientLoginForm">
+                    <div class="form-group">
+                        <label for="clientEmail">Email:</label>
+                        <input type="email" id="clientEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientPassword">Password:</label>
+                        <input type="password" id="clientPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Login as Client</button>
+                </form>
+                <div id="clientLoginMessageStatus" class="message-status" style="display: none;"></div>
+            </div>
+        </div>
+
+        <section id="facultyDashboard" class="container dashboard-container" style="display: none;">
+            <h2>Faculty Dashboard</h2>
+            <p>Welcome, Faculty Member!</p>
+
+            <div class="dashboard-section">
+                <h3>Assignments</h3>
+                <form id="assignmentUploadForm" class="upload-form">
+                    <label for="assignmentTitle">Assignment Title:</label>
+                    <input type="text" id="assignmentTitle" required>
+
+                    <label for="assignmentDescription">Description:</label>
+                    <textarea id="assignmentDescription" rows="3"></textarea>
+
+                    <label for="assignmentFile">Upload File (PDF/DOCX):</label>
+                    <input type="file" id="assignmentFile" accept=".pdf,.doc,.docx" required>
+
+                    <button type="submit">Upload Assignment</button>
+                    <div id="assignmentUploadStatus" class="message-status" style="display: none;"></div>
+                </form>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Your Students</h3>
+                <ul class="user-list" id="facultyStudentList">
+                    <li><span>Student A (studentA@example.com)</span></li>
+                    <li><span>Student B (studentB@example.com)</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="adminDashboard" class="container dashboard-container" style="display: none;">
+            <h2>Admin Dashboard</h2>
+            <p>Welcome, Administrator!</p>
+
+            <div class="dashboard-section">
+                <h3>Manage Users</h3>
+                <ul class="user-list" id="userManagementList">
+                    <li><span>Admin User (admin@example.com) - Role: admin</span>
+                        <div class="user-actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                    <li><span>Faculty User (faculty@example.com) - Role: faculty</span>
+                        <div class="user-actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                    <li><span>Student User (student@example.com) - Role: student</span>
+                        <div class="user-actions">
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Post Announcement</h3>
+                <form id="announcementUploadForm" class="upload-form">
+                    <label for="announcementText">Announcement Text:</label>
+                    <textarea id="announcementText" rows="4" required></textarea>
+                    <button type="submit">Post Announcement</button>
+                    <div id="announcementUploadStatus" class="message-status" style="display: none;"></div>
+                </form>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Upload Gallery Photo</h3>
+                <form id="galleryUploadForm" class="upload-form">
+                    <label for="galleryImage">Select Image:</label>
+                    <input type="file" id="galleryImage" accept="image/*" required>
+                    <label for="galleryCaption">Caption:</label>
+                    <input type="text" id="galleryCaption" placeholder="Optional caption">
+                    <button type="submit">Upload Photo</button>
+                    <div id="galleryUploadStatus" class="message-status" style="display: none;"></div>
+                </form>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Manage Feedbacks</h3>
+                <ul class="complaint-list" id="adminFeedbackList">
+                    <li><span>Feedback from John (john@example.com): "Great website!"</span>
+                        <div class="complaint-actions">
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dashboard-section">
+                <h3>Review Complaints</h3>
+                <ul class="complaint-list" id="adminComplaintList">
+                    <li><span>Complaint from Jane (jane@example.com) - Subject: Issue with login</span>
+                        <div class="complaint-actions">
+                            <button class="resolve">Mark Resolved</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -1106,7 +1333,7 @@
             <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
-        <p>&copy; 2025 CBSN-U. All Rights Reserved. [cite: 1]</p>
+        <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
     </footer>
 
     <div class="chatbot-icon" id="chatbotIcon">
@@ -1127,151 +1354,8 @@
         </div>
     </div>
 
-    <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div class="auth-container">
-            <span style="position: absolute; top: 10px; right: 20px; color: #fff; font-size: 2em; cursor: pointer;" id="closeAuthModal">&times;</span>
-            <div id="loginSection">
-                <h2>Login</h2>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginEmail">Email:</label>
-                        <input type="email" id="loginEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">Password:</label>
-                        <input type="password" id="loginPassword" required>
-                    </div>
-                    <button type="submit">Login</button>
-                </form>
-                <a href="#" class="toggle-link" id="showSignup">Don't have an account? Sign Up</a>
-            </div>
-
-            <div id="signupSection" style="display: none;">
-                <h2>Sign Up</h2>
-                <form id="signupForm">
-                    <div class="form-group">
-                        <label for="signupEmail">Email:</label>
-                        <input type="email" id="signupEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signupPassword">Password:</label>
-                        <input type="password" id="signupPassword" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="userType">Register As:</label>
-                        <select id="userType" required>
-                            <option value="">Select Type</option>
-                            <option value="student">Student</option>
-                            <option value="faculty">Faculty</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="state">State:</label>
-                        <input type="text" id="state" placeholder="e.g., Bihar" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="district">District:</label>
-                        <input type="text" id="district" placeholder="e.g., Begusarai" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="institution">School/Institution:</label>
-                        <input type="text" id="institution" placeholder="e.g., ABC School" required>
-                    </div>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <a href="#" class="toggle-link" id="showLogin">Already have an account? Login</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="adminLoginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div class="auth-container">
-            <span style="position: absolute; top: 10px; right: 20px; color: #fff; font-size: 2em; cursor: pointer;" id="closeAdminLoginModal">&times;</span>
-            <h2>Admin Login</h2>
-            <form id="adminLoginForm">
-                <div class="form-group">
-                    <label for="adminEmail">Email:</label>
-                    <input type="email" id="adminEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="adminPassword">Password:</label>
-                    <input type="password" id="adminPassword" required>
-                </div>
-                <button type="submit">Login as Admin</button>
-            </form>
-            <a href="#" class="toggle-link" id="showClientLogin">Are you a Client? Login here.</a>
-        </div>
-    </div>
-
-    <div id="clientLoginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
-        <div class="auth-container">
-            <span style="position: absolute; top: 10px; right: 20px; color: #fff; font-size: 2em; cursor: pointer;" id="closeClientLoginModal">&times;</span>
-            <h2>Client Login</h2>
-            <form id="clientLoginForm">
-                <div class="form-group">
-                    <label for="clientEmail">Email:</label>
-                    <input type="email" id="clientEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="clientPassword">Password:</label>
-                    <input type="password" id="clientPassword" required>
-                </div>
-                <button type="submit">Login as Client</button>
-            </form>
-            <a href="#" class="toggle-link" id="showAdminLogin">Are you an Admin? Login here.</a>
-        </div>
-    </div>
-
-    <section id="facultyDashboard" class="container dashboard-container" style="display: none;">
-        <h2>Faculty Dashboard</h2>
-        <div class="dashboard-section">
-            <h3>Upload Assignment</h3>
-            <form id="assignmentUploadForm" class="upload-form">
-                <input type="text" placeholder="Assignment Title" required>
-                <input type="file" accept=".pdf" required>
-                <button type="submit">Upload Assignment</button>
-            </form>
-        </div>
-        </section>
-
-    <section id="adminDashboard" class="container dashboard-container" style="display: none;">
-        <h2>Admin Dashboard</h2>
-
-        <div class="dashboard-section">
-            <h3>Manage Users</h3>
-            <ul class="user-list" id="userList">
-                </ul>
-        </div>
-
-        <div class="dashboard-section">
-            <h3>Manage Complaints</h3>
-            <ul class="complaint-list" id="complaintList">
-                </ul>
-        </div>
-
-        <div class="dashboard-section">
-            <h3>Upload New Announcement</h3>
-            <form id="announcementUploadForm" class="upload-form">
-                <input type="text" placeholder="Announcement Title" required>
-                <textarea placeholder="Announcement Content" required></textarea>
-                <button type="submit">Publish Announcement</button>
-            </form>
-        </div>
-
-        <div class="dashboard-section">
-            <h3>Upload New Gallery Image</h3>
-            <form id="galleryUploadForm" class="upload-form">
-                <input type="file" accept="image/*" required>
-                <input type="text" placeholder="Image Caption (Optional)">
-                <button type="submit">Upload Image</button>
-            </form>
-        </div>
-    </section>
-
-
     <script>
-        // Firebase Configuration [cite: 4, 5, 6]
+        // Firebase Configuration (THIS BLOCK MUST BE COPIED TO EACH HTML FILE)
         const firebaseConfig = {
             apiKey: "AIzaSyCPN3VAXottCg3vDr0fMSu1niSVGNT3V9o",
             authDomain: "cbsnu-d8dbb.firebaseapp.com",
@@ -1281,153 +1365,129 @@
             appId: "1:1066269637289:web:cb1977ba240e05a0b587b8",
             measurementId: "G-TMBEL8E5ZQ"
         };
-
-        // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
         const storage = firebase.storage();
         const analytics = firebase.analytics();
-
         console.log("Firebase initialized.");
 
-        // EmailJS Initialization [cite: 7]
-        // This will be called inside DOMContentLoaded to ensure library is loaded
-        // emailjs.init('YOUR_PUBLIC_KEY'); // Will be initialized below
+        // EmailJS Initialization (THIS BLOCK MUST BE COPIED TO EACH HTML FILE)
+        document.addEventListener('DOMContentLoaded', () => {
+            emailjs.init('DqEZGom9bxso5B5Zl'); // Your EmailJS Public Key
+            console.log("EmailJS initialized.");
 
-        // Helper function to show messages
+            // --- Initial Data Loading relevant to the current page ---
+            // Only call functions for sections present on THIS specific HTML page.
+            const currentPath = window.location.pathname;
+            if (currentPath.includes('index.html') || currentPath === '/') {
+                loadAnnouncements(); // For home page announcements snippet
+                loadHomePhotoGallery(); // For home page gallery snippet
+                loadFeedbacks(); // For home page feedbacks snippet
+                updateCounts(); // For home page stats
+            } else if (currentPath.includes('about.html')) {
+                updateCounts(); // Only stats needed on About Us page
+            } else if (currentPath.includes('announcements.html')) {
+                loadAnnouncements(); // Load all announcements
+            } else if (currentPath.includes('gallery.html')) {
+                loadAllPhotoGallery(); // Load all gallery items
+            } else if (currentPath.includes('feedbacks.html')) {
+                loadFeedbacks(); // Load all feedbacks
+            } else if (currentPath.includes('dashboard-admin.html')) {
+                loadUsers();
+                loadAdminFeedbacks();
+                loadComplaints();
+            } else if (currentPath.includes('dashboard-faculty.html')) {
+                loadFacultyStudents(); // Assuming faculty students are loaded on their dashboard
+            }
+        });
+
+        // Helper function to show messages (THIS FUNCTION MUST BE COPIED TO EACH HTML FILE)
         function showMessage(elementId, message, isError) {
             const element = document.getElementById(elementId);
-            element.textContent = message;
-            element.classList.remove('success', 'error');
-            element.classList.add(isError ? 'error' : 'success');
-            element.style.display = 'block';
-            setTimeout(() => {
-                element.style.display = 'none';
-            }, 5000);
+            if (element) { // Ensure element exists on the current page
+                element.textContent = message;
+                element.classList.remove('success', 'error');
+                element.classList.add(isError ? 'error' : 'success');
+                element.style.display = 'block';
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 5000);
+            }
         }
 
-        // --- Navigation Active Link ---
-        const navLinks = document.querySelectorAll('.navbar ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
-                // Smooth scroll to section
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId.startsWith('#')) {
-                    document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        // --- Navigation Active Link Logic (THIS BLOCK MUST BE COPIED TO EACH HTML FILE) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentFileName = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.navbar ul li .nav-link');
+            navLinks.forEach(link => {
+                const linkHref = link.getAttribute('href');
+                const linkFileName = linkHref.split('/').pop();
+
+                if (linkFileName === currentFileName) {
+                    link.classList.add('active');
+                } else if (currentFileName === '' && link.getAttribute('data-page') === 'index') {
+                    // Handle case where index.html is accessed as root '/'
+                    link.classList.add('active');
                 }
             });
         });
 
-        // --- Login/Signup Modal Logic ---
-        const loginBtn = document.getElementById('loginBtn');
-        const authModal = document.getElementById('authModal');
-        const closeAuthModal = document.getElementById('closeAuthModal');
-        const loginSection = document.getElementById('loginSection');
-        const signupSection = document.getElementById('signupSection');
-        const showSignup = document.getElementById('showSignup');
-        const showLogin = document.getElementById('showLogin');
-
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            authModal.style.display = 'flex';
-            loginSection.style.display = 'block';
-            signupSection.style.display = 'none';
-        });
-
-        closeAuthModal.addEventListener('click', () => {
-            authModal.style.display = 'none';
-        });
-
-        showSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginSection.style.display = 'none';
-            signupSection.style.display = 'block';
-        });
-
-        showLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            signupSection.style.display = 'none';
-            loginSection.style.display = 'block';
-        });
-
-        // --- Admin/Client Login Logic ---
-        const adminLoginModal = document.getElementById('adminLoginModal');
-        const clientLoginModal = document.getElementById('clientLoginModal');
-        const closeAdminLoginModal = document.getElementById('closeAdminLoginModal');
-        const closeClientLoginModal = document.getElementById('closeClientLoginModal');
-        const showAdminLoginLink = document.getElementById('showAdminLogin');
-        const showClientLoginLink = document.getElementById('showClientLogin');
-
-        // Example of how to open these (you might link them from somewhere else)
-        // For now, let's make the 'Login' button a toggle for user/admin/client
-        loginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            authModal.style.display = 'flex'; // Default to user login
-            loginSection.style.display = 'block';
-            signupSection.style.display = 'none';
-
-            // Hide other modals if open
-            adminLoginModal.style.display = 'none';
-            clientLoginModal.style.display = 'none';
-        });
-
-        // Admin login from regular login link
-        showAdminLoginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            clientLoginModal.style.display = 'none';
-            adminLoginModal.style.display = 'flex';
-        });
-
-        // Client login from regular login link
-        showClientLoginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            adminLoginModal.style.display = 'none';
-            clientLoginModal.style.display = 'flex';
-        });
-
-
-        closeAdminLoginModal.addEventListener('click', () => {
-            adminLoginModal.style.display = 'none';
-        });
-
-        closeClientLoginModal.addEventListener('click', () => {
-            clientLoginModal.style.display = 'none';
-        });
-
-
-        // --- Complaint Form Submission (EmailJS) ---
+        // --- Complaint Form Submission (EmailJS) (ONLY COPY TO CONTACT.HTML) ---
         const complaintForm = document.getElementById('complaintForm');
-        complaintForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        if (complaintForm) { // Check if form exists on this page
+            complaintForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const serviceID = 'service_nvwp74b'; // Your EmailJS Service ID
+                const templateID = 'template_jphnhtj'; // Your EmailJS Template ID
+                try {
+                    const templateParams = {
+                        user_name: document.getElementById('complaintName').value,
+                        user_email: document.getElementById('complaintEmail').value,
+                        subject: document.getElementById('complaintSubject').value,
+                        message: document.getElementById('complaintMessage').value,
+                        to_email: 'contact.cbsnu@gmail.com' // Your official email for complaints
+                    };
+                    const response = await emailjs.send(serviceID, templateID, templateParams);
+                    console.log('EmailJS Success!', response.status, response.text);
+                    showMessage('complaintMessageStatus', 'Complaint submitted successfully! We will review it shortly.', false);
+                    complaintForm.reset();
+                    // Developer Note: For a robust system, complaints should also be logged in Firestore
+                    // and visible in the Admin Dashboard.
+                } catch (error) {
+                    console.error('EmailJS Failed...', error);
+                    showMessage('complaintMessageStatus', 'Failed to submit complaint. Please try again.', true);
+                }
+            });
+        }
 
-            const serviceID = 'service_nvwp74b'; // [cite: 7]
-            const templateID = 'template_jphnhtj'; // [cite: 7]
+        // --- Feedback Form Submission (Firestore) (ONLY COPY TO FEEDBACKS.HTML) ---
+        const feedbackForm = document.getElementById('feedbackForm');
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('feedbackName').value;
+                const email = document.getElementById('feedbackEmail').value;
+                const message = document.getElementById('feedbackMessage').value;
 
-            try {
-                const templateParams = {
-                    user_name: document.getElementById('complaintName').value,
-                    user_email: document.getElementById('complaintEmail').value,
-                    subject: document.getElementById('complaintSubject').value,
-                    message: document.getElementById('complaintMessage').value,
-                    to_email: 'contact.cbsnu@gmail.com' // Your official email for complaints [cite: 2]
-                };
+                try {
+                    await db.collection("feedbacks").add({
+                        name: name,
+                        email: email,
+                        message: message,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showMessage('feedbackMessageStatus', 'Feedback submitted successfully!', false);
+                    feedbackForm.reset();
+                    loadFeedbacks(); // Refresh feedback list if on the same page
+                } catch (error) {
+                    console.error("Error submitting feedback:", error);
+                    showMessage('feedbackMessageStatus', 'Failed to submit feedback. Please try again.', true);
+                }
+            });
+        }
 
-                const response = await emailjs.send(serviceID, templateID, templateParams);
-                console.log('EmailJS Success!', response.status, response.text);
-                showMessage('complaintMessageStatus', 'Complaint submitted successfully! We will review it shortly.', false);
-                complaintForm.reset();
-                // Developer Note: For a robust system, complaints should also be logged in Firestore
-                // and visible in the Admin Dashboard.
-            } catch (error) {
-                console.error('EmailJS Failed...', error);
-                showMessage('complaintMessageStatus', 'Failed to submit complaint. Please try again.', true);
-            }
-        });
-
-        // --- Chatbot Logic ---
+        // --- Chatbot Logic (THIS ENTIRE BLOCK MUST BE COPIED TO EACH HTML FILE) ---
         const chatbotIcon = document.getElementById('chatbotIcon');
         const chatbotPopup = document.getElementById('chatbotPopup');
         const closeChatbotBtn = document.getElementById('closeChatbotBtn');
@@ -1435,7 +1495,6 @@
         const sendChatbotBtn = document.getElementById('sendChatbotBtn');
         const chatbotMessages = document.getElementById('chatbotMessages');
 
-        // Company details for chatbot knowledge base [cite: 1, 2, 8]
         const companyDetails = {
             name: "CBSN-U (Cross Border Study Network -U)",
             slogan: "Set Your Limits Beyond The Sky.",
@@ -1449,30 +1508,32 @@
             ceoCredentials: "B.Sc Agriculture from Ghanshyam Urvashi PG College Prayagraj, Cyber Security from Craw Cyber Security Delhi"
         };
 
-        chatbotIcon.addEventListener('click', () => {
-            chatbotPopup.classList.toggle('open');
-        });
+        if (chatbotIcon) { // Ensure chatbot elements exist on the page
+            chatbotIcon.addEventListener('click', () => {
+                chatbotPopup.classList.toggle('open');
+            });
 
-        closeChatbotBtn.addEventListener('click', () => {
-            chatbotPopup.classList.remove('open');
-        });
+            closeChatbotBtn.addEventListener('click', () => {
+                chatbotPopup.classList.remove('open');
+            });
 
-        sendChatbotBtn.addEventListener('click', () => {
-            sendMessage();
-        });
-
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
+            sendChatbotBtn.addEventListener('click', () => {
                 sendMessage();
-            }
-        });
+            });
+
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
 
         function appendMessage(sender, message) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', sender);
             messageElement.textContent = message;
             chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight; // Auto-scroll to latest message
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
 
         async function sendMessage() {
@@ -1491,7 +1552,7 @@
         async function handleChatbotMessage(message) {
             const lowerCaseMessage = message.toLowerCase();
             let botReply = "";
-            let emailUnsolvedQuery = false; // Flag to trigger email for unsolved queries
+            let emailUnsolvedQuery = false;
 
             if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi")) {
                 botReply = "Hello! How can I help you today?";
@@ -1517,47 +1578,38 @@
                 botReply = `${companyDetails.founderCEO}'s credentials: ${companyDetails.ceoCredentials}.`;
             } else if (lowerCaseMessage.includes("admissions") || lowerCaseMessage.includes("courses")) {
                 botReply = "For information on admissions and courses, please check our 'Academics' section on the website or contact us directly via email.";
-                emailUnsolvedQuery = true; // Suggest email if query isn't fully resolved
+                emailUnsolvedQuery = true;
             } else if (lowerCaseMessage.includes("complaint")) {
                 botReply = "If you have a complaint, please use the 'Complaint Form' available on our website. Would you like me to direct you there?";
-            }
-            // Add more specific rules here for common queries
-
-            else {
-                // Fallback for unrecognized queries
+            } else {
                 botReply = "I'm not sure I understand. Could you please rephrase your question? If your problem is still not resolved, I can help you to send this query to our support email.";
-                emailUnsolvedQuery = true; // Offer to send email
+                emailUnsolvedQuery = true;
             }
 
-            // If an unsolved query, prompt user to confirm sending email
             if (emailUnsolvedQuery && !lowerCaseMessage.includes("send email")) {
                 setTimeout(() => {
                     appendMessage("bot", "Type 'send email' if you'd like me to forward your last query to our support team.");
-                }, 500); // Give a slight delay for better UX
+                }, 500);
             } else if (lowerCaseMessage.includes("send email") && emailUnsolvedQuery) {
-                // Get the last user message from the chatbot history (this is a simplified approach)
                 const lastUserMessageElement = chatbotMessages.querySelector('.message.user:last-child');
                 const lastUserMessage = lastUserMessageElement ? lastUserMessageElement.textContent : "No recent user query.";
                 await sendChatbotQueryToEmail(lastUserMessage);
                 botReply = "Your query has been forwarded to our support team. We will get back to you shortly!";
-                emailUnsolvedQuery = false; // Reset flag
+                emailUnsolvedQuery = false;
             }
-
             return botReply;
         }
 
-        // Function to send chatbot query to email
         async function sendChatbotQueryToEmail(userQuery) {
             try {
                 const templateParams = {
-                    from_name: 'Chatbot User', // You can ask user for their name if needed
-                    from_email: 'chatbot@cbsnu.live', // A generic email, or ask user for their email
-                    to_email: 'contact.cbsnu@gmail.com', // [cite: 2]
+                    from_name: 'Chatbot User',
+                    from_email: 'chatbot@cbsnu.live', // A generic email for chatbot queries
+                    to_email: 'contact.cbsnu@gmail.com', // Your primary contact email
                     subject: 'Unresolved Chatbot Query from Website',
                     message: `User's query: "${userQuery}"\n\nThis query was not resolved by the chatbot and requires human attention.`,
                 };
-
-                const response = await emailjs.send('service_nvwp74b', 'template_jphnhtj', templateParams); // [cite: 7]
+                const response = await emailjs.send('service_nvwp74b', 'template_jphnhtj', templateParams); // Use your EmailJS service and template
                 console.log('Chatbot Email Forwarded Successfully!', response.status, response.text);
                 return true;
             } catch (error) {
@@ -1566,339 +1618,660 @@
             }
         }
 
-        // --- Firebase Data Loading Placeholders ---
-        // Developer Note: Implement these functions to fetch data from Firebase Firestore
-        // and update the HTML elements.
+        // --- Data Loading Functions (Implement these if needed on a specific page) ---
+
+        // Load Announcements (Used on Home & Announcements pages)
         async function loadAnnouncements() {
-            // Example: Fetch from Firestore 'announcements' collection
-            // const announcementsRef = db.collection('announcements').orderBy('timestamp', 'desc');
-            // const snapshot = await announcementsRef.get();
-            // const announcementList = document.getElementById('announcementList');
-            // announcementList.innerHTML = '';
-            // snapshot.forEach(doc => {
-            //     const data = doc.data();
-            //     const item = document.createElement('div');
-            //     item.classList.add('announcement-item');
-            //     item.innerHTML = `<div class="date">${new Date(data.timestamp.toDate()).toLocaleDateString()}</div><p>${data.content}</p>`;
-            //     announcementList.appendChild(item);
-            // });
-            console.log("Loading announcements (placeholder)...");
+            const announcementList = document.getElementById('announcementList');
+            if (!announcementList) return; // Exit if element not on page
+
+            announcementList.innerHTML = '<li>Loading announcements...</li>';
+            try {
+                const snapshot = await db.collection("announcements").orderBy("timestamp", "desc").limit(5).get(); // Limit for home page
+                if (window.location.pathname.includes('announcements.html')) {
+                    // If on full announcements page, load more
+                    snapshot = await db.collection("announcements").orderBy("timestamp", "desc").get();
+                }
+
+                if (snapshot.empty) {
+                    announcementList.innerHTML = '<li>No announcements available.</li>';
+                    return;
+                }
+                announcementList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : 'N/A';
+                    const li = document.createElement('li');
+                    li.classList.add('announcement-item');
+                    li.innerHTML = `<div class="date">${date}</div><p>${data.text}</p>`;
+                    announcementList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error loading announcements:", error);
+                announcementList.innerHTML = '<li>Failed to load announcements.</li>';
+            }
         }
 
+        // Load Photo Gallery (Used on Home & Gallery pages)
         async function loadHomePhotoGallery() {
-            // Example: Fetch from Firestore 'galleryImages' collection and Firebase Storage
-            // const galleryRef = db.collection('galleryImages');
-            // const snapshot = await galleryRef.get();
-            // const homePhotoGallery = document.getElementById('homePhotoGallery');
-            // homePhotoGallery.innerHTML = '';
-            // snapshot.forEach(doc => {
-            //     const data = doc.data();
-            //     const item = document.createElement('div');
-            //     item.classList.add('gallery-item');
-            //     item.innerHTML = `<img src="${data.imageUrl}" alt="${data.caption}"><div class="overlay">${data.caption}</div>`;
-            //     homePhotoGallery.appendChild(item);
-            // });
-            console.log("Loading photo gallery (placeholder)...");
+            const galleryGrid = document.getElementById('photoGalleryGrid');
+            if (!galleryGrid) return; // Exit if element not on page
+
+            galleryGrid.innerHTML = '<div>Loading gallery...</div>';
+            try {
+                const snapshot = await db.collection("gallery").orderBy("timestamp", "desc").limit(3).get(); // Limit for home page
+                if (snapshot.empty) {
+                    galleryGrid.innerHTML = '<div>No photos available.</div>';
+                    return;
+                }
+                galleryGrid.innerHTML = ''; // Clear loading message
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const div = document.createElement('div');
+                    div.classList.add('gallery-item');
+                    div.innerHTML = `
+                        <img src="${data.imageUrl}" alt="${data.caption || 'Gallery Image'}">
+                        <div class="overlay">${data.caption || 'No Caption'}</div>
+                    `;
+                    galleryGrid.appendChild(div);
+                });
+            } catch (error) {
+                console.error("Error loading home gallery:", error);
+                galleryGrid.innerHTML = '<div>Failed to load gallery.</div>';
+            }
         }
 
+        async function loadAllPhotoGallery() {
+            const galleryGrid = document.getElementById('photoGalleryGrid');
+            if (!galleryGrid) return;
+
+            galleryGrid.innerHTML = '<div>Loading all gallery images...</div>';
+            try {
+                const snapshot = await db.collection("gallery").orderBy("timestamp", "desc").get();
+                if (snapshot.empty) {
+                    galleryGrid.innerHTML = '<div>No photos available.</div>';
+                    return;
+                }
+                galleryGrid.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const div = document.createElement('div');
+                    div.classList.add('gallery-item');
+                    div.innerHTML = `
+                        <img src="${data.imageUrl}" alt="${data.caption || 'Gallery Image'}">
+                        <div class="overlay">${data.caption || 'No Caption'}</div>
+                    `;
+                    galleryGrid.appendChild(div);
+                });
+            } catch (error) {
+                console.error("Error loading all gallery:", error);
+                galleryGrid.innerHTML = '<div>Failed to load gallery.</div>';
+            }
+        }
+
+        // Load Feedbacks (Used on Home & Feedbacks pages)
         async function loadFeedbacks() {
-            // Example: Fetch from Firestore 'feedbacks' collection
-            // const feedbacksRef = db.collection('feedbacks').orderBy('timestamp', 'desc');
-            // const snapshot = await feedbacksRef.get();
-            // const feedbackGrid = document.getElementById('feedbackGrid');
-            // feedbackGrid.innerHTML = '';
-            // snapshot.forEach(doc => {
-            //     const data = doc.data();
-            //     const item = document.createElement('div');
-            //     item.classList.add('feedback-item');
-            //     item.innerHTML = `<p>${data.content}</p><div class="author">- ${data.author}</div>`;
-            //     feedbackGrid.appendChild(item);
-            // });
-            console.log("Loading feedbacks (placeholder)...");
+            const feedbackGrid = document.getElementById('feedbackGrid');
+            if (!feedbackGrid) return;
+
+            feedbackGrid.innerHTML = '<div>Loading feedbacks...</div>';
+            try {
+                const snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").limit(3).get(); // Limit for home page
+                if (window.location.pathname.includes('feedbacks.html')) {
+                    // If on full feedbacks page, load more
+                    snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").get();
+                }
+
+                if (snapshot.empty) {
+                    feedbackGrid.innerHTML = '<div>No feedbacks available.</div>';
+                    return;
+                }
+                feedbackGrid.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const div = document.createElement('div');
+                    div.classList.add('feedback-item');
+                    div.innerHTML = `
+                        <p>"${data.message}"</p>
+                        <div class="author">- ${data.name}</div>
+                    `;
+                    feedbackGrid.appendChild(div);
+                });
+            } catch (error) {
+                console.error("Error loading feedbacks:", error);
+                feedbackGrid.innerHTML = '<div>Failed to load feedbacks.</div>';
+            }
         }
 
+        // Update Counts (Used on Home & About Us pages)
         async function updateCounts() {
-            // Example: Fetch counts from Firestore 'counts' collection or aggregate from 'users'
-            // document.getElementById('studentsCount').textContent = '1000+'; // Replace with actual data
-            // document.getElementById('facultyCount').textContent = '50+';
-            // document.getElementById('institutionsCount').textContent = '10+';
-            console.log("Updating counts (placeholder)...");
+            try {
+                const studentsRef = db.collection("users").where("role", "==", "student");
+                const facultyRef = db.collection("users").where("role", "==", "faculty");
+                const institutionsRef = db.collection("institutions"); // Assuming you have a collection for institutions
+
+                const [studentsSnapshot, facultySnapshot, institutionsSnapshot] = await Promise.all([
+                    studentsRef.get(),
+                    facultyRef.get(),
+                    institutionsRef.get()
+                ]);
+
+                const studentsCount = studentsSnapshot.size;
+                const facultyCount = facultySnapshot.size;
+                const institutionsCount = institutionsSnapshot.size;
+
+                document.getElementById('studentsCount') && (document.getElementById('studentsCount').textContent = studentsCount);
+                document.getElementById('facultyCount') && (document.getElementById('facultyCount').textContent = facultyCount);
+                document.getElementById('institutionsCount') && (document.getElementById('institutionsCount').textContent = institutionsCount);
+
+            } catch (error) {
+                console.error("Error updating counts:", error);
+            }
         }
 
-        // --- Initial Data Loading on DOM Content Loaded ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize EmailJS after DOM is loaded
-            emailjs.init('DqEZGom9bxso5B5Zl'); // [cite: 7]
-            console.log("EmailJS initialized.");
+        // --- Authentication & Dashboard Logic (Only copy relevant parts to login.html, dashboard-admin.html, dashboard-faculty.html) ---
 
-            // Initial call to load content for Home page (placeholders for now)
-            loadAnnouncements();
-            loadHomePhotoGallery();
-            loadFeedbacks();
-            updateCounts();
-        });
+        // Authentication Elements (ONLY COPY IF YOU NEED THEM ON LOGIN.HTML, NOT FOR ALL PAGES)
+        const authModal = document.getElementById('authModal');
+        const closeAuthModal = document.getElementById('closeAuthModal');
+        const loginSection = document.getElementById('loginSection');
+        const signupSection = document.getElementById('signupSection');
+        const showSignup = document.getElementById('showSignup');
+        const showLogin = document.getElementById('showLogin');
+        const adminLoginModal = document.getElementById('adminLoginModal');
+        const clientLoginModal = document.getElementById('clientLoginModal');
+        const closeAdminLoginModal = document.getElementById('closeAdminLoginModal');
+        const closeClientLoginModal = document.getElementById('closeClientLoginModal');
+        const showAdminLoginLink = document.getElementById('showAdminLogin');
+        const showClientLoginLink = document.getElementById('showClientLogin');
 
-        // --- Other Form Submissions (Placeholders for Firebase Integration) ---
+        if (authModal) { // This block will only run if authModal is present (i.e., on login.html)
+            // For a dedicated login.html page, you might want these modals to be shown by default
+            // and hide others.
+            // Example for login.html: Make loginSection visible by default
+            if (loginSection) loginSection.style.display = 'block';
+            if (signupSection) signupSection.style.display = 'none';
+            if (adminLoginModal) adminLoginModal.style.display = 'none';
+            if (clientLoginModal) clientLoginModal.style.display = 'none';
+            // You can remove closeAuthModal related logic if it's not a modal but a full page.
+
+            if (closeAuthModal) closeAuthModal.addEventListener('click', () => { /* Handle redirect or navigation */ });
+
+            if (showSignup) {
+                showSignup.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (loginSection) loginSection.style.display = 'none';
+                    if (signupSection) signupSection.style.display = 'block';
+                    if (adminLoginModal) adminLoginModal.style.display = 'none'; // Hide other forms
+                    if (clientLoginModal) clientLoginModal.style.display = 'none';
+                });
+            }
+            if (showLogin) {
+                showLogin.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (signupSection) signupSection.style.display = 'none';
+                    if (loginSection) loginSection.style.display = 'block';
+                    if (adminLoginModal) adminLoginModal.style.display = 'none';
+                    if (clientLoginModal) clientLoginModal.style.display = 'none';
+                });
+            }
+            if (showAdminLoginLink) {
+                showAdminLoginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (loginSection) loginSection.style.display = 'none';
+                    if (signupSection) signupSection.style.display = 'none';
+                    if (clientLoginModal) clientLoginModal.style.display = 'none';
+                    if (adminLoginModal) adminLoginModal.style.display = 'flex'; // Show admin login
+                });
+            }
+            if (showClientLoginLink) {
+                showClientLoginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (loginSection) loginSection.style.display = 'none';
+                    if (signupSection) signupSection.style.display = 'none';
+                    if (adminLoginModal) adminLoginModal.style.display = 'none';
+                    if (clientLoginModal) clientLoginModal.style.display = 'flex'; // Show client login
+                });
+            }
+            if (closeAdminLoginModal) closeAdminLoginModal.addEventListener('click', () => { adminLoginModal.style.display = 'none'; });
+            if (closeClientLoginModal) closeClientLoginModal.addEventListener('click', () => { clientLoginModal.style.display = 'none'; });
+        }
+
+
+        // Login Form Submission (ONLY COPY TO LOGIN.HTML)
         const loginForm = document.getElementById('loginForm');
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            try {
-                // Firebase Authentication Login
-                // await auth.signInWithEmailAndPassword(email, password);
-                alert('Login successful! (Firebase integration needed)');
-                authModal.style.display = 'none';
-                // Redirect or show dashboard based on user type
-            } catch (error) {
-                console.error("Login failed:", error);
-                alert('Login failed: ' + error.message);
-            }
-        });
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        alert(`Login successful! Welcome ${userData.name || user.email}`);
+                        if (userData.role === 'admin') {
+                            window.location.href = 'dashboard-admin.html';
+                        } else if (userData.role === 'faculty') {
+                            window.location.href = 'dashboard-faculty.html';
+                        } else {
+                            window.location.href = 'index.html'; // Default for students
+                        }
+                    } else {
+                        alert('User data not found. Please contact support.');
+                        await auth.signOut(); // Sign out user if their data is missing
+                    }
+                } catch (error) {
+                    console.error("Login failed:", error);
+                    showMessage('loginMessageStatus', 'Login failed: ' + error.message, true);
+                }
+            });
+        }
 
+        // Signup Form Submission (ONLY COPY TO LOGIN.HTML)
         const signupForm = document.getElementById('signupForm');
-        signupForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const userType = document.getElementById('userType').value;
-            const state = document.getElementById('state').value;
-            const district = document.getElementById('district').value;
-            const institution = document.getElementById('institution').value;
+        if (signupForm) {
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                const role = document.getElementById('signupRole').value;
 
-            try {
-                // Firebase Authentication Signup
-                // const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                // await db.collection('users').doc(userCredential.user.uid).set({
-                //     email: email,
-                //     userType: userType,
-                //     state: state,
-                //     district: district,
-                //     institution: institution,
-                //     createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                // });
-                alert('Signup successful! (Firebase integration needed)');
-                authModal.style.display = 'none';
-                // Automatically log in or redirect
-            } catch (error) {
-                console.error("Signup failed:", error);
-                alert('Signup failed: ' + error.message);
-            }
-        });
+                try {
+                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
+                    await db.collection("users").doc(user.uid).set({
+                        name: name,
+                        email: email,
+                        role: role,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    alert('Sign up successful! Please login.');
+                    signupForm.reset();
+                    if (loginSection) { // Switch back to login view
+                        loginSection.style.display = 'block';
+                        signupSection.style.display = 'none';
+                    }
+                } catch (error) {
+                    console.error("Sign up failed:", error);
+                    showMessage('signupMessageStatus', 'Sign up failed: ' + error.message, true);
+                }
+            });
+        }
 
+        // Admin Login Form Submission (ONLY COPY TO LOGIN.HTML)
         const adminLoginForm = document.getElementById('adminLoginForm');
-        adminLoginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
-            try {
-                // Firebase Authentication Admin Login
-                // await auth.signInWithEmailAndPassword(email, password);
-                // Check if user is an admin after login (e.g., via Firestore user role)
-                alert('Admin Login successful! (Firebase integration needed)');
-                adminLoginModal.style.display = 'none';
-                document.getElementById('adminDashboard').style.display = 'block'; // Show admin dashboard
-            } catch (error) {
-                console.error("Admin login failed:", error);
-                alert('Admin login failed: ' + error.message);
-            }
-        });
+        if (adminLoginForm) {
+            adminLoginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('adminEmail').value;
+                const password = document.getElementById('adminPassword').value;
 
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+
+                    if (userDoc.exists && userDoc.data().role === 'admin') {
+                        alert('Admin login successful!');
+                        window.location.href = 'dashboard-admin.html'; // Redirect to admin dashboard
+                    } else {
+                        alert('Access denied. You are not an admin.');
+                        await auth.signOut(); // Sign out unauthorized user
+                    }
+                } catch (error) {
+                    console.error("Admin login failed:", error);
+                    showMessage('adminLoginMessageStatus', 'Admin login failed: ' + error.message, true);
+                }
+            });
+        }
+
+        // Client Login Form Submission (ONLY COPY TO LOGIN.HTML)
         const clientLoginForm = document.getElementById('clientLoginForm');
-        clientLoginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('clientEmail').value;
-            const password = document.getElementById('clientPassword').value;
-            try {
-                // Firebase Authentication Client Login
-                // await auth.signInWithEmailAndPassword(email, password);
-                // Check if user is a client after login
-                alert('Client Login successful! (Firebase integration needed)');
-                clientLoginModal.style.display = 'none';
-                // Show client specific dashboard or features
-            } catch (error) {
-                console.error("Client login failed:", error);
-                alert('Client login failed: ' + error.message);
-            }
-        });
+        if (clientLoginForm) {
+            clientLoginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('clientEmail').value;
+                const password = document.getElementById('clientPassword').value;
 
-        const feedbackForm = document.getElementById('feedbackForm');
-        feedbackForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            // Firebase Firestore Feedback Submission
-            try {
-                // await db.collection('feedbacks').add({
-                //     author: document.getElementById('feedbackName').value,
-                //     content: document.getElementById('feedbackContent').value,
-                //     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                // });
-                showMessage('feedbackMessageStatus', 'Feedback submitted successfully!', false);
-                feedbackForm.reset();
-                // loadFeedbacks(); // Reload feedbacks after submission
-            } catch (error) {
-                console.error("Feedback submission failed:", error);
-                showMessage('feedbackMessageStatus', 'Failed to submit feedback. Please try again.', true);
-            }
-        });
+                try {
+                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                    const user = userCredential.user;
+                    const userDoc = await db.collection("users").doc(user.uid).get();
 
+                    if (userDoc.exists && userDoc.data().role === 'client') { // Assuming a 'client' role
+                        alert('Client login successful!');
+                        window.location.href = 'client-dashboard.html'; // Redirect to client dashboard
+                    } else {
+                        alert('Access denied. You are not a client.');
+                        await auth.signOut(); // Sign out unauthorized user
+                    }
+                } catch (error) {
+                    console.error("Client login failed:", error);
+                    showMessage('clientLoginMessageStatus', 'Client login failed: ' + error.message, true);
+                }
+            });
+        }
+
+        // --- Dashboard Specific Functions ---
+
+        // Faculty Dashboard: Upload Assignment (ONLY COPY TO DASHBOARD-FACULTY.HTML)
         const assignmentUploadForm = document.getElementById('assignmentUploadForm');
-        assignmentUploadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const title = e.target[0].value;
-            const file = e.target[1].files[0];
-            if (!file) {
-                alert("Please select a file to upload.");
-                return;
-            }
-            try {
-                // Firebase Storage Upload
-                // const storageRef = storage.ref(`assignments/${file.name}`);
-                // const uploadTask = storageRef.put(file);
-                // await uploadTask;
-                // const downloadURL = await storageRef.getDownloadURL();
-                // await db.collection('assignments').add({
-                //     title: title,
-                //     fileURL: downloadURL,
-                //     uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
-                // });
-                alert('Assignment uploaded successfully! (Firebase integration needed)');
-                assignmentUploadForm.reset();
-            } catch (error) {
-                console.error("Assignment upload failed:", error);
-                alert('Assignment upload failed: ' + error.message);
-            }
-        });
+        if (assignmentUploadForm) {
+            assignmentUploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const title = document.getElementById('assignmentTitle').value;
+                const description = document.getElementById('assignmentDescription').value;
+                const file = document.getElementById('assignmentFile').files[0];
 
-        const announcementUploadForm = document.getElementById('announcementUploadForm');
-        announcementUploadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const title = e.target[0].value;
-            const content = e.target[1].value;
-            try {
-                // Firebase Firestore Announcement Addition
-                // await db.collection('announcements').add({
-                //     title: title,
-                //     content: content,
-                //     timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                // });
-                alert('Announcement published successfully! (Firebase integration needed)');
-                announcementUploadForm.reset();
-                // loadAnnouncements(); // Reload announcements
-            } catch (error) {
-                console.error("Announcement upload failed:", error);
-                alert('Announcement upload failed: ' + error.message);
-            }
-        });
+                if (!file) {
+                    showMessage('assignmentUploadStatus', 'Please select a file to upload.', true);
+                    return;
+                }
 
-        const galleryUploadForm = document.getElementById('galleryUploadForm');
-        galleryUploadForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const file = e.target[0].files[0];
-            const caption = e.target[1].value;
-            if (!file) {
-                alert("Please select an image to upload.");
-                return;
-            }
-            try {
-                // Firebase Storage Image Upload
-                // const storageRef = storage.ref(`gallery/${file.name}`);
-                // const uploadTask = storageRef.put(file);
-                // await uploadTask;
-                // const downloadURL = await storageRef.getDownloadURL();
-                // await db.collection('galleryImages').add({
-                //     imageUrl: downloadURL,
-                //     caption: caption,
-                //     uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
-                // });
-                alert('Gallery image uploaded successfully! (Firebase integration needed)');
-                galleryUploadForm.reset();
-                // loadHomePhotoGallery(); // Reload gallery
-            } catch (error) {
-                console.error("Gallery image upload failed:", error);
-                alert('Gallery image upload failed: ' + error.message);
-            }
-        });
+                try {
+                    // Upload file to Firebase Storage
+                    const storageRef = storage.ref(`assignments/${file.name}`);
+                    const uploadTask = storageRef.put(file);
 
-        // --- Admin Dashboard Placeholder Functions ---
+                    uploadTask.on('state_changed',
+                        (snapshot) => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            showMessage('assignmentUploadStatus', `Upload is ${progress.toFixed(0)}% done`, false);
+                        },
+                        (error) => {
+                            console.error("Upload failed:", error);
+                            showMessage('assignmentUploadStatus', `Upload failed: ${error.message}`, true);
+                        },
+                        async () => {
+                            const downloadURL = await storageRef.getDownloadURL();
+                            // Save assignment details to Firestore
+                            await db.collection("assignments").add({
+                                title: title,
+                                description: description,
+                                fileUrl: downloadURL,
+                                fileName: file.name,
+                                uploadedBy: auth.currentUser ? auth.currentUser.uid : 'unknown',
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                            showMessage('assignmentUploadStatus', 'Assignment uploaded successfully!', false);
+                            assignmentUploadForm.reset();
+                        }
+                    );
+                } catch (error) {
+                    console.error("Error uploading assignment:", error);
+                    showMessage('assignmentUploadStatus', 'Failed to upload assignment.', true);
+                }
+            });
+        }
+
+        // Admin Dashboard: Load & Manage Users (ONLY COPY TO DASHBOARD-ADMIN.HTML)
         async function loadUsers() {
-            // Fetch users from Firestore 'users' collection
-            console.log("Loading users for admin dashboard (placeholder)...");
-            // const userList = document.getElementById('userList');
-            // userList.innerHTML = '';
-            // Example:
-            // const usersSnapshot = await db.collection('users').get();
-            // usersSnapshot.forEach(doc => {
-            //     const userData = doc.data();
-            //     const userItem = document.createElement('li');
-            //     userItem.classList.add('user-item');
-            //     userItem.innerHTML = `
-            //         <span>${userData.email} (${userData.userType}) - ${userData.institution}</span>
-            //         <div class="user-actions">
-            //             <button class="edit">Edit</button>
-            //             <button class="delete">Delete</button>
-            //         </div>
-            //     `;
-            //     userList.appendChild(userItem);
-            // });
+            const userManagementList = document.getElementById('userManagementList');
+            if (!userManagementList) return;
+
+            userManagementList.innerHTML = '<li>Loading users...</li>';
+            try {
+                const snapshot = await db.collection("users").orderBy("createdAt", "asc").get();
+                if (snapshot.empty) {
+                    userManagementList.innerHTML = '<li>No users found.</li>';
+                    return;
+                }
+                userManagementList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const li = document.createElement('li');
+                    li.classList.add('user-item');
+                    li.innerHTML = `
+                        <span>${data.name || data.email} - Role: ${data.role}</span>
+                        <div class="user-actions">
+                            <button class="edit" data-id="${doc.id}">Edit</button>
+                            <button class="delete" data-id="${doc.id}">Delete</button>
+                        </div>
+                    `;
+                    userManagementList.appendChild(li);
+                });
+
+                // Add event listeners for delete buttons
+                userManagementList.querySelectorAll('.delete').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const userId = e.target.dataset.id;
+                        if (confirm('Are you sure you want to delete this user?')) {
+                            try {
+                                await db.collection("users").doc(userId).delete();
+                                alert('User deleted successfully.');
+                                loadUsers(); // Refresh list
+                            } catch (error) {
+                                console.error("Error deleting user:", error);
+                                alert('Failed to delete user: ' + error.message);
+                            }
+                        }
+                    });
+                });
+                // Implement edit functionality as needed
+            } catch (error) {
+                console.error("Error loading users:", error);
+                userManagementList.innerHTML = '<li>Failed to load users.</li>';
+            }
         }
 
+        // Admin Dashboard: Post Announcement (ONLY COPY TO DASHBOARD-ADMIN.HTML)
+        const announcementUploadForm = document.getElementById('announcementUploadForm');
+        if (announcementUploadForm) {
+            announcementUploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const text = document.getElementById('announcementText').value;
+
+                try {
+                    await db.collection("announcements").add({
+                        text: text,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    showMessage('announcementUploadStatus', 'Announcement posted successfully!', false);
+                    announcementUploadForm.reset();
+                    loadAnnouncements(); // Refresh announcements list if on the same page
+                } catch (error) {
+                    console.error("Error posting announcement:", error);
+                    showMessage('announcementUploadStatus', 'Failed to post announcement.', true);
+                }
+            });
+        }
+
+        // Admin Dashboard: Upload Gallery Photo (ONLY COPY TO DASHBOARD-ADMIN.HTML)
+        const galleryUploadForm = document.getElementById('galleryUploadForm');
+        if (galleryUploadForm) {
+            galleryUploadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const imageFile = document.getElementById('galleryImage').files[0];
+                const caption = document.getElementById('galleryCaption').value;
+
+                if (!imageFile) {
+                    showMessage('galleryUploadStatus', 'Please select an image to upload.', true);
+                    return;
+                }
+
+                try {
+                    // Upload image to Firebase Storage
+                    const storageRef = storage.ref(`gallery/${imageFile.name}`);
+                    const uploadTask = storageRef.put(imageFile);
+
+                    uploadTask.on('state_changed',
+                        (snapshot) => {
+                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            showMessage('galleryUploadStatus', `Upload is ${progress.toFixed(0)}% done`, false);
+                        },
+                        (error) => {
+                            console.error("Upload failed:", error);
+                            showMessage('galleryUploadStatus', `Upload failed: ${error.message}`, true);
+                        },
+                        async () => {
+                            const downloadURL = await storageRef.getDownloadURL();
+                            // Save gallery item details to Firestore
+                            await db.collection("gallery").add({
+                                imageUrl: downloadURL,
+                                caption: caption,
+                                uploadedBy: auth.currentUser ? auth.currentUser.uid : 'unknown',
+                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                            });
+                            showMessage('galleryUploadStatus', 'Photo uploaded successfully!', false);
+                            galleryUploadForm.reset();
+                            loadAllPhotoGallery(); // Refresh gallery if on the same page
+                        }
+                    );
+                } catch (error) {
+                    console.error("Error uploading gallery photo:", error);
+                    showMessage('galleryUploadStatus', 'Failed to upload photo.', true);
+                }
+            });
+        }
+
+        // Admin Dashboard: Manage Feedbacks (ONLY COPY TO DASHBOARD-ADMIN.HTML)
+        async function loadAdminFeedbacks() {
+            const adminFeedbackList = document.getElementById('adminFeedbackList');
+            if (!adminFeedbackList) return;
+
+            adminFeedbackList.innerHTML = '<li>Loading feedbacks...</li>';
+            try {
+                const snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").get();
+                if (snapshot.empty) {
+                    adminFeedbackList.innerHTML = '<li>No feedbacks to display.</li>';
+                    return;
+                }
+                adminFeedbackList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const li = document.createElement('li');
+                    li.classList.add('complaint-item'); // Reusing complaint-item class for styling
+                    li.innerHTML = `
+                        <span>Feedback from ${data.name || 'Anonymous'} (${data.email}): "${data.message}"</span>
+                        <div class="complaint-actions">
+                            <button class="delete" data-id="${doc.id}">Delete</button>
+                        </div>
+                    `;
+                    adminFeedbackList.appendChild(li);
+                });
+
+                adminFeedbackList.querySelectorAll('.delete').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const feedbackId = e.target.dataset.id;
+                        if (confirm('Are you sure you want to delete this feedback?')) {
+                            try {
+                                await db.collection("feedbacks").doc(feedbackId).delete();
+                                alert('Feedback deleted successfully.');
+                                loadAdminFeedbacks();
+                            } catch (error) {
+                                console.error("Error deleting feedback:", error);
+                                alert('Failed to delete feedback: ' + error.message);
+                            }
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error("Error loading admin feedbacks:", error);
+                adminFeedbackList.innerHTML = '<li>Failed to load feedbacks.</li>';
+            }
+        }
+
+        // Admin Dashboard: Review Complaints (ONLY COPY TO DASHBOARD-ADMIN.HTML)
         async function loadComplaints() {
-            // Fetch complaints from Firestore 'complaints' collection
-            console.log("Loading complaints for admin dashboard (placeholder)...");
-            // const complaintList = document.getElementById('complaintList');
-            // complaintList.innerHTML = '';
-            // Example:
-            // const complaintsSnapshot = await db.collection('complaints').orderBy('timestamp', 'desc').get();
-            // complaintsSnapshot.forEach(doc => {
-            //     const complaintData = doc.data();
-            //     const complaintItem = document.createElement('li');
-            //     complaintItem.classList.add('complaint-item');
-            //     complaintItem.innerHTML = `
-            //         <span>${complaintData.subject} from ${complaintData.user_name} (${complaintData.user_email})</span>
-            //         <div class="complaint-actions">
-            //             <button class="view">View Details</button>
-            //             <button class="resolve">Mark Resolved</button>
-            //         </div>
-            //     `;
-            //     complaintList.appendChild(complaintItem);
-            // });
+            const adminComplaintList = document.getElementById('adminComplaintList');
+            if (!adminComplaintList) return;
+
+            adminComplaintList.innerHTML = '<li>Loading complaints...</li>';
+            try {
+                // Assuming complaints are logged to a Firestore collection 'complaints'
+                // This would require modifying the EmailJS submission to also log to Firestore.
+                const snapshot = await db.collection("complaints").orderBy("timestamp", "desc").get();
+                if (snapshot.empty) {
+                    adminComplaintList.innerHTML = '<li>No complaints to display.</li>';
+                    return;
+                }
+                adminComplaintList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const li = document.createElement('li');
+                    li.classList.add('complaint-item');
+                    li.innerHTML = `
+                        <span>Complaint from ${data.name || 'Anonymous'} (${data.email}) - Subject: ${data.subject}<br>Message: ${data.message}</span>
+                        <div class="complaint-actions">
+                            <button class="resolve" data-id="${doc.id}">Mark Resolved</button>
+                            <button class="delete" data-id="${doc.id}">Delete</button>
+                        </div>
+                    `;
+                    adminComplaintList.appendChild(li);
+                });
+
+                adminComplaintList.querySelectorAll('.resolve').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const complaintId = e.target.dataset.id;
+                        if (confirm('Mark this complaint as resolved?')) {
+                            try {
+                                await db.collection("complaints").doc(complaintId).update({ status: 'resolved' }); // Add status field
+                                alert('Complaint marked as resolved.');
+                                loadComplaints();
+                            } catch (error) {
+                                console.error("Error resolving complaint:", error);
+                                alert('Failed to mark complaint as resolved: ' + error.message);
+                            }
+                        }
+                    });
+                });
+
+                adminComplaintList.querySelectorAll('.delete').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const complaintId = e.target.dataset.id;
+                        if (confirm('Are you sure you want to delete this complaint?')) {
+                            try {
+                                await db.collection("complaints").doc(complaintId).delete();
+                                alert('Complaint deleted successfully.');
+                                loadComplaints();
+                            } catch (error) {
+                                console.error("Error deleting complaint:", error);
+                                alert('Failed to delete complaint: ' + error.message);
+                            }
+                        }
+                    });
+                });
+            } catch (error) {
+                console.error("Error loading complaints:", error);
+                adminComplaintList.innerHTML = '<li>Failed to load complaints.</li>';
+            }
         }
+        // Faculty Dashboard: Load Students (ONLY COPY TO DASHBOARD-FACULTY.HTML)
+        async function loadFacultyStudents() {
+            const facultyStudentList = document.getElementById('facultyStudentList');
+            if (!facultyStudentList) return;
 
-        // Call admin dashboard load functions when admin logs in
-        // (This would typically be part of the admin login success handler)
-        // loadUsers();
-        // loadComplaints();
+            facultyStudentList.innerHTML = '<li>Loading your students...</li>';
+            try {
+                // Assuming students have a 'facultyId' field linked to their faculty
+                // This would require current user (faculty) context
+                const currentUserUid = auth.currentUser ? auth.currentUser.uid : null;
+                if (!currentUserUid) {
+                    facultyStudentList.innerHTML = '<li>Please log in as a faculty member to view your students.</li>';
+                    return;
+                }
+                const snapshot = await db.collection("users").where("role", "==", "student").where("facultyId", "==", currentUserUid).get();
 
-
-        // Placeholder for Razorpay integration (as discussed, this is missing)
-        // const payNowBtn = document.getElementById('payNowBtn'); // Assuming you have such a button
-        // if(payNowBtn) {
-        //     payNowBtn.addEventListener('click', () => {
-        //         alert('Razorpay integration needed here!');
-        //         // Example of initiating Razorpay (requires backend order creation)
-        //         // const options = {
-        //         //     key: "YOUR_RAZORPAY_KEY_ID", // Enter the Key ID generated from the Dashboard
-        //         //     amount: "10000", // Amount in paise (e.g., 10000 = Rs 100)
-        //         //     currency: "INR",
-        //         //     name: "CBSN-U",
-        //         //     description: "Course Fee Payment",
-        //         //     order_id: "order_xxxxxxxxxxxxxx", // Replace with an actual order ID from your backend
-        //         //     handler: function (response) {
-        //         //         alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-        //         //     },
-        //         //     prefill: {
-        //         //         name: "User Name",
-        //         //         email: "user@example.com"
-        //         //     },
-        //         //     theme: {
-        //         //         color: "#FF6B6B"
-        //         //     }
-        //         // };
-        //         // const rzp1 = new Razorpay(options);
-        //         // rzp1.open();
-        //     });
-        // }
-
+                if (snapshot.empty) {
+                    facultyStudentList.innerHTML = '<li>No students assigned to you.</li>';
+                    return;
+                }
+                facultyStudentList.innerHTML = '';
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>${data.name || data.email}</span>`;
+                    facultyStudentList.appendChild(li);
+                });
+            } catch (error) {
+                console.error("Error loading faculty students:", error);
+                facultyStudentList.innerHTML = '<li>Failed to load students.</li>';
+            }
+        }
     </script>
 </body>
 </html>

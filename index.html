@@ -1,2277 +1,1486 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSN-U: Set Your Limits Beyond The Sky</title> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics-compat.js"></script>
-
+    <title>CBSN-U</title>
     <style>
-        /* General Body and HTML Reset */
+        /* --- CSS STYLES START HERE --- */
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #E0E0E0; /* Light grey text for dark theme */
-            background-color: #1a1a2e; /* Dark background */
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
-        }
-
-        /* Section Styling */
-        section {
-            padding: 80px 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #FF6B6B;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        h2 {
-            font-size: 2.5em;
-        }
-
-        /* Navbar Styling */
-        .navbar {
-            background-color: #0F0F1A;
-            color: #fff;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 10px 5%;
-        }
-
-        .navbar .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #FF6B6B;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .navbar ul {
-            list-style: none;
             padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
+            background-color: #000000;
+            color: #333;
         }
 
-        .navbar ul li {
-            margin-left: 20px;
-        }
-
-        .navbar ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 0;
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover,
-        .navbar ul li a.active {
-            color: #FF6B6B;
-        }
-
-        /* Hero Section */
-        #hero {
-            background: url('https://placehold.co/1920x1080/1a1a2e/FFFFFF?text=Hero+Image') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            margin-top: -60px; /* Adjust for fixed navbar height */
-            flex-direction: column;
-        }
-
-        #hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0,0,0,0.6);
-        }
-
-        #hero .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-        }
-
-        #hero h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
-            color: #FF6B6B;
-        }
-
-        #hero p {
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #FF6B6B;
-            color: #fff;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-        }
-
-        .btn:hover {
-            background-color: #E65A5A;
-        }
-
-        /* About Us Section */
-        #about-us {
-            background-color: #2a2a3e;
-            color: #E0E0E0;
-            text-align: center;
-        }
-
-        #about-us p {
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            font-size: 1.1em;
-        }
-
-        #about-us .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        #about-us .stat-item {
-            background-color: #3a3a4e;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        #about-us .stat-item .count {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #FF6B6B;
-            margin-bottom: 10px;
-        }
-
-        #about-us .stat-item .label {
-            font-size: 1.1em;
-            color: #CCC;
-        }
-
-        /* Academics Section */
-        #academics {
-            background-color: #1a1a2e;
-            color: #E0E0E0;
-        }
-
-        #academics .academic-carousel {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            gap: 20px;
-            padding-bottom: 20px;
-        }
-
-        #academics .academic-item {
-            flex: 0 0 auto;
-            width: 300px;
-            scroll-snap-align: start;
-            background-color: #2a2a3e;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            text-align: center;
-            padding-bottom: 20px;
-        }
-
-        #academics .academic-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #3a3a4e;
-        }
-
-        #academics .academic-item h3 {
-            color: #FF6B6B;
-            margin: 15px 0 10px;
-            font-size: 1.5em;
-        }
-
-        #academics .academic-item p {
-            padding: 0 15px;
-            font-size: 0.95em;
-            color: #CCC;
-        }
-
-        .downloads-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .download-item {
-            background-color: #2a2a3e;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .download-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .download-item a {
-            color: #FF6B6B;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* Photo Gallery Section */
-        #photo-gallery {
-            background-color: #2a2a3e;
-        }
-
-        #photo-gallery .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-        }
-
-        #photo-gallery .gallery-item {
-            background-color: #3a3a4e;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            position: relative;
-        }
-
-        #photo-gallery .gallery-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        #photo-gallery .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        #photo-gallery .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            padding: 10px;
-            font-size: 0.9em;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        #photo-gallery .gallery-item:hover .overlay {
-            transform: translateY(0);
-        }
-
-        /* Announcements Section */
-        #announcements {
-            background-color: #1a1a2e;
-        }
-
-        .announcement-list {
-            background-color: #2a2a3e;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-
-        .announcement-item {
-            border-bottom: 1px solid #3a3a4e;
-            padding: 15px 0;
-        }
-
-        .announcement-item:last-child {
-            border-bottom: none;
-        }
-
-        .announcement-item .date {
-            font-size: 0.85em;
-            color: #FF6B6B;
-            margin-bottom: 5px;
-        }
-
-        .announcement-item p {
-            margin: 0;
-            font-size: 1em;
-        }
-
-        /* Feedbacks/Testimonials Section */
-        #feedbacks {
-            background-color: #2a2a3e;
-        }
-
-        .feedback-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .feedback-item {
-            background-color: #3a3a4e;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            font-style: italic;
-            position: relative;
-        }
-
-        .feedback-item::before {
-            content: '“';
-            font-size: 3em;
-            color: #FF6B6B;
-            position: absolute;
-            top: 5px;
-            left: 10px;
-            opacity: 0.5;
-        }
-
-        .feedback-item p {
-            margin: 0 0 10px 0;
-            padding-left: 20px;
-        }
-
-        .feedback-item .author {
-            text-align: right;
-            font-weight: bold;
-            color: #FF6B6B;
-            font-style: normal;
-        }
-
-        /* Contact Us Section */
-        #contact-us {
-            background-color: #1a1a2e;
-        }
-
-        #contact-us .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-info-item {
-            background-color: #2a2a3e;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            text-align: center;
-        }
-
-        .contact-info-item i {
-            font-size: 2.5em;
-            color: #FF6B6B;
-            margin-bottom: 15px;
-        }
-
-        .contact-info-item h3 {
-            color: #fff;
-            margin-top: 0;
-            font-size: 1.3em;
-        }
-
-        .contact-info-item p, .contact-info-item a {
-            color: #CCC;
-            text-decoration: none;
-            font-size: 1em;
-            display: block;
-        }
-
-        .contact-form-container {
-            background-color: #2a2a3e;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            max-width: 600px;
-            margin: 40px auto;
-        }
-
-        .contact-form-container h3 {
-            margin-top: 0;
-            color: #FF6B6B;
-        }
-
-        .contact-form-container .form-group {
-            margin-bottom: 15px;
-        }
-
-        .contact-form-container label {
-            display: block;
-            margin-bottom: 8px;
-            color: #E0E0E0;
-        }
-
-        .contact-form-container input[type="text"],
-        .contact-form-container input[type="email"],
-        .contact-form-container textarea {
-            width: calc(100% - 20px);
-            padding: 10px;
-            border: 1px solid #4a4a5e;
-            border-radius: 5px;
-            background-color: #3a3a4e;
-            color: #E0E0E0;
-            font-size: 1em;
-        }
-
-        .contact-form-container textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .contact-form-container input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background-color: #FF6B6B;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-form-container input[type="submit"]:hover {
-            background-color: #E65A5A;
-        }
-
-        .message-status {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .message-status.success {
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        .message-status.error {
-            background-color: #dc3545;
-            color: #fff;
-        }
-
-        /* Footer Styling */
-        .footer {
-            background-color: #0F0F1A;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 0.9em;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
-        }
-
-        .footer .social-links {
-            margin-bottom: 15px;
-        }
-
-        .footer .social-links a {
-            color: #fff;
-            font-size: 1.5em;
-            margin: 0 10px;
-            transition: color 0.3s ease;
-        }
-
-        .footer .social-links a:hover {
-            color: #FF6B6B;
-        }
-
-        /* Chatbot Styling */
-        .chatbot-icon {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #FF6B6B;
-            color: #fff;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            z-index: 1001;
-            transition: transform 0.3s ease;
-        }
-
-        .chatbot-icon:hover {
-            transform: scale(1.1);
-        }
-
-        .chatbot-popup {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 450px;
-            background-color: #2a2a3e;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.7);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transform: translateY(100%) scale(0.5);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .chatbot-popup.open {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .chatbot-header {
-            background-color: #FF6B6B;
-            color: #fff;
-            padding: 15px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-header .close-btn {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-
-        .chatbot-messages {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #1a1a2e;
-            border-bottom: 1px solid #3a3a4e;
-        }
-
-        .chatbot-messages .message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 15px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .chatbot-messages .message.user {
-            background-color: #FF6B6B;
-            color: #fff;
-            align-self: flex-end;
-            margin-left: auto;
-            text-align: right;
-        }
-
-        .chatbot-messages .message.bot {
-            background-color: #3a3a4e;
-            color: #E0E0E0;
-            align-self: flex-start;
-            margin-right: auto;
-            text-align: left;
-        }
-
-        .chatbot-input-container {
-            display: flex;
-            padding: 10px;
-            background-color: #2a2a3e;
-        }
-
-        .chatbot-input-container input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #4a4a5e;
-            border-radius: 20px;
-            background-color: #3a3a4e;
-            color: #E0E0E0;
-            margin-right: 10px;
-            font-size: 1em;
-        }
-
-        .chatbot-input-container button {
-            background-color: #FF6B6B;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .chatbot-input-container button:hover {
-            background-color: #E65A5A;
-        }
-
-        /* Dashboard Styling */
-        .dashboard-container {
-            padding: 20px;
-            background-color: #2a2a3e;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            margin-top: 50px;
-            min-height: calc(100vh - 180px); /* Adjust to fill screen minus header/footer */
-        }
-
-        .dashboard-container h2 {
-            color: #FF6B6B;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .dashboard-section {
-            background-color: #1a1a2e;
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+        header {
+            background-color: #26fce7;
+            color: white;
+            padding: 10px 0;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        .dashboard-section h3 {
-            color: #E0E0E0;
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #3a3a4e;
-            padding-bottom: 10px;
-            font-size: 1.5em;
-        }
-
-        .user-list, .complaint-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .user-item, .complaint-item {
-            background-color: #2a2a3e;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative; /* Needed for mobile menu positioning */
         }
 
-        .user-item span, .complaint-item span {
-            color: #CCC;
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            z-index: 102; /* Ensure logo is above mobile menu */
         }
 
-        .user-actions, .complaint-actions {
-            display: flex;
-            gap: 10px;
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex; /* Default to horizontal on desktop */
         }
 
-        .user-actions button, .complaint-actions button {
-            background-color: #FF6B6B;
-            color: #fff;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
+        .nav-links li {
+            position: relative; /* Needed for dropdown positioning */
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
             transition: background-color 0.3s ease;
         }
 
-        .user-actions button:hover, .complaint-actions button:hover {
-            background-color: #E65A5A;
+        .nav-links a.active,
+        .nav-links a:hover {
+            background-color: #f2f462;
+            border-radius: 4px;
         }
 
-        .user-actions .delete, .complaint-actions .delete {
-            background-color: #dc3545;
-        }
-        .user-actions .delete:hover, .complaint-actions .delete:hover {
-            background-color: #c82333;
-        }
-
-        .upload-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .upload-form input[type="text"],
-        .upload-form input[type="file"],
-        .upload-form textarea {
-            padding: 10px;
-            border: 1px solid #4a4a5e;
-            border-radius: 5px;
-            background-color: #3a3a4e;
-            color: #E0E0E0;
-            font-size: 1em;
+        /* Dropdown specific styles (for both desktop and mobile) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            top: 100%; /* Position below the parent link */
+            left: 0;
         }
 
-        .upload-form button {
-            padding: 12px;
-            background-color: #FF6B6B;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .upload-form button:hover {
-            background-color: #E65A5A;
-        }
-
-        /* Auth Modals/Pages Styling (Adjusted for multipage) */
-        /* For login.html, you'd set display: block for the primary auth container */
-        .auth-container {
-            background-color: #2a2a3e;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            max-width: 400px;
-            margin: 80px auto; /* Centered for a dedicated login page */
-            text-align: center;
-        }
-
-        .auth-container h2 {
-            color: #FF6B6B;
-            margin-bottom: 25px;
-        }
-
-        .auth-container .form-group {
-            margin-bottom: 20px;
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
             text-align: left;
         }
 
-        .auth-container label {
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown menu on hover (desktop) */
+        .dropdown:hover .dropdown-content {
             display: block;
-            margin-bottom: 8px;
-            color: #E0E0E0;
-            font-weight: bold;
         }
 
-        .auth-container input[type="email"],
-        .auth-container input[type="password"],
-        .auth-container input[type="text"],
-        .auth-container select {
-            width: calc(100% - 20px);
-            padding: 12px;
-            border: 1px solid #4a4a5e;
-            border-radius: 5px;
-            background-color: #3a3a4e;
-            color: #E0E0E0;
-            font-size: 1em;
+        /* Hamburger menu styles (hidden by default on desktop) */
+        .hamburger-menu {
+            display: none; /* Hidden on desktop */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 101; /* Above nav links when open */
         }
 
-        .auth-container button {
+        .hamburger-menu .bar {
             width: 100%;
-            padding: 12px;
-            background-color: #FF6B6B;
-            color: #fff;
+            height: 3px;
+            background-color: black; /* Match nav link color */
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* --- KEY STYLES FOR SINGLE-FILE NAVIGATION --- */
+        .page-section {
+            display: none; /* All pages are hidden by default */
+        }
+        .page-section.active {
+            display: block; /* Only the active page is shown */
+        }
+
+        h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h4 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Announcement Corner */
+        .announcement-list p {
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 5px;
+        }
+        .announcement-list p:last-child {
+            border-bottom: none;
+        }
+        .announcement-list a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .announcement-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            justify-items: center;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Product Info & Faculty Profiles */
+        .product-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            border: 1px solid #e8714d;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background-color: #adadad;
+        }
+        .product-card h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+        .product-card a {
+            display: inline-block;
+            background-color: #0056b3;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+        .product-card a:hover {
+            background-color: #003d82;
+        }
+
+        /* Scholarship Banners */
+        .banner-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .banner-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+        .stat-item {
+            background-color: #e0f2f7;
+            padding: 20px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .stat-item h3 {
+            color: #0056b3;
+            font-size: 2.5em;
+            margin: 0 0 10px;
+        }
+        .stat-item p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* Contact Options */
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .whatsapp-btn, .chatbot-btn {
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1DA851;
+        }
+        .chatbot-btn {
+            background-color: #007bff; /* Blue for chatbot */
+        }
+        .chatbot-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Chatbot Popup (General Service Bot) */
+        .chatbot-popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            background-color: purple;
+            color: black; /* Ensure text is visible on purple background */
+            z-index: 100;
+        }
+
+        .chatbot-content {
+            padding: 15px;
+        }
+
+        .close-chatbot {
+            float: right;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #333; /* Darker color for close button */
+        }
+
+        .chatbot-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #blue;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #ffe300;
+            color: #333; /* Ensure text is visible on yellow background */
+        }
+
+        .chatbot-input {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .chatbot-send {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
         }
 
-        .auth-container button:hover {
-            background-color: #E65A5A;
+        .chatbot-send:hover {
+            background-color: #0056b3;
         }
 
-        .auth-container .toggle-link {
-            display: block;
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #003d82;
+            color: white;
             margin-top: 20px;
-            color: #FF6B6B;
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: color 0.3s ease;
         }
 
-        .auth-container .toggle-link:hover {
-            color: #E65A5A;
-        }
-
-        /* Responsive Design */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row; /* Keep logo and hamburger on one row */
+                justify-content: space-between;
+                align-items: center;
             }
 
-            .navbar ul {
-                margin-top: 10px;
+            .hamburger-menu {
+                display: flex; /* Show hamburger on mobile */
+            }
+
+            .nav-links {
+                display: none; /* Hide nav links by default on mobile */
                 flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px; /* Below header */
+                left: 0;
+                background-color: #26fce7; /* Same as header */
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                padding: 10px 0;
+                border-radius: 0 0 8px 8px;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%); /* Start off-screen */
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                display: flex; /* Show nav links when active */
+                transform: translateY(0); /* Slide in */
+            }
+
+            .nav-links li {
+                margin: 0;
                 width: 100%;
                 text-align: center;
             }
 
-            .navbar ul li {
-                margin: 5px 0;
+            .nav-links a {
+                padding: 12px 15px;
+                border-bottom: 1px solid rgba(0,0,0,0.1); /* Separator */
+            }
+            .nav-links li:last-child a {
+                border-bottom: none;
             }
 
-            #hero h1 {
-                font-size: 3em;
+            /* Dropdown content within mobile menu */
+            .dropdown-content {
+                position: static; /* No absolute positioning in mobile menu */
+                box-shadow: none;
+                background-color: rgba(255,255,255,0.8); /* Slightly transparent background */
+                border-radius: 0;
             }
-
-            section {
-                padding: 50px 0;
-            }
-
-            .dashboard-container {
-                padding: 15px;
+            .dropdown-content a {
+                padding-left: 30px; /* Indent dropdown items */
             }
         }
 
-        @media (max-width: 480px) {
-            #hero h1 {
-                font-size: 2.5em;
-            }
-
-            .navbar .logo {
-                font-size: 1.5em;
-            }
-
-            .chatbot-popup {
-                width: 90%;
-                right: 5%;
-                bottom: 80px;
-                height: 400px;
-            }
-
-            .chatbot-icon {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1.8em;
-            }
+        /* Styles for login/signup forms and dashboards (from untitlednhsndjdnd.html) */
+        .auth-form {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 25px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
+        .auth-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-align: left; /* Align labels to the left */
+        }
+        .auth-form input[type="text"],
+        .auth-form input[type="password"],
+        .auth-form input[type="email"],
+        .auth-form select {
+            width: calc(100% - 22px); /* Account for padding and border */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .auth-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .auth-form button:hover {
+            background-color: #0056b3;
+        }
+        .auth-form .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
+        .auth-form .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .auth-form .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        .dashboard-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dashboard-container h2 {
+            color: #0056b3;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-container p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .dashboard-card {
+            background-color: #e0f2f7;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .dashboard-card h3 {
+            color: #0056b3;
+            margin-top: 0;
+        }
+        .dashboard-card p {
+            color: #555;
+        }
+
+        /* Chatbot popup for dashboards */
+        .dashboard-chatbot-popup {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            background-color: #fefefe; /* Light background for dashboard chatbots */
+            z-index: 100;
+        }
+
+        .dashboard-chatbot-content {
+            padding: 15px;
+        }
+
+        .dashboard-chatbot-messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #e9f7ef; /* Light green background for messages */
+        }
+
+        .dashboard-chatbot-input {
+            width: calc(100% - 20px);
+            padding: 8px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .dashboard-chatbot-send {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .dashboard-chatbot-send:hover {
+            background-color: #0056b3;
+        }
+        /* --- CSS STYLES END HERE --- */
     </style>
 </head>
 <body>
-    <header class="navbar">
-        <a href="index.html" class="logo">
-            <img src="images/1744649096909.png" alt="CBSN-U Logo">
-            CBSN-U
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="nav-link" data-page="index">Home</a></li>
-                <li><a href="about.html" class="nav-link" data-page="about">About Us</a></li>
-                <li><a href="academics.html" class="nav-link" data-page="academics">Academics</a></li>
-                <li><a href="gallery.html" class="nav-link" data-page="gallery">Gallery</a></li>
-                <li><a href="announcements.html" class="nav-link" data-page="announcements">Announcements</a></li>
-                <li><a href="feedbacks.html" class="nav-link" data-page="feedbacks">Feedbacks</a></li>
-                <li><a href="contact.html" class="nav-link" data-page="contact">Contact Us</a></li>
-                <li><a href="login.html" class="nav-link" data-page="login" id="loginNavLink">Login</a></li>
+    <header>
+        <nav class="navbar">
+            <div class="logo">1744649096909.png</div>
+            <!-- Hamburger icon for mobile -->
+            <button class="hamburger-menu" id="hamburger-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links" id="main-nav-links">
+                <!-- Navigation links will be dynamically updated by JavaScript -->
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1>Welcome to CBSN-U</h1>
-                <p>Set Your Limits Beyond The Sky.</p>
-                <a href="#about-us" class="btn">Learn More</a>
-            </div>
-        </section>
+        <section id="home-page" class="section page-section active">
+            <section id="company-intro" class="sub-section">
+                <h2>Welcome to CBSN-U</h2>
+                <h4>CROSS BORDER STUDY NETWORK - U </h4>
+                <p>Your concise and engaging introduction about your company, its mission, and what it offers. This is where you make your first impression!</p>
+                <p>We are dedicated to providing excellent education/services/products in <B>EDUCATIONAL INDUSTRY </B>. Our commitment is to foster growth, innovation, and success for our students/customers/stakeholders.</p>
+            </section>
 
-        <section id="about-us" class="container">
-            <h2>About CBSN-U</h2>
-            <p>CBSN-U (Cross Border Study Network -U) is dedicated to providing high-quality education and fostering a global learning environment.</p>
-            <p>Founded by Rittik Raj, we aim to bridge educational gaps and empower students to achieve their full potential. Our head office is in Begusarai, Bihar, India, with a secondary office in California, USA (20656 but not c i r Potter and, CA 91326 USA).</p>
+            <section id="announcement-corner" class="sub-section">
+                <h2>Announcement Corner</h2>
+                <div class="announcement-list">
+                    <p><strong>[Date] - Latest News:</strong> <a href="#announcements-page">Important update regarding admissions for the upcoming session.</a></p>
+                    <p><strong>[Date] - Event:</strong> <a href="#">Webinar on Career Opportunities in AI - Register Now!</a></p>
+                    <p><strong>[Date] - Holiday Notice:</strong> <a href="#">Office will remain closed on [Date] for [Occasion].</a></p>
+                    <p><a href="#announcements-page">View All Announcements</a></p>
+                </div>
+            </section>
 
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="count" id="studentsCount">0</div>
-                    <div class="label">Students</div>
+            <section id="image-gallery" class="sub-section">
+                <h2>Image Gallery</h2>
+                <div class="gallery-grid">
+                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+1" alt="Gallery Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+1';">
+                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+2" alt="Gallery Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+2';">
+                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+3" alt="Gallery Image 3" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+3';">
+                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+4" alt="Gallery Image 4" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+4';">
                 </div>
-                <div class="stat-item">
-                    <div class="count" id="facultyCount">0</div>
-                    <div class="label">Faculty</div>
-                </div>
-                <div class="stat-item">
-                    <div class="count" id="institutionsCount">0</div>
-                    <div class="label">Institutions</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="academics" class="container">
-            <h2>Academic Programs & Results</h2>
-            <div class="academic-carousel">
-                <div class="academic-item">
-                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+1" alt="Academic Program 1">
-                    <h3>Course Title 1</h3>
-                    <p>Brief description of the course, its objectives, and what students will learn.</p>
-                </div>
-                <div class="academic-item">
-                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+2" alt="Academic Program 2">
-                    <h3>Course Title 2</h3>
-                    <p>Detailed overview of another academic program offered at CBSN-U.</p>
-                </div>
-                <div class="academic-item">
-                    <img src="https://placehold.co/300x200/2a2a3e/FF6B6B?text=Program+3" alt="Academic Program 3">
-                    <h3>Course Title 3</h3>
-                    <p>Information about the curriculum, duration, and career prospects.</p>
-                </div>
-                </div>
-
-            <h3>Results & Certificates</h3>
-            <div class="downloads-grid">
-                <div class="download-item">
-                    <i class="fas fa-file-pdf"></i>
-                    <p>Annual Exam Results 2024</p>
-                    <a href="path/to/results2024.pdf" target="_blank">Download PDF</a>
-                </div>
-                <div class="download-item">
-                    <i class="fas fa-award"></i>
-                    <p>Student Certificates Guidelines</p>
-                    <a href="path/to/certificates_guidelines.pdf" target="_blank">View Details</a>
-                </div>
-                <div class="download-item">
-                    <i class="fas fa-file-alt"></i>
-                    <p>Admissions Prospectus 2025</p>
-                    <a href="path/to/prospectus2025.pdf" target="_blank">Download PDF</a>
-                </div>
-                </div>
-        </section>
-
-        <section id="photo-gallery" class="container">
-            <h2>Photo Gallery</h2>
-            <div class="gallery-grid" id="photoGalleryGrid">
-                <div class="gallery-item">
-                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Event+1" alt="Event 1">
-                    <div class="overlay">Event Name 1 - Description</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Campus" alt="Campus">
-                    <div class="overlay">Campus Life - Spring 2024</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://placehold.co/300x250/3a3a4e/FF6B6B?text=Graduation" alt="Graduation">
-                    <div class="overlay">Graduation Ceremony 2024</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="announcements" class="container">
-            <h2>Announcements</h2>
-            <div class="announcement-list" id="announcementList">
-                <div class="announcement-item">
-                    <div class="date">June 1, 2025</div>
-                    <p>Important: Summer break starts on June 15th. Classes resume August 1st.</p>
-                </div>
-                <div class="announcement-item">
-                    <div class="date">May 28, 2025</div>
-                    <p>Workshop on AI in Education next Friday. Register now!</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="feedbacks" class="container">
-            <h2>What Our Students Say</h2>
-            <div class="feedback-grid" id="feedbackGrid">
-                <div class="feedback-item">
-                    <p>"CBSN-U provided me with excellent learning opportunities and supportive faculty. Highly recommend!"</p>
-                    <div class="author">- John Doe, Alumni</div>
-                </div>
-                <div class="feedback-item">
-                    <p>"The online learning platform is very intuitive, and the courses are well-structured. Great experience."</p>
-                    <div class="author">- Jane Smith, Student</div>
-                </div>
-            </div>
-
-            <h3>Submit Your Feedback</h3>
-            <div class="contact-form-container">
-                <form id="feedbackForm">
-                    <div class="form-group">
-                        <label for="feedbackName">Your Name:</label>
-                        <input type="text" id="feedbackName" required>
+            <section id="product-info" class="sub-section">
+                <h2>Books Corner</h2>
+                <div class="product-cards">
+                    <div class="product-card">
+                        <h3>NCERT</h3>
+                        <p>BUY THIS BOOK FROM THE LINK BELOW.</p>
+                        <a href="https://www.flipkart.com/ncert-books-english-medium-from-class-6to12-set-35-upsc-exam/p/itmb73618582470a?pid=RBKGWCV9JFEQR2U5&lid=LSTRBKGWCV9JFEQR2U5ZVRVY4&marketplace=FLIPKART&store=bks&srno=b_1_3&otracker=browse&fm=organic&iid=ff37b13b-7d2a-4128-bc48-aa5763b3bbdd.RBKGWCV9JFEQR2U5.SEARCH&ppt=None&ppn=None&ssid=kwota47qnk0000001748922144400">Learn More</a>
                     </div>
-                    <div class="form-group">
-                        <label for="feedbackEmail">Your Email:</label>
-                        <input type="email" id="feedbackEmail" required>
+                    <div class="product-card">
+                        <h3>Substitute books</h3>
+                        <p>Along with NCERT buy these books for better reference.</p>
+                        <a href="https://www.amazon.in/NCERT-CLASS-COMBO-ENGLISH-MEDIUM/dp/B0CGHXC1B9">Learn More</a>
                     </div>
-                    <div class="form-group">
-                        <label for="feedbackMessage">Your Feedback:</label>
-                        <textarea id="feedbackMessage" required></textarea>
+                </div>
+            </section>
+
+            <section id="scholarship-banners" class="sub-section">
+                <h2>Scholarship Opportunities</h2>
+                <div class="banner-container">
+                    <img src="https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+1" alt="Scholarship Banner 1" onerror="this.onerror=null;this.src='https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+1';">
+                    <img src="https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+2" alt="Scholarship Banner 2" onerror="this.onerror=null;this.src='https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+2';">
+                </div>
+            </section>
+
+            <section id="stats" class="sub-section">
+                <h2>Our Community at a Glance</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>[500]</h3>
+                        <p>Students</p>
                     </div>
-                    <button type="submit" class="btn">Submit Feedback</button>
-                    <div id="feedbackMessageStatus" class="message-status" style="display: none;"></div>
-                </form>
+                    <div class="stat-item">
+                        <h3>[200]</h3>
+                        <p>Faculty Members</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>[25]</h3>
+                        <p>Courses/Programs</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact-options" class="sub-section">
+                <h2>Get in Touch</h2>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/8709547748" target="_blank" class="whatsapp-btn">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" style="height: 20px; vertical-align: middle;"> WhatsApp Us (8709547748)
+                    </a>
+                    <button id="open-general-chatbot" class="chatbot-btn">Service Help Bot</button>
+                </div>
+            </section>
+        </section>
+
+        <section id="login-page" class="section page-section">
+            <h2>User Login</h2>
+            <form id="login-form" class="auth-form">
+                <div class="form-message" id="login-message"></div>
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" required>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Login</button>
+                <p style="text-align: center; margin-top: 20px;">New user? <a href="#" id="go-to-signup">Sign Up here</a></p>
+            </form>
+        </section>
+
+        <section id="signup-page" class="section page-section">
+            <h2>User Signup</h2>
+            <form id="signup-form" class="auth-form">
+                <div class="form-message" id="signup-message"></div>
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username" required>
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" required>
+                <label for="signup-role">Role:</label>
+                <select id="signup-role" required>
+                    <option value="">Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                    <option value="institute">Institute</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit">Sign Up</button>
+                <p style="text-align: center; margin-top: 20px;">Already have an account? <a href="#" id="go-to-login">Login here</a></p>
+            </form>
+        </section>
+
+        <section id="dashboard-admin" class="section page-section">
+            <div class="dashboard-container">
+                <h2>Welcome, Admin!</h2>
+                <p>This is your administrative dashboard. From here, you can manage user accounts, website content, and system settings.</p>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Manage Users</h3>
+                        <p>Add, edit, or remove user accounts.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Content Management</h3>
+                        <p>Update announcements, events, and static page content.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>System Settings</h3>
+                        <p>Configure website settings and monitor activity.</p>
+                    </div>
+                </div>
+                <button id="open-admin-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Admin Chatbot</button>
             </div>
         </section>
 
-        <section id="contact-us" class="container">
+        <section id="dashboard-student" class="section page-section">
+            <div class="dashboard-container">
+                <h2>Welcome, Student!</h2>
+                <p>This is your student dashboard. Here you can access your academic information, courses, and resources.</p>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>My Courses</h3>
+                        <p>View your enrolled courses and lecture materials.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Grades & Results</h3>
+                        <p>Check your academic performance and test scores.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Announcements</h3>
+                        <p>Stay updated with important student notices.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Assignments</h3>
+                        <p>Submit assignments and track deadlines.</p>
+                    </div>
+                </div>
+                <button id="open-student-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Student Chatbot</button>
+            </div>
+        </section>
+
+        <section id="dashboard-faculty" class="section page-section">
+            <div class="dashboard-container">
+                <h2>Welcome, Faculty!</h2>
+                <p>This is your faculty dashboard. Manage your courses, students, and academic responsibilities here.</p>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>My Courses</h3>
+                        <p>Access your assigned courses and teaching materials.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Student Management</h3>
+                        <p>Manage student records, attendance, and grades.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Research & Publications</h3>
+                        <p>Update your research work and published papers.</p>
+                    </div>
+                </div>
+                <button id="open-faculty-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Faculty Chatbot</button>
+            </div>
+        </section>
+
+        <section id="dashboard-institute" class="section page-section">
+            <div class="dashboard-container">
+                <h2>Welcome, Institute Representative!</h2>
+                <p>This is your institute dashboard. Oversee overall operations, departmental performance, and strategic planning.</p>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Academic Programs</h3>
+                        <p>Manage curriculum, program development, and accreditations.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Resource Allocation</h3>
+                        <p>Monitor budget, infrastructure, and facility utilization.</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>Reports & Analytics</h3>
+                        <p>Access performance reports and key institutional metrics.</p>
+                    </div>
+                </div>
+                <button id="open-institute-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Institute Chatbot</button>
+            </div>
+        </section>
+
+        <section id="students-page" class="section page-section">
+            <h2>Academic: Students</h2>
+            <p>Welcome, students! This section provides all the essential information and resources you need for a successful academic journey at [Your Company Name].</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div class="product-card">
+                    <h3>Admission Process</h3>
+                    <p>Details on how to apply, eligibility criteria, and important dates for new admissions.</p>
+                    <a href="#">Apply Now</a>
+                </div>
+                <div class="product-card">
+                    <h3>Student Handbook</h3>
+                    <p>A comprehensive guide to policies, procedures, and student life on campus.</p>
+                    <a href="#">Download Handbook</a>
+                </div>
+                <div class="product-card">
+                    <h3>Academic Calendar</h3>
+                    <p>View important academic dates, holidays, examination schedules, and more.</p>
+                    <a href="#">View Calendar</a>
+                </div>
+                <div class="product-card">
+                    <h3>Student Welfare</h3>
+                    <p>Support services, counseling, and initiatives aimed at student well-being.</p>
+                    <a href="#">Learn More</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">For any specific queries, please visit our <a href="#contact-page" style="color: #0056b3; text-decoration: none;">Contact Us</a> page.</p>
+        </section>
+
+        <section id="scholarship-page" class="section page-section">
+            <h2>Academic: Scholarship Opportunities</h2>
+            <p>At [Your Company Name], we believe in supporting talent. Explore various scholarship programs available to our deserving students.</p>
+
+            <div style="margin-top: 30px;">
+                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+                    <h3>Merit-Based Scholarships</h3>
+                    <p>Awarded to students demonstrating exceptional academic achievement in their previous studies.</p>
+                    <p><strong>Eligibility:</strong> Minimum [X]% marks in previous qualifying exam, minimum [Y] CGPA, etc.</p>
+                    <p><strong>Application Deadline:</strong> [Date]</p>
+                    <a href="#" style="color: #0056b3; text-decoration: none;">Download Application Form &rarr;</a>
+                </article>
+
+                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+                    <h3>Need-Based Financial Aid</h3>
+                    <p>Designed to assist students from economically disadvantaged backgrounds, ensuring access to quality education.</p>
+                    <p><strong>Eligibility:</strong> Based on family income criteria and financial need assessment.</p>
+                    <p><strong>Application Deadline:</strong> [Date]</p>
+                    <a href="#" style="color: #0056b3; text-decoration: none;">Learn More &rarr;</a>
+                </article>
+
+                <article style="margin-bottom: 25px; padding-bottom: 15px;">
+                    <h3>Special Category Scholarships</h3>
+                    <p>Scholarships available for specific categories such as sports, arts, physically challenged, or minority groups.</p>
+                    <p><strong>Eligibility:</strong> Specific criteria apply for each category.</p>
+                    <p><strong>Application Deadline:</strong> [Date]</p>
+                    <a href="#" style="color: #0056b3; text-decoration: none;">View Categories &rarr;</a>
+                </article>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">For more details on scholarship application procedures and required documents, please refer to our <a href="#announcements-page" style="color: #0056b3; text-decoration: none;">announcements</a> or contact the financial aid office.</p>
+        </section>
+
+        <section id="tests-page" class="section page-section">
+            <h2>Academic: Examination and Test Information</h2>
+            <p>Find all details regarding entrance examinations, internal assessments, and mock tests conducted by [Your Company Name].</p>
+
+            <div style="margin-top: 30px;">
+                <h3>Upcoming Entrance Exams</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Exam Name</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Date</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Application Deadline</th>
+                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #ddd;">[Course A] Entrance Test</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">July 20, 2025</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">July 10, 2025</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><a href="#" style="color: #0056b3; text-decoration: none;">Syllabus</a></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid #ddd;">[Program B] Aptitude Test</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">August 5, 2025</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;">July 25, 2025</td>
+                            <td style="padding: 12px; border: 1px solid #ddd;"><a href="#" style="color: #0056b3; text-decoration: none;">Guidelines</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 40px;">Internal Examination Schedule</h3>
+                <p>Regular internal assessments are conducted to monitor student progress. Please refer to the academic calendar for detailed dates.</p>
+                <ul style="list-style: disc; margin-left: 20px; margin-top: 15px;">
+                    <li style="margin-bottom: 8px;">Mid-Term Exams: October 2025</li>
+                    <li style="margin-bottom: 8px;">End-Term Exams: February 2026</li>
+                    <li>Practical Assessments: Ongoing through semester</li>
+                </ul>
+
+                <h3 style="margin-top: 40px;">Mock Tests and Resources</h3>
+                <p>Prepare effectively with our mock test series and study materials. Access them through the student portal.</p>
+                <a href="#students-page" style="display: inline-block; background-color: #0056b3; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 15px;">Access Mock Tests</a>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">For specific examination rules and regulations, please contact the Examination Department.</p>
+        </section>
+
+        <section id="institute-page" class="section page-section">
+            <h2>Academic: About Our Institute</h2>
+            <p>[Your Company Name] is a premier educational institution committed to fostering academic excellence, innovation, and holistic development. Established in [Year], we have been a beacon of knowledge and skill development in [Your Field/Region].</p>
+
+            <h3 style="margin-top: 30px;">Our Mission</h3>
+            <p>To provide high-quality education that empowers students with knowledge, critical thinking skills, and ethical values, preparing them to be responsible global citizens and leaders in their chosen professions.</p>
+
+            <h3 style="margin-top: 30px;">Our Vision</h3>
+            <p>To be recognized as a leading institution for academic innovation, research, and community engagement, contributing significantly to societal progress and technological advancement.</p>
+
+            <h3 style="margin-top: 30px;">Facilities</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><strong>Modern Classrooms:</strong> Equipped with audio-visual aids.</li>
+                    <li style="margin-bottom: 10px;"><strong>State-of-the-Art Laboratories:</strong> For hands-on practical experience.</li>
+                    <li style="margin-bottom: 10px;"><strong>Digital Library:</strong> Extensive collection of books, journals, and online resources.</li>
+                </ul>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><strong>Sports Complex:</strong> Facilities for indoor and outdoor sports.</li>
+                    <li style="margin-bottom: 10px;"><strong>Hostel Accommodation:</strong> Separate facilities for male and female students.</li>
+                    <li style="margin-bottom: 10px;"><strong>Cafeteria:</strong> Hygienic and diverse food options.</li>
+                </ul>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">We continuously strive to create an enriching and supportive environment for our students.</p>
+        </section>
+
+        <section id="faculty-page" class="section page-section">
+            <h2>Academic: Our Esteemed Faculty</h2>
+            <p>Our faculty members are highly qualified, experienced, and dedicated professionals who are committed to nurturing the next generation of leaders and innovators.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
+                <div class="product-card" style="text-align: left;">
+                    <img src="https://via.placeholder.com/100x100?text=Prof+A" alt="Professor A" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Prof+A';">
+                    <h3 style="text-align: center;">Prof. [Faculty Name A]</h3>
+                    <p><strong>Department:</strong> [Department Name]</p>
+                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
+                    <p><strong>Experience:</strong> [X] years</p>
+                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
+                </div>
+
+                <div class="product-card" style="text-align: left;">
+                    <img src="https://via.placeholder.com/100x100?text=Dr+B" alt="Dr. B" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Dr+B';">
+                    <h3 style="text-align: center;">Dr. [Faculty Name B]</h3>
+                    <p><strong>Department:</strong> [Department Name]</p>
+                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
+                    <p><strong>Experience:</strong> [Y] years</p>
+                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
+                </div>
+
+                <div class="product-card" style="text-align: left;">
+                    <img src="https://via.placeholder.co/100x100?text=Ms+C" alt="Ms. C" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Ms+C';">
+                    <h3 style="text-align: center;">Ms. [Faculty Name C]</h3>
+                    <p><strong>Department:</strong> [Department Name]</p>
+                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
+                    <p><strong>Experience:</strong> [Z] years</p>
+                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px;">For a complete list of faculty members and their detailed profiles, please visit the respective department pages (if available).</p>
+        </section>
+
+        <section id="contact-page" class="section page-section">
             <h2>Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Head Office</h3>
-                    <p>Begusarai, Bihar, 851101, India</p>
+            <p>We'd love to hear from you! Please reach out to us using the information below or fill out our contact form.</p>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; margin-top: 30px;">
+                <div style="flex: 1; min-width: 280px; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <h3>Our Office</h3>
+                    <address>
+                        <p><strong>Your Company Name</strong><br>
+                        [Your Company Address Line 1]<br>
+                        [Your Company Address Line 2]<br>
+                        Begusarai, Bihar, India - [Your Pincode]</p>
+                        <p><strong>Phone:</strong> +91 8709547748</p>
+                        <p><strong>Email:</strong> <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
+                    </address>
                 </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>Secondary Office</h3>
-                    <p>20656 but not c i r Potter and, CA 91326 USA</p>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <h3>Phone Numbers</h3>
-                    <p>+91 8709547748</p>
-                    <p>+1 8183 8820 65</p>
-                </div>
-                <div class="contact-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email Addresses</h3>
-                    <p><a href="mailto:contact.cbsnu@gmail.com">contact.cbsnu@gmail.com</a></p>
-                    <p><a href="mailto:cbsnu@gmail.com">cbsnu@gmail.com</a></p>
-                    <p><a href="mailto:cbsnu.contact@gmail.com">cbsnu.contact@gmail.com</a></p>
+
+                <div style="flex: 1; min-width: 280px; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 5:00 PM IST</p>
+                    <p>Saturday: 10:00 AM - 2:00 PM IST</p>
+                    <p>Sunday: Closed</p>
+                    <p>Public Holidays: Closed</p>
                 </div>
             </div>
 
-            <h3>Submit a Complaint or Query</h3>
-            <div class="contact-form-container">
-                <form id="complaintForm">
-                    <div class="form-group">
-                        <label for="complaintName">Your Name:</label>
-                        <input type="text" id="complaintName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="complaintEmail">Your Email:</label>
-                        <input type="email" id="complaintEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="complaintSubject">Subject:</label>
-                        <input type="text" id="complaintSubject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="complaintMessage">Message:</label>
-                        <textarea id="complaintMessage" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Submit</button>
-                    <div id="complaintMessageStatus" class="message-status" style="display: none;"></div>
-                </form>
+            <h3 style="text-align: center; margin-top: 40px; color: #0056b3;">Send Us a Message</h3>
+            <form action="#" method="POST" style="max-width: 600px; margin: 20px auto; padding: 30px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <label for="name">Your Name:</label><br>
+                <input type="text" id="name-contact" name="name" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+                <label for="email">Your Email:</label><br>
+                <input type="email" id="email-contact" name="email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+                <label for="subject">Subject:</label><br>
+                <input type="text" id="subject-contact" name="subject" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message-contact" name="message" rows="6" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br>
+
+                <button type="submit" style="width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">Send Message</button>
+            </form>
+        </section>
+
+        <section id="announcements-page" class="section page-section">
+            <h2>Important Announcements</h2>
+            <p>Stay updated with the latest news, events, and important notices from [Your Company Name].</p>
+
+            <div class="announcement-list" style="margin-top: 30px;">
+                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+                    <h3>New Admission Cycle Opens Soon!</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: June 1, 2025</em></p>
+                    <p>We are excited to announce that the admission process for the academic year 2026-2027 will commence on July 15, 2025. Detailed guidelines and application forms will be available on the Students section of our website.</p>
+                    <a href="#students-page" style="color: #0056b3; text-decoration: none;">Learn more &rarr;</a>
+                </article>
+
+                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+                    <h3>Webinar: Future of AI in Education</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 28, 2025</em></p>
+                    <p>Join our experts for a live webinar on "The Impact of Artificial Intelligence on Modern Education" on June 10, 2025, at 3:00 PM IST. Registration is free but seats are limited.</p>
+                    <a href="#" style="color: #0056b3; text-decoration: none;">Register Now &rarr;</a>
+                </article>
+
+                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
+                    <h3>Office Closure for Eid al-Adha</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 20, 2025</em></p>
+                    <p>Please note that our offices will remain closed on June 16-17, 2025, in observance of Eid al-Adha. Regular services will resume on June 18, 2025.</p>
+                </article>
+
+                <article style="margin-bottom: 25px; padding-bottom: 15px;">
+                    <h3>Scholarship Application Deadline Extended</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 15, 2025</em></p>
+                    <p>Good news for aspiring students! The deadline for all scholarship applications has been extended to June 30, 2025. Don't miss this opportunity.</p>
+                    <a href="#scholarship-page" style="color: #0056b3; text-decoration: none;">View Scholarship Details &rarr;</a>
+                </article>
             </div>
         </section>
 
-        <div id="authModal" style="display: none;"> <div class="auth-container">
-                <button class="close-btn" id="closeAuthModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
-                <h2>User Authentication</h2>
+        <section id="links-page" class="section page-section">
+            <h2>Useful Links</h2>
+            <p>Explore these valuable resources and external websites related to our programs, industry, and partners.</p>
 
-                <div id="loginSection">
-                    <h3>Login</h3>
-                    <form id="loginForm">
-                        <div class="form-group">
-                            <label for="loginEmail">Email:</label>
-                            <input type="email" id="loginEmail" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Password:</label>
-                            <input type="password" id="loginPassword" required>
-                        </div>
-                        <button type="submit" class="btn">Login</button>
-                    </form>
-                    <a href="#" class="toggle-link" id="showSignup">Don't have an account? Sign Up</a>
-                    <a href="#" class="toggle-link" id="showAdminLogin">Admin Login</a>
-                    <a href="#" class="toggle-link" id="showClientLogin">Client Login</a>
-                    <div id="loginMessageStatus" class="message-status" style="display: none;"></div>
-                </div>
+            <div style="margin-top: 30px;">
+                <h3>Internal Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="#home-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Home Page</a> - Go back to the main page.
+                    </li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="#students-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Student Portal</a> - Access student-specific resources and information.
+                    </li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="#scholarship-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Scholarship Information</a> - Learn about available scholarships.
+                    </li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="#contact-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Contact Information</a> - Find out how to reach us.
+                    </li>
+                </ul>
 
-                <div id="signupSection" style="display: none;">
-                    <h3>Sign Up</h3>
-                    <form id="signupForm">
-                        <div class="form-group">
-                            <label for="signupName">Full Name:</label>
-                            <input type="text" id="signupName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupEmail">Email:</label>
-                            <input type="email" id="signupEmail" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupPassword">Password:</label>
-                            <input type="password" id="signupPassword" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="signupRole">Role:</label>
-                            <select id="signupRole" required>
-                                <option value="">Select Role</option>
-                                <option value="student">Student</option>
-                                <option value="faculty">Faculty</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn">Sign Up</button>
-                    </form>
-                    <a href="#" class="toggle-link" id="showLogin">Already have an account? Login</a>
-                    <div id="signupMessageStatus" class="message-status" style="display: none;"></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="adminLoginModal" style="display: none;">
-            <div class="auth-container">
-                <button class="close-btn" id="closeAdminLoginModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
-                <h3>Admin Login</h3>
-                <form id="adminLoginForm">
-                    <div class="form-group">
-                        <label for="adminEmail">Email:</label>
-                        <input type="email" id="adminEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="adminPassword">Password:</label>
-                        <input type="password" id="adminPassword" required>
-                    </div>
-                    <button type="submit" class="btn">Login as Admin</button>
-                </form>
-                <div id="adminLoginMessageStatus" class="message-status" style="display: none;"></div>
-            </div>
-        </div>
-
-        <div id="clientLoginModal" style="display: none;">
-            <div class="auth-container">
-                <button class="close-btn" id="closeClientLoginModal" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: #E0E0E0; font-size: 1.5em; cursor: pointer;">&times;</button>
-                <h3>Client Login</h3>
-                <form id="clientLoginForm">
-                    <div class="form-group">
-                        <label for="clientEmail">Email:</label>
-                        <input type="email" id="clientEmail" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="clientPassword">Password:</label>
-                        <input type="password" id="clientPassword" required>
-                    </div>
-                    <button type="submit" class="btn">Login as Client</button>
-                </form>
-                <div id="clientLoginMessageStatus" class="message-status" style="display: none;"></div>
-            </div>
-        </div>
-
-        <section id="facultyDashboard" class="container dashboard-container" style="display: none;">
-            <h2>Faculty Dashboard</h2>
-            <p>Welcome, Faculty Member!</p>
-
-            <div class="dashboard-section">
-                <h3>Assignments</h3>
-                <form id="assignmentUploadForm" class="upload-form">
-                    <label for="assignmentTitle">Assignment Title:</label>
-                    <input type="text" id="assignmentTitle" required>
-
-                    <label for="assignmentDescription">Description:</label>
-                    <textarea id="assignmentDescription" rows="3"></textarea>
-
-                    <label for="assignmentFile">Upload File (PDF/DOCX):</label>
-                    <input type="file" id="assignmentFile" accept=".pdf,.doc,.docx" required>
-
-                    <button type="submit">Upload Assignment</button>
-                    <div id="assignmentUploadStatus" class="message-status" style="display: none;"></div>
-                </form>
-            </div>
-
-            <div class="dashboard-section">
-                <h3>Your Students</h3>
-                <ul class="user-list" id="facultyStudentList">
-                    <li><span>Student A (studentA@example.com)</span></li>
-                    <li><span>Student B (studentB@example.com)</span></li>
+                <h3 style="margin-top: 30px;">External Resources</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">AICTE Website</a> - All India Council for Technical Education.
+                    </li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="https://www.ugc.ac.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">UGC India</a> - University Grants Commission.
+                    </li>
+                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
+                        <a href="https://www.ncert.nic.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">NCERT</a> - National Council of Educational Research and Training.
+                    </li>
+                    <li style="margin-bottom: 10px; padding-bottom: 5px;">
+                        <a href="https://www.digilocker.gov.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">DigiLocker</a> - Your digital document wallet.
+                    </li>
                 </ul>
             </div>
         </section>
 
-        <section id="adminDashboard" class="container dashboard-container" style="display: none;">
-            <h2>Admin Dashboard</h2>
-            <p>Welcome, Administrator!</p>
-
-            <div class="dashboard-section">
-                <h3>Manage Users</h3>
-                <ul class="user-list" id="userManagementList">
-                    <li><span>Admin User (admin@example.com) - Role: admin</span>
-                        <div class="user-actions">
-                            <button class="edit">Edit</button>
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
-                    <li><span>Faculty User (faculty@example.com) - Role: faculty</span>
-                        <div class="user-actions">
-                            <button class="edit">Edit</button>
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
-                    <li><span>Student User (student@example.com) - Role: student</span>
-                        <div class="user-actions">
-                            <button class="edit">Edit</button>
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
-                </ul>
+        <div id="general-chatbot-popup" class="chatbot-popup">
+            <div class="chatbot-content">
+                <span class="close-chatbot">&times;</span>
+                <h3>Service Bot</h3>
+                <div class="chatbot-messages">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+                <input type="text" placeholder="Type your message..." class="chatbot-input">
+                <button class="chatbot-send">Send</button>
             </div>
+        </div>
 
-            <div class="dashboard-section">
-                <h3>Post Announcement</h3>
-                <form id="announcementUploadForm" class="upload-form">
-                    <label for="announcementText">Announcement Text:</label>
-                    <textarea id="announcementText" rows="4" required></textarea>
-                    <button type="submit">Post Announcement</button>
-                    <div id="announcementUploadStatus" class="message-status" style="display: none;"></div>
-                </form>
+        <div id="admin-chatbot-popup" class="dashboard-chatbot-popup">
+            <div class="dashboard-chatbot-content">
+                <span class="close-chatbot">&times;</span>
+                <h3>Admin Bot</h3>
+                <div class="dashboard-chatbot-messages" id="admin-chatbot-messages"></div>
+                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="admin-chatbot-input">
+                <button class="dashboard-chatbot-send" id="admin-chatbot-send">Send</button>
             </div>
+        </div>
 
-            <div class="dashboard-section">
-                <h3>Upload Gallery Photo</h3>
-                <form id="galleryUploadForm" class="upload-form">
-                    <label for="galleryImage">Select Image:</label>
-                    <input type="file" id="galleryImage" accept="image/*" required>
-                    <label for="galleryCaption">Caption:</label>
-                    <input type="text" id="galleryCaption" placeholder="Optional caption">
-                    <button type="submit">Upload Photo</button>
-                    <div id="galleryUploadStatus" class="message-status" style="display: none;"></div>
-                </form>
+        <div id="student-chatbot-popup" class="dashboard-chatbot-popup">
+            <div class="dashboard-chatbot-content">
+                <span class="close-chatbot">&times;</span>
+                <h3>Student Bot</h3>
+                <div class="dashboard-chatbot-messages" id="student-chatbot-messages"></div>
+                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="student-chatbot-input">
+                <button class="dashboard-chatbot-send" id="student-chatbot-send">Send</button>
             </div>
+        </div>
 
-            <div class="dashboard-section">
-                <h3>Manage Feedbacks</h3>
-                <ul class="complaint-list" id="adminFeedbackList">
-                    <li><span>Feedback from John (john@example.com): "Great website!"</span>
-                        <div class="complaint-actions">
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
-                </ul>
+        <div id="faculty-chatbot-popup" class="dashboard-chatbot-popup">
+            <div class="dashboard-chatbot-content">
+                <span class="close-chatbot">&times;</span>
+                <h3>Faculty Bot</h3>
+                <div class="dashboard-chatbot-messages" id="faculty-chatbot-messages"></div>
+                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="faculty-chatbot-input">
+                <button class="dashboard-chatbot-send" id="faculty-chatbot-send">Send</button>
             </div>
+        </div>
 
-            <div class="dashboard-section">
-                <h3>Review Complaints</h3>
-                <ul class="complaint-list" id="adminComplaintList">
-                    <li><span>Complaint from Jane (jane@example.com) - Subject: Issue with login</span>
-                        <div class="complaint-actions">
-                            <button class="resolve">Mark Resolved</button>
-                            <button class="delete">Delete</button>
-                        </div>
-                    </li>
-                </ul>
+        <div id="institute-chatbot-popup" class="dashboard-chatbot-popup">
+            <div class="dashboard-chatbot-content">
+                <span class="close-chatbot">&times;</span>
+                <h3>Institute Bot</h3>
+                <div class="dashboard-chatbot-messages" id="institute-chatbot-messages"></div>
+                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="institute-chatbot-input">
+                <button class="dashboard-chatbot-send" id="institute-chatbot-send">Send</button>
             </div>
-        </section>
+        </div>
 
     </main>
 
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-        <p>&copy; 2025 CBSN-U. All Rights Reserved.</p>
+    <footer>
+        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
     </footer>
 
-    <div class="chatbot-icon" id="chatbotIcon">
-        <i class="fas fa-comments"></i>
-    </div>
-
-    <div class="chatbot-popup" id="chatbotPopup">
-        <div class="chatbot-header">
-            CBSN-U Bot
-            <button class="close-btn" id="closeChatbotBtn">&times;</button>
-        </div>
-        <div class="chatbot-messages" id="chatbotMessages">
-            <div class="message bot">Hello! I'm your CBSN-U assistant. How can I help you today?</div>
-        </div>
-        <div class="chatbot-input-container">
-            <input type="text" id="chatbotInput" placeholder="Type your message...">
-            <button id="sendChatbotBtn"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
     <script>
-        // Firebase Configuration (THIS BLOCK MUST BE COPIED TO EACH HTML FILE)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPN3VAXottCg3vDr0fMSu1niSVGNT3V9o",
-            authDomain: "cbsnu-d8dbb.firebaseapp.com",
-            projectId: "cbsnu-d8dbb",
-            storageBucket: "cbsnu-d8dbb.firebasestorage.app",
-            messagingSenderId: "1066269637289",
-            appId: "1:1066269637289:web:cb1977ba240e05a0b587b8",
-            measurementId: "G-TMBEL8E5ZQ"
-        };
-        const app = firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const storage = firebase.storage();
-        const analytics = firebase.analytics();
-        console.log("Firebase initialized.");
+        /* --- JAVASCRIPT START HERE --- */
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- IN-MEMORY "USER DATABASE" (NOT PERSISTENT, CLEARS ON REFRESH/CLOSE) ---
+            // This array holds the registered users. For a real application, this would be a backend database.
+            let users = [
+                { username: 'admin', password: 'password', role: 'admin' },
+                { username: 'student1', password: 'password', role: 'student' },
+                { username: 'faculty1', password: 'password', role: 'faculty' },
+                { username: 'institute1', password: 'password', role: 'institute' }
+            ];
+            let currentUser = null; // Stores the currently logged-in user object
 
-        // EmailJS Initialization (THIS BLOCK MUST BE COPIED TO EACH HTML FILE)
-        document.addEventListener('DOMContentLoaded', () => {
-            emailjs.init('DqEZGom9bxso5B5Zl'); // Your EmailJS Public Key
-            console.log("EmailJS initialized.");
+            // --- DOM Elements ---
+            const mainNavLinks = document.getElementById('main-nav-links');
+            const pageSections = document.querySelectorAll('.page-section');
+            const loginPage = document.getElementById('login-page');
+            const signupPage = document.getElementById('signup-page');
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const loginUsernameInput = document.getElementById('login-username');
+            const loginPasswordInput = document.getElementById('login-password');
+            const signupUsernameInput = document.getElementById('signup-username');
+            const signupPasswordInput = document.getElementById('signup-password');
+            const signupRoleSelect = document.getElementById('signup-role');
+            const loginMessage = document.getElementById('login-message');
+            const signupMessage = document.getElementById('signup-message');
+            const goToSignupLink = document.getElementById('go-to-signup');
+            const goToLoginLink = document.getElementById('go-to-login');
+            const hamburgerMenu = document.getElementById('hamburger-menu'); // New: Hamburger menu button
 
-            // --- Initial Data Loading relevant to the current page ---
-            // Only call functions for sections present on THIS specific HTML page.
-            const currentPath = window.location.pathname;
-            if (currentPath.includes('index.html') || currentPath === '/') {
-                loadAnnouncements(); // For home page announcements snippet
-                loadHomePhotoGallery(); // For home page gallery snippet
-                loadFeedbacks(); // For home page feedbacks snippet
-                updateCounts(); // For home page stats
-            } else if (currentPath.includes('about.html')) {
-                updateCounts(); // Only stats needed on About Us page
-            } else if (currentPath.includes('announcements.html')) {
-                loadAnnouncements(); // Load all announcements
-            } else if (currentPath.includes('gallery.html')) {
-                loadAllPhotoGallery(); // Load all gallery items
-            } else if (currentPath.includes('feedbacks.html')) {
-                loadFeedbacks(); // Load all feedbacks
-            } else if (currentPath.includes('dashboard-admin.html')) {
-                loadUsers();
-                loadAdminFeedbacks();
-                loadComplaints();
-            } else if (currentPath.includes('dashboard-faculty.html')) {
-                loadFacultyStudents(); // Assuming faculty students are loaded on their dashboard
-            }
-        });
-
-        // Helper function to show messages (THIS FUNCTION MUST BE COPIED TO EACH HTML FILE)
-        function showMessage(elementId, message, isError) {
-            const element = document.getElementById(elementId);
-            if (element) { // Ensure element exists on the current page
+            // --- Utility Functions ---
+            function showMessage(element, message, type) {
                 element.textContent = message;
-                element.classList.remove('success', 'error');
-                element.classList.add(isError ? 'error' : 'success');
+                element.className = 'form-message ' + type;
                 element.style.display = 'block';
-                setTimeout(() => {
-                    element.style.display = 'none';
-                }, 5000);
-            }
-        }
-
-        // --- Navigation Active Link Logic (THIS BLOCK MUST BE COPIED TO EACH HTML FILE) ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentFileName = window.location.pathname.split('/').pop();
-            const navLinks = document.querySelectorAll('.navbar ul li .nav-link');
-            navLinks.forEach(link => {
-                const linkHref = link.getAttribute('href');
-                const linkFileName = linkHref.split('/').pop();
-
-                if (linkFileName === currentFileName) {
-                    link.classList.add('active');
-                } else if (currentFileName === '' && link.getAttribute('data-page') === 'index') {
-                    // Handle case where index.html is accessed as root '/'
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // --- Complaint Form Submission (EmailJS) (ONLY COPY TO CONTACT.HTML) ---
-        const complaintForm = document.getElementById('complaintForm');
-        if (complaintForm) { // Check if form exists on this page
-            complaintForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const serviceID = 'service_nvwp74b'; // Your EmailJS Service ID
-                const templateID = 'template_jphnhtj'; // Your EmailJS Template ID
-                try {
-                    const templateParams = {
-                        user_name: document.getElementById('complaintName').value,
-                        user_email: document.getElementById('complaintEmail').value,
-                        subject: document.getElementById('complaintSubject').value,
-                        message: document.getElementById('complaintMessage').value,
-                        to_email: 'contact.cbsnu@gmail.com' // Your official email for complaints
-                    };
-                    const response = await emailjs.send(serviceID, templateID, templateParams);
-                    console.log('EmailJS Success!', response.status, response.text);
-                    showMessage('complaintMessageStatus', 'Complaint submitted successfully! We will review it shortly.', false);
-                    complaintForm.reset();
-                    // Developer Note: For a robust system, complaints should also be logged in Firestore
-                    // and visible in the Admin Dashboard.
-                } catch (error) {
-                    console.error('EmailJS Failed...', error);
-                    showMessage('complaintMessageStatus', 'Failed to submit complaint. Please try again.', true);
-                }
-            });
-        }
-
-        // --- Feedback Form Submission (Firestore) (ONLY COPY TO FEEDBACKS.HTML) ---
-        const feedbackForm = document.getElementById('feedbackForm');
-        if (feedbackForm) {
-            feedbackForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const name = document.getElementById('feedbackName').value;
-                const email = document.getElementById('feedbackEmail').value;
-                const message = document.getElementById('feedbackMessage').value;
-
-                try {
-                    await db.collection("feedbacks").add({
-                        name: name,
-                        email: email,
-                        message: message,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    showMessage('feedbackMessageStatus', 'Feedback submitted successfully!', false);
-                    feedbackForm.reset();
-                    loadFeedbacks(); // Refresh feedback list if on the same page
-                } catch (error) {
-                    console.error("Error submitting feedback:", error);
-                    showMessage('feedbackMessageStatus', 'Failed to submit feedback. Please try again.', true);
-                }
-            });
-        }
-
-        // --- Chatbot Logic (THIS ENTIRE BLOCK MUST BE COPIED TO EACH HTML FILE) ---
-        const chatbotIcon = document.getElementById('chatbotIcon');
-        const chatbotPopup = document.getElementById('chatbotPopup');
-        const closeChatbotBtn = document.getElementById('closeChatbotBtn');
-        const chatbotInput = document.getElementById('chatbotInput');
-        const sendChatbotBtn = document.getElementById('sendChatbotBtn');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-
-        const companyDetails = {
-            name: "CBSN-U (Cross Border Study Network -U)",
-            slogan: "Set Your Limits Beyond The Sky.",
-            type: "OPC (One Person Company)",
-            headOffice: "Begusarai, Bihar, 851101, India",
-            secondaryOffice: "20656 but not c i r Potter and, CA 91326 USA",
-            phoneNumbers: "8709547748, +1 8183 8820 65",
-            emails: "contact.cbsnu@gmail.com, cbsnu@gmail.com, cbsnu.contact@gmail.com",
-            website: "cbsnu.live",
-            founderCEO: "Rittik Raj",
-            ceoCredentials: "B.Sc Agriculture from Ghanshyam Urvashi PG College Prayagraj, Cyber Security from Craw Cyber Security Delhi"
-        };
-
-        if (chatbotIcon) { // Ensure chatbot elements exist on the page
-            chatbotIcon.addEventListener('click', () => {
-                chatbotPopup.classList.toggle('open');
-            });
-
-            closeChatbotBtn.addEventListener('click', () => {
-                chatbotPopup.classList.remove('open');
-            });
-
-            sendChatbotBtn.addEventListener('click', () => {
-                sendMessage();
-            });
-
-            chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-        }
-
-        function appendMessage(sender, message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = message;
-            chatbotMessages.appendChild(messageElement);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        async function sendMessage() {
-            const userMessage = chatbotInput.value.trim();
-            if (userMessage === "") return;
-
-            appendMessage("user", userMessage);
-            chatbotInput.value = "";
-
-            const botReply = await handleChatbotMessage(userMessage);
-            setTimeout(() => {
-                appendMessage("bot", botReply);
-            }, 500);
-        }
-
-        async function handleChatbotMessage(message) {
-            const lowerCaseMessage = message.toLowerCase();
-            let botReply = "";
-            let emailUnsolvedQuery = false;
-
-            if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi")) {
-                botReply = "Hello! How can I help you today?";
-            } else if (lowerCaseMessage.includes("company name")) {
-                botReply = `Our company name is ${companyDetails.name}.`;
-            } else if (lowerCaseMessage.includes("slogan") || lowerCaseMessage.includes("tagline")) {
-                botReply = `Our slogan is: "${companyDetails.slogan}"`;
-            } else if (lowerCaseMessage.includes("type of company")) {
-                botReply = `We are an ${companyDetails.type}.`;
-            } else if (lowerCaseMessage.includes("head office") || lowerCaseMessage.includes("main office")) {
-                botReply = `Our head office is located at: ${companyDetails.headOffice}.`;
-            } else if (lowerCaseMessage.includes("secondary office")) {
-                botReply = `We also have a secondary office at: ${companyDetails.secondaryOffice}.`;
-            } else if (lowerCaseMessage.includes("contact number") || lowerCaseMessage.includes("phone number")) {
-                botReply = `You can reach us at: ${companyDetails.phoneNumbers}.`;
-            } else if (lowerCaseMessage.includes("email")) {
-                botReply = `Our official email addresses are: ${companyDetails.emails}.`;
-            } else if (lowerCaseMessage.includes("website")) {
-                botReply = `You can visit our website at: ${companyDetails.website}.`;
-            } else if (lowerCaseMessage.includes("founder") || lowerCaseMessage.includes("ceo")) {
-                botReply = `Our Founder and CEO is ${companyDetails.founderCEO}.`;
-            } else if (lowerCaseMessage.includes("ceo credentials")) {
-                botReply = `${companyDetails.founderCEO}'s credentials: ${companyDetails.ceoCredentials}.`;
-            } else if (lowerCaseMessage.includes("admissions") || lowerCaseMessage.includes("courses")) {
-                botReply = "For information on admissions and courses, please check our 'Academics' section on the website or contact us directly via email.";
-                emailUnsolvedQuery = true;
-            } else if (lowerCaseMessage.includes("complaint")) {
-                botReply = "If you have a complaint, please use the 'Complaint Form' available on our website. Would you like me to direct you there?";
-            } else {
-                botReply = "I'm not sure I understand. Could you please rephrase your question? If your problem is still not resolved, I can help you to send this query to our support email.";
-                emailUnsolvedQuery = true;
             }
 
-            if (emailUnsolvedQuery && !lowerCaseMessage.includes("send email")) {
-                setTimeout(() => {
-                    appendMessage("bot", "Type 'send email' if you'd like me to forward your last query to our support team.");
-                }, 500);
-            } else if (lowerCaseMessage.includes("send email") && emailUnsolvedQuery) {
-                const lastUserMessageElement = chatbotMessages.querySelector('.message.user:last-child');
-                const lastUserMessage = lastUserMessageElement ? lastUserMessageElement.textContent : "No recent user query.";
-                await sendChatbotQueryToEmail(lastUserMessage);
-                botReply = "Your query has been forwarded to our support team. We will get back to you shortly!";
-                emailUnsolvedQuery = false;
+            function hideMessage(element) {
+                element.style.display = 'none';
             }
-            return botReply;
-        }
 
-        async function sendChatbotQueryToEmail(userQuery) {
-            try {
-                const templateParams = {
-                    from_name: 'Chatbot User',
-                    from_email: 'chatbot@cbsnu.live', // A generic email for chatbot queries
-                    to_email: 'contact.cbsnu@gmail.com', // Your primary contact email
-                    subject: 'Unresolved Chatbot Query from Website',
-                    message: `User's query: "${userQuery}"\n\nThis query was not resolved by the chatbot and requires human attention.`,
-                };
-                const response = await emailjs.send('service_nvwp74b', 'template_jphnhtj', templateParams); // Use your EmailJS service and template
-                console.log('Chatbot Email Forwarded Successfully!', response.status, response.text);
-                return true;
-            } catch (error) {
-                console.error('Failed to forward chatbot query via EmailJS:', error);
-                return false;
-            }
-        }
-
-        // --- Data Loading Functions (Implement these if needed on a specific page) ---
-
-        // Load Announcements (Used on Home & Announcements pages)
-        async function loadAnnouncements() {
-            const announcementList = document.getElementById('announcementList');
-            if (!announcementList) return; // Exit if element not on page
-
-            announcementList.innerHTML = '<li>Loading announcements...</li>';
-            try {
-                const snapshot = await db.collection("announcements").orderBy("timestamp", "desc").limit(5).get(); // Limit for home page
-                if (window.location.pathname.includes('announcements.html')) {
-                    // If on full announcements page, load more
-                    snapshot = await db.collection("announcements").orderBy("timestamp", "desc").get();
-                }
-
-                if (snapshot.empty) {
-                    announcementList.innerHTML = '<li>No announcements available.</li>';
-                    return;
-                }
-                announcementList.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : 'N/A';
-                    const li = document.createElement('li');
-                    li.classList.add('announcement-item');
-                    li.innerHTML = `<div class="date">${date}</div><p>${data.text}</p>`;
-                    announcementList.appendChild(li);
+            function showPage(pageId) {
+                pageSections.forEach(section => {
+                    section.classList.remove('active');
                 });
-            } catch (error) {
-                console.error("Error loading announcements:", error);
-                announcementList.innerHTML = '<li>Failed to load announcements.</li>';
-            }
-        }
-
-        // Load Photo Gallery (Used on Home & Gallery pages)
-        async function loadHomePhotoGallery() {
-            const galleryGrid = document.getElementById('photoGalleryGrid');
-            if (!galleryGrid) return; // Exit if element not on page
-
-            galleryGrid.innerHTML = '<div>Loading gallery...</div>';
-            try {
-                const snapshot = await db.collection("gallery").orderBy("timestamp", "desc").limit(3).get(); // Limit for home page
-                if (snapshot.empty) {
-                    galleryGrid.innerHTML = '<div>No photos available.</div>';
-                    return;
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    console.error('Target page not found:', pageId);
                 }
-                galleryGrid.innerHTML = ''; // Clear loading message
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const div = document.createElement('div');
-                    div.classList.add('gallery-item');
-                    div.innerHTML = `
-                        <img src="${data.imageUrl}" alt="${data.caption || 'Gallery Image'}">
-                        <div class="overlay">${data.caption || 'No Caption'}</div>
+            }
+
+            function updateNavbar(isLoggedIn) {
+                mainNavLinks.innerHTML = ''; // Clear existing links
+                if (isLoggedIn && currentUser) {
+                    // Logged-in view: show dashboard and logout, plus general academic/info links
+                    mainNavLinks.innerHTML = `
+                        <li><a href="#home-page" class="nav-link">Home</a></li>
+                        <li><a href="#dashboard-${currentUser.role}" class="nav-link">${currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)} Dashboard</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn nav-link">Academic</a>
+                            <div class="dropdown-content">
+                                <a href="#students-page" class="nav-link">Students</a>
+                                <a href="#scholarship-page" class="nav-link">Scholarship</a>
+                                <a href="#tests-page" class="nav-link">Tests</a>
+                                <a href="#institute-page" class="nav-link">Institute</a>
+                                <a href="#faculty-page" class="nav-link">Faculty</a>
+                            </div>
+                        </li>
+                        <li><a href="#contact-page" class="nav-link">Contact Us</a></li>
+                        <li><a href="#announcements-page" class="nav-link">Important Announcement</a></li>
+                        <li><a href="#links-page" class="nav-link">Links</a></li>
+                        <li><a href="#" id="logout-link" class="nav-link">Logout</a></li>
                     `;
-                    galleryGrid.appendChild(div);
-                });
-            } catch (error) {
-                console.error("Error loading home gallery:", error);
-                galleryGrid.innerHTML = '<div>Failed to load gallery.</div>';
-            }
-        }
-
-        async function loadAllPhotoGallery() {
-            const galleryGrid = document.getElementById('photoGalleryGrid');
-            if (!galleryGrid) return;
-
-            galleryGrid.innerHTML = '<div>Loading all gallery images...</div>';
-            try {
-                const snapshot = await db.collection("gallery").orderBy("timestamp", "desc").get();
-                if (snapshot.empty) {
-                    galleryGrid.innerHTML = '<div>No photos available.</div>';
-                    return;
-                }
-                galleryGrid.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const div = document.createElement('div');
-                    div.classList.add('gallery-item');
-                    div.innerHTML = `
-                        <img src="${data.imageUrl}" alt="${data.caption || 'Gallery Image'}">
-                        <div class="overlay">${data.caption || 'No Caption'}</div>
+                    document.getElementById('logout-link').addEventListener('click', handleLogout);
+                } else {
+                    // Logged-out view: show login and signup, and general home page
+                    mainNavLinks.innerHTML = `
+                        <li><a href="#home-page" class="nav-link">Home</a></li>
+                        <li><a href="#login-page" class="nav-link">Login</a></li>
+                        <li><a href="#signup-page" class="nav-link">Sign Up</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn nav-link">Academic</a>
+                            <div class="dropdown-content">
+                                <a href="#students-page" class="nav-link">Students</a>
+                                <a href="#scholarship-page" class="nav-link">Scholarship</a>
+                                <a href="#tests-page" class="nav-link">Tests</a>
+                                <a href="#institute-page" class="nav-link">Institute</a>
+                                <a href="#faculty-page" class="nav-link">Faculty</a>
+                            </div>
+                        </li>
+                        <li><a href="#contact-page" class="nav-link">Contact Us</a></li>
+                        <li><a href="#announcements-page" class="nav-link">Important Announcement</a></li>
+                        <li><a href="#links-page" class="nav-link">Links</a></li>
                     `;
-                    galleryGrid.appendChild(div);
-                });
-            } catch (error) {
-                console.error("Error loading all gallery:", error);
-                galleryGrid.innerHTML = '<div>Failed to load gallery.</div>';
-            }
-        }
-
-        // Load Feedbacks (Used on Home & Feedbacks pages)
-        async function loadFeedbacks() {
-            const feedbackGrid = document.getElementById('feedbackGrid');
-            if (!feedbackGrid) return;
-
-            feedbackGrid.innerHTML = '<div>Loading feedbacks...</div>';
-            try {
-                const snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").limit(3).get(); // Limit for home page
-                if (window.location.pathname.includes('feedbacks.html')) {
-                    // If on full feedbacks page, load more
-                    snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").get();
                 }
+                // Re-attach event listeners to all new nav links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        // Prevent default for internal hash links and dropdown buttons
+                        if (this.classList.contains('dropbtn') || this.getAttribute('href').startsWith('#')) {
+                            event.preventDefault();
+                        }
 
-                if (snapshot.empty) {
-                    feedbackGrid.innerHTML = '<div>No feedbacks available.</div>';
-                    return;
-                }
-                feedbackGrid.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const div = document.createElement('div');
-                    div.classList.add('feedback-item');
-                    div.innerHTML = `
-                        <p>"${data.message}"</p>
-                        <div class="author">- ${data.name}</div>
-                    `;
-                    feedbackGrid.appendChild(div);
-                });
-            } catch (error) {
-                console.error("Error loading feedbacks:", error);
-                feedbackGrid.innerHTML = '<div>Failed to load feedbacks.</div>';
-            }
-        }
+                        // Remove active class from all nav links
+                        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
 
-        // Update Counts (Used on Home & About Us pages)
-        async function updateCounts() {
-            try {
-                const studentsRef = db.collection("users").where("role", "==", "student");
-                const facultyRef = db.collection("users").where("role", "==", "faculty");
-                const institutionsRef = db.collection("institutions"); // Assuming you have a collection for institutions
-
-                const [studentsSnapshot, facultySnapshot, institutionsSnapshot] = await Promise.all([
-                    studentsRef.get(),
-                    facultyRef.get(),
-                    institutionsRef.get()
-                ]);
-
-                const studentsCount = studentsSnapshot.size;
-                const facultyCount = facultySnapshot.size;
-                const institutionsCount = institutionsSnapshot.size;
-
-                document.getElementById('studentsCount') && (document.getElementById('studentsCount').textContent = studentsCount);
-                document.getElementById('facultyCount') && (document.getElementById('facultyCount').textContent = facultyCount);
-                document.getElementById('institutionsCount') && (document.getElementById('institutionsCount').textContent = institutionsCount);
-
-            } catch (error) {
-                console.error("Error updating counts:", error);
-            }
-        }
-
-        // --- Authentication & Dashboard Logic (Only copy relevant parts to login.html, dashboard-admin.html, dashboard-faculty.html) ---
-
-        // Authentication Elements (ONLY COPY IF YOU NEED THEM ON LOGIN.HTML, NOT FOR ALL PAGES)
-        const authModal = document.getElementById('authModal');
-        const closeAuthModal = document.getElementById('closeAuthModal');
-        const loginSection = document.getElementById('loginSection');
-        const signupSection = document.getElementById('signupSection');
-        const showSignup = document.getElementById('showSignup');
-        const showLogin = document.getElementById('showLogin');
-        const adminLoginModal = document.getElementById('adminLoginModal');
-        const clientLoginModal = document.getElementById('clientLoginModal');
-        const closeAdminLoginModal = document.getElementById('closeAdminLoginModal');
-        const closeClientLoginModal = document.getElementById('closeClientLoginModal');
-        const showAdminLoginLink = document.getElementById('showAdminLogin');
-        const showClientLoginLink = document.getElementById('showClientLogin');
-
-        if (authModal) { // This block will only run if authModal is present (i.e., on login.html)
-            // For a dedicated login.html page, you might want these modals to be shown by default
-            // and hide others.
-            // Example for login.html: Make loginSection visible by default
-            if (loginSection) loginSection.style.display = 'block';
-            if (signupSection) signupSection.style.display = 'none';
-            if (adminLoginModal) adminLoginModal.style.display = 'none';
-            if (clientLoginModal) clientLoginModal.style.display = 'none';
-            // You can remove closeAuthModal related logic if it's not a modal but a full page.
-
-            if (closeAuthModal) closeAuthModal.addEventListener('click', () => { /* Handle redirect or navigation */ });
-
-            if (showSignup) {
-                showSignup.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (loginSection) loginSection.style.display = 'none';
-                    if (signupSection) signupSection.style.display = 'block';
-                    if (adminLoginModal) adminLoginModal.style.display = 'none'; // Hide other forms
-                    if (clientLoginModal) clientLoginModal.style.display = 'none';
-                });
-            }
-            if (showLogin) {
-                showLogin.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (signupSection) signupSection.style.display = 'none';
-                    if (loginSection) loginSection.style.display = 'block';
-                    if (adminLoginModal) adminLoginModal.style.display = 'none';
-                    if (clientLoginModal) clientLoginModal.style.display = 'none';
-                });
-            }
-            if (showAdminLoginLink) {
-                showAdminLoginLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (loginSection) loginSection.style.display = 'none';
-                    if (signupSection) signupSection.style.display = 'none';
-                    if (clientLoginModal) clientLoginModal.style.display = 'none';
-                    if (adminLoginModal) adminLoginModal.style.display = 'flex'; // Show admin login
-                });
-            }
-            if (showClientLoginLink) {
-                showClientLoginLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    if (loginSection) loginSection.style.display = 'none';
-                    if (signupSection) signupSection.style.display = 'none';
-                    if (adminLoginModal) adminLoginModal.style.display = 'none';
-                    if (clientLoginModal) clientLoginModal.style.display = 'flex'; // Show client login
-                });
-            }
-            if (closeAdminLoginModal) closeAdminLoginModal.addEventListener('click', () => { adminLoginModal.style.display = 'none'; });
-            if (closeClientLoginModal) closeClientLoginModal.addEventListener('click', () => { clientLoginModal.style.display = 'none'; });
-        }
-
-
-        // Login Form Submission (ONLY COPY TO LOGIN.HTML)
-        const loginForm = document.getElementById('loginForm');
-        if (loginForm) {
-            loginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('loginEmail').value;
-                const password = document.getElementById('loginPassword').value;
-                try {
-                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                    const user = userCredential.user;
-                    const userDoc = await db.collection("users").doc(user.uid).get();
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        alert(`Login successful! Welcome ${userData.name || user.email}`);
-                        if (userData.role === 'admin') {
-                            window.location.href = 'dashboard-admin.html';
-                        } else if (userData.role === 'faculty') {
-                            window.location.href = 'dashboard-faculty.html';
+                        // Add active class to the clicked link
+                        if (!this.classList.contains('dropbtn')) {
+                            this.classList.add('active');
+                            const targetId = this.getAttribute('href').substring(1);
+                            if (targetId) {
+                                showPage(targetId);
+                            }
                         } else {
-                            window.location.href = 'index.html'; // Default for students
+                            // If it's a dropdown parent, set it active
+                            this.classList.add('active');
                         }
-                    } else {
-                        alert('User data not found. Please contact support.');
-                        await auth.signOut(); // Sign out user if their data is missing
+
+                        // Close mobile menu if open and a link is clicked
+                        if (window.innerWidth <= 768 && mainNavLinks.classList.contains('active')) {
+                            mainNavLinks.classList.remove('active');
+                        }
+                    });
+                });
+
+                // Set active class for the currently displayed page's nav link on navbar update
+                const activePage = document.querySelector('.page-section.active');
+                if (activePage) {
+                    const activePageId = activePage.id;
+                    const correspondingNavLink = document.querySelector(`.nav-links a[href="#${activePageId}"]`);
+                    if (correspondingNavLink) {
+                        correspondingNavLink.classList.add('active');
+                    } else if (activePageId.startsWith('dashboard-')) {
+                        // Handle dashboard links specifically
+                        const dashboardNavLink = document.querySelector(`.nav-links a[href^="#dashboard-"]`);
+                        if (dashboardNavLink) {
+                            dashboardNavLink.classList.add('active');
+                        }
+                    } else if (activePageId === 'students-page' || activePageId === 'scholarship-page' ||
+                               activePageId === 'tests-page' || activePageId === 'institute-page' ||
+                               activePageId === 'faculty-page') {
+                        const academicDropdownBtn = document.querySelector('.dropbtn');
+                        if (academicDropdownBtn) {
+                            academicDropdownBtn.classList.add('active');
+                        }
                     }
-                } catch (error) {
-                    console.error("Login failed:", error);
-                    showMessage('loginMessageStatus', 'Login failed: ' + error.message, true);
                 }
-            });
-        }
+            }
 
-        // Signup Form Submission (ONLY COPY TO LOGIN.HTML)
-        const signupForm = document.getElementById('signupForm');
-        if (signupForm) {
-            signupForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const name = document.getElementById('signupName').value;
-                const email = document.getElementById('signupEmail').value;
-                const password = document.getElementById('signupPassword').value;
-                const role = document.getElementById('signupRole').value;
+            // --- Authentication Logic ---
+            function handleLogin(event) {
+                event.preventDefault();
+                hideMessage(loginMessage);
 
-                try {
-                    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
-                    const user = userCredential.user;
-                    await db.collection("users").doc(user.uid).set({
-                        name: name,
-                        email: email,
-                        role: role,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    alert('Sign up successful! Please login.');
-                    signupForm.reset();
-                    if (loginSection) { // Switch back to login view
-                        loginSection.style.display = 'block';
-                        signupSection.style.display = 'none';
+                const username = loginUsernameInput.value.trim();
+                const password = loginPasswordInput.value.trim();
+
+                const user = users.find(u => u.username === username && u.password === password);
+
+                if (user) {
+                    currentUser = user;
+                    // Store user data in localStorage
+                    localStorage.setItem('loggedInUser', JSON.stringify(currentUser));
+
+                    showMessage(loginMessage, 'Login successful!', 'success');
+                    setTimeout(() => {
+                        updateNavbar(true);
+                        showPage(`dashboard-${currentUser.role}`);
+                        loginForm.reset(); // Clear form
+                        hideMessage(loginMessage);
+                    }, 500);
+                } else {
+                    showMessage(loginMessage, 'Invalid username or password.', 'error');
+                }
+            }
+
+            function handleSignup(event) {
+                event.preventDefault();
+                hideMessage(signupMessage);
+
+                const username = signupUsernameInput.value.trim();
+                const password = signupPasswordInput.value.trim();
+                const role = signupRoleSelect.value;
+
+                if (!username || !password || !role) {
+                    showMessage(signupMessage, 'All fields are required.', 'error');
+                    return;
+                }
+
+                if (users.some(u => u.username === username)) {
+                    showMessage(signupMessage, 'Username already exists.', 'error');
+                    return;
+                }
+
+                users.push({ username, password, role });
+                showMessage(signupMessage, 'Signup successful! You can now login.', 'success');
+                signupForm.reset(); // Clear form
+                setTimeout(() => {
+                    showPage('login-page');
+                    hideMessage(signupMessage);
+                    // Ensure login nav link is active after signup
+                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                    const loginNavLink = document.querySelector('.nav-links a[href="#login-page"]');
+                    if (loginNavLink) {
+                        loginNavLink.classList.add('active');
                     }
-                } catch (error) {
-                    console.error("Sign up failed:", error);
-                    showMessage('signupMessageStatus', 'Sign up failed: ' + error.message, true);
-                }
-            });
-        }
-
-        // Admin Login Form Submission (ONLY COPY TO LOGIN.HTML)
-        const adminLoginForm = document.getElementById('adminLoginForm');
-        if (adminLoginForm) {
-            adminLoginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('adminEmail').value;
-                const password = document.getElementById('adminPassword').value;
-
-                try {
-                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                    const user = userCredential.user;
-                    const userDoc = await db.collection("users").doc(user.uid).get();
-
-                    if (userDoc.exists && userDoc.data().role === 'admin') {
-                        alert('Admin login successful!');
-                        window.location.href = 'dashboard-admin.html'; // Redirect to admin dashboard
-                    } else {
-                        alert('Access denied. You are not an admin.');
-                        await auth.signOut(); // Sign out unauthorized user
-                    }
-                } catch (error) {
-                    console.error("Admin login failed:", error);
-                    showMessage('adminLoginMessageStatus', 'Admin login failed: ' + error.message, true);
-                }
-            });
-        }
-
-        // Client Login Form Submission (ONLY COPY TO LOGIN.HTML)
-        const clientLoginForm = document.getElementById('clientLoginForm');
-        if (clientLoginForm) {
-            clientLoginForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const email = document.getElementById('clientEmail').value;
-                const password = document.getElementById('clientPassword').value;
-
-                try {
-                    const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                    const user = userCredential.user;
-                    const userDoc = await db.collection("users").doc(user.uid).get();
-
-                    if (userDoc.exists && userDoc.data().role === 'client') { // Assuming a 'client' role
-                        alert('Client login successful!');
-                        window.location.href = 'client-dashboard.html'; // Redirect to client dashboard
-                    } else {
-                        alert('Access denied. You are not a client.');
-                        await auth.signOut(); // Sign out unauthorized user
-                    }
-                } catch (error) {
-                    console.error("Client login failed:", error);
-                    showMessage('clientLoginMessageStatus', 'Client login failed: ' + error.message, true);
-                }
-            });
-        }
-
-        // --- Dashboard Specific Functions ---
-
-        // Faculty Dashboard: Upload Assignment (ONLY COPY TO DASHBOARD-FACULTY.HTML)
-        const assignmentUploadForm = document.getElementById('assignmentUploadForm');
-        if (assignmentUploadForm) {
-            assignmentUploadForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const title = document.getElementById('assignmentTitle').value;
-                const description = document.getElementById('assignmentDescription').value;
-                const file = document.getElementById('assignmentFile').files[0];
-
-                if (!file) {
-                    showMessage('assignmentUploadStatus', 'Please select a file to upload.', true);
-                    return;
-                }
-
-                try {
-                    // Upload file to Firebase Storage
-                    const storageRef = storage.ref(`assignments/${file.name}`);
-                    const uploadTask = storageRef.put(file);
-
-                    uploadTask.on('state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            showMessage('assignmentUploadStatus', `Upload is ${progress.toFixed(0)}% done`, false);
-                        },
-                        (error) => {
-                            console.error("Upload failed:", error);
-                            showMessage('assignmentUploadStatus', `Upload failed: ${error.message}`, true);
-                        },
-                        async () => {
-                            const downloadURL = await storageRef.getDownloadURL();
-                            // Save assignment details to Firestore
-                            await db.collection("assignments").add({
-                                title: title,
-                                description: description,
-                                fileUrl: downloadURL,
-                                fileName: file.name,
-                                uploadedBy: auth.currentUser ? auth.currentUser.uid : 'unknown',
-                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                            });
-                            showMessage('assignmentUploadStatus', 'Assignment uploaded successfully!', false);
-                            assignmentUploadForm.reset();
-                        }
-                    );
-                } catch (error) {
-                    console.error("Error uploading assignment:", error);
-                    showMessage('assignmentUploadStatus', 'Failed to upload assignment.', true);
-                }
-            });
-        }
-
-        // Admin Dashboard: Load & Manage Users (ONLY COPY TO DASHBOARD-ADMIN.HTML)
-        async function loadUsers() {
-            const userManagementList = document.getElementById('userManagementList');
-            if (!userManagementList) return;
-
-            userManagementList.innerHTML = '<li>Loading users...</li>';
-            try {
-                const snapshot = await db.collection("users").orderBy("createdAt", "asc").get();
-                if (snapshot.empty) {
-                    userManagementList.innerHTML = '<li>No users found.</li>';
-                    return;
-                }
-                userManagementList.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const li = document.createElement('li');
-                    li.classList.add('user-item');
-                    li.innerHTML = `
-                        <span>${data.name || data.email} - Role: ${data.role}</span>
-                        <div class="user-actions">
-                            <button class="edit" data-id="${doc.id}">Edit</button>
-                            <button class="delete" data-id="${doc.id}">Delete</button>
-                        </div>
-                    `;
-                    userManagementList.appendChild(li);
-                });
-
-                // Add event listeners for delete buttons
-                userManagementList.querySelectorAll('.delete').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const userId = e.target.dataset.id;
-                        if (confirm('Are you sure you want to delete this user?')) {
-                            try {
-                                await db.collection("users").doc(userId).delete();
-                                alert('User deleted successfully.');
-                                loadUsers(); // Refresh list
-                            } catch (error) {
-                                console.error("Error deleting user:", error);
-                                alert('Failed to delete user: ' + error.message);
-                            }
-                        }
-                    });
-                });
-                // Implement edit functionality as needed
-            } catch (error) {
-                console.error("Error loading users:", error);
-                userManagementList.innerHTML = '<li>Failed to load users.</li>';
+                }, 1000);
             }
-        }
 
-        // Admin Dashboard: Post Announcement (ONLY COPY TO DASHBOARD-ADMIN.HTML)
-        const announcementUploadForm = document.getElementById('announcementUploadForm');
-        if (announcementUploadForm) {
-            announcementUploadForm.addEventListener('submit', async (e) => {
+            function handleLogout() {
+                currentUser = null;
+                // Clear user data from localStorage
+                localStorage.removeItem('loggedInUser');
+
+                updateNavbar(false);
+                showPage('home-page'); // Go back to general home page
+                // Hide all chatbots if open
+                document.querySelectorAll('.chatbot-popup, .dashboard-chatbot-popup').forEach(popup => popup.style.display = 'none');
+            }
+
+            // --- Event Listeners for Auth Forms ---
+            loginForm.addEventListener('submit', handleLogin);
+            signupForm.addEventListener('submit', handleSignup);
+
+            goToSignupLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                const text = document.getElementById('announcementText').value;
-
-                try {
-                    await db.collection("announcements").add({
-                        text: text,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    showMessage('announcementUploadStatus', 'Announcement posted successfully!', false);
-                    announcementUploadForm.reset();
-                    loadAnnouncements(); // Refresh announcements list if on the same page
-                } catch (error) {
-                    console.error("Error posting announcement:", error);
-                    showMessage('announcementUploadStatus', 'Failed to post announcement.', true);
+                showPage('signup-page');
+                // Update nav active state
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                const signupNavLink = document.querySelector('.nav-links a[href="#signup-page"]');
+                if (signupNavLink) {
+                    signupNavLink.classList.add('active');
                 }
+                hideMessage(loginMessage);
             });
-        }
 
-        // Admin Dashboard: Upload Gallery Photo (ONLY COPY TO DASHBOARD-ADMIN.HTML)
-        const galleryUploadForm = document.getElementById('galleryUploadForm');
-        if (galleryUploadForm) {
-            galleryUploadForm.addEventListener('submit', async (e) => {
+            goToLoginLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                const imageFile = document.getElementById('galleryImage').files[0];
-                const caption = document.getElementById('galleryCaption').value;
-
-                if (!imageFile) {
-                    showMessage('galleryUploadStatus', 'Please select an image to upload.', true);
-                    return;
+                showPage('login-page');
+                // Update nav active state
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                const loginNavLink = document.querySelector('.nav-links a[href="#login-page"]');
+                if (loginNavLink) {
+                    loginNavLink.classList.add('active');
                 }
-
-                try {
-                    // Upload image to Firebase Storage
-                    const storageRef = storage.ref(`gallery/${imageFile.name}`);
-                    const uploadTask = storageRef.put(imageFile);
-
-                    uploadTask.on('state_changed',
-                        (snapshot) => {
-                            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            showMessage('galleryUploadStatus', `Upload is ${progress.toFixed(0)}% done`, false);
-                        },
-                        (error) => {
-                            console.error("Upload failed:", error);
-                            showMessage('galleryUploadStatus', `Upload failed: ${error.message}`, true);
-                        },
-                        async () => {
-                            const downloadURL = await storageRef.getDownloadURL();
-                            // Save gallery item details to Firestore
-                            await db.collection("gallery").add({
-                                imageUrl: downloadURL,
-                                caption: caption,
-                                uploadedBy: auth.currentUser ? auth.currentUser.uid : 'unknown',
-                                timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                            });
-                            showMessage('galleryUploadStatus', 'Photo uploaded successfully!', false);
-                            galleryUploadForm.reset();
-                            loadAllPhotoGallery(); // Refresh gallery if on the same page
-                        }
-                    );
-                } catch (error) {
-                    console.error("Error uploading gallery photo:", error);
-                    showMessage('galleryUploadStatus', 'Failed to upload photo.', true);
-                }
+                hideMessage(signupMessage);
             });
-        }
 
-        // Admin Dashboard: Manage Feedbacks (ONLY COPY TO DASHBOARD-ADMIN.HTML)
-        async function loadAdminFeedbacks() {
-            const adminFeedbackList = document.getElementById('adminFeedbackList');
-            if (!adminFeedbackList) return;
-
-            adminFeedbackList.innerHTML = '<li>Loading feedbacks...</li>';
-            try {
-                const snapshot = await db.collection("feedbacks").orderBy("timestamp", "desc").get();
-                if (snapshot.empty) {
-                    adminFeedbackList.innerHTML = '<li>No feedbacks to display.</li>';
-                    return;
-                }
-                adminFeedbackList.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const li = document.createElement('li');
-                    li.classList.add('complaint-item'); // Reusing complaint-item class for styling
-                    li.innerHTML = `
-                        <span>Feedback from ${data.name || 'Anonymous'} (${data.email}): "${data.message}"</span>
-                        <div class="complaint-actions">
-                            <button class="delete" data-id="${doc.id}">Delete</button>
-                        </div>
-                    `;
-                    adminFeedbackList.appendChild(li);
+            // --- Hamburger Menu Toggle ---
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    mainNavLinks.classList.toggle('active');
                 });
+            }
 
-                adminFeedbackList.querySelectorAll('.delete').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const feedbackId = e.target.dataset.id;
-                        if (confirm('Are you sure you want to delete this feedback?')) {
-                            try {
-                                await db.collection("feedbacks").doc(feedbackId).delete();
-                                alert('Feedback deleted successfully.');
-                                loadAdminFeedbacks();
-                            } catch (error) {
-                                console.error("Error deleting feedback:", error);
-                                alert('Failed to delete feedback: ' + error.message);
-                            }
+            // --- Chatbot Functionality (Generic Handler) ---
+            function setupChatbot(openBtnId, popupId, messagesId, inputId, sendBtnId) {
+                const openChatbotBtn = document.getElementById(openBtnId);
+                const chatbotPopup = document.getElementById(popupId);
+                const closeChatbotBtn = chatbotPopup ? chatbotPopup.querySelector('.close-chatbot') : null;
+                const chatbotMessages = document.getElementById(messagesId);
+                const chatbotInput = document.getElementById(inputId);
+                const chatbotSendBtn = document.getElementById(sendBtnId);
+
+                if (openChatbotBtn) { // Check if the button exists
+                    openChatbotBtn.addEventListener('click', function() {
+                        chatbotPopup.style.display = 'block';
+                    });
+                }
+                if (closeChatbotBtn) { // Check if the close button exists
+                    closeChatbotBtn.addEventListener('click', function() {
+                        chatbotPopup.style.display = 'none';
+                    });
+                }
+                if (chatbotSendBtn) { // Check if send button exists
+                    chatbotSendBtn.addEventListener('click', () => sendMessage(chatbotInput, chatbotMessages, openBtnId));
+                }
+                if (chatbotInput) { // Check if input exists
+                    chatbotInput.addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') {
+                            sendMessage(chatbotInput, chatbotMessages, openBtnId);
                         }
                     });
-                });
-            } catch (error) {
-                console.error("Error loading admin feedbacks:", error);
-                adminFeedbackList.innerHTML = '<li>Failed to load feedbacks.</li>';
-            }
-        }
-
-        // Admin Dashboard: Review Complaints (ONLY COPY TO DASHBOARD-ADMIN.HTML)
-        async function loadComplaints() {
-            const adminComplaintList = document.getElementById('adminComplaintList');
-            if (!adminComplaintList) return;
-
-            adminComplaintList.innerHTML = '<li>Loading complaints...</li>';
-            try {
-                // Assuming complaints are logged to a Firestore collection 'complaints'
-                // This would require modifying the EmailJS submission to also log to Firestore.
-                const snapshot = await db.collection("complaints").orderBy("timestamp", "desc").get();
-                if (snapshot.empty) {
-                    adminComplaintList.innerHTML = '<li>No complaints to display.</li>';
-                    return;
                 }
-                adminComplaintList.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const li = document.createElement('li');
-                    li.classList.add('complaint-item');
-                    li.innerHTML = `
-                        <span>Complaint from ${data.name || 'Anonymous'} (${data.email}) - Subject: ${data.subject}<br>Message: ${data.message}</span>
-                        <div class="complaint-actions">
-                            <button class="resolve" data-id="${doc.id}">Mark Resolved</button>
-                            <button class="delete" data-id="${doc.id}">Delete</button>
-                        </div>
-                    `;
-                    adminComplaintList.appendChild(li);
-                });
-
-                adminComplaintList.querySelectorAll('.resolve').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const complaintId = e.target.dataset.id;
-                        if (confirm('Mark this complaint as resolved?')) {
-                            try {
-                                await db.collection("complaints").doc(complaintId).update({ status: 'resolved' }); // Add status field
-                                alert('Complaint marked as resolved.');
-                                loadComplaints();
-                            } catch (error) {
-                                console.error("Error resolving complaint:", error);
-                                alert('Failed to mark complaint as resolved: ' + error.message);
-                            }
-                        }
-                    });
-                });
-
-                adminComplaintList.querySelectorAll('.delete').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const complaintId = e.target.dataset.id;
-                        if (confirm('Are you sure you want to delete this complaint?')) {
-                            try {
-                                await db.collection("complaints").doc(complaintId).delete();
-                                alert('Complaint deleted successfully.');
-                                loadComplaints();
-                            } catch (error) {
-                                console.error("Error deleting complaint:", error);
-                                alert('Failed to delete complaint: ' + error.message);
-                            }
-                        }
-                    });
-                });
-            } catch (error) {
-                console.error("Error loading complaints:", error);
-                adminComplaintList.innerHTML = '<li>Failed to load complaints.</li>';
             }
-        }
-        // Faculty Dashboard: Load Students (ONLY COPY TO DASHBOARD-FACULTY.HTML)
-        async function loadFacultyStudents() {
-            const facultyStudentList = document.getElementById('facultyStudentList');
-            if (!facultyStudentList) return;
 
-            facultyStudentList.innerHTML = '<li>Loading your students...</li>';
-            try {
-                // Assuming students have a 'facultyId' field linked to their faculty
-                // This would require current user (faculty) context
-                const currentUserUid = auth.currentUser ? auth.currentUser.uid : null;
-                if (!currentUserUid) {
-                    facultyStudentList.innerHTML = '<li>Please log in as a faculty member to view your students.</li>';
-                    return;
-                }
-                const snapshot = await db.collection("users").where("role", "==", "student").where("facultyId", "==", currentUserUid).get();
+            function sendMessage(inputElement, messagesElement, botOriginId) {
+                const message = inputElement.value.trim();
+                if (message === '') return;
 
-                if (snapshot.empty) {
-                    facultyStudentList.innerHTML = '<li>No students assigned to you.</li>';
-                    return;
+                // Display user message
+                const userMessageDiv = document.createElement('p');
+                userMessageDiv.textContent = 'You: ' + message;
+                messagesElement.appendChild(userMessageDiv);
+
+                let botName = 'Service Bot';
+                if (botOriginId.includes('admin')) botName = 'Admin Bot';
+                else if (botOriginId.includes('student')) botName = 'Student Bot';
+                else if (botOriginId.includes('faculty')) botName = 'Faculty Bot';
+                else if (botOriginId.includes('institute')) botName = 'Institute Bot';
+
+                let botResponse = `Hello! This is the ${botName}. I'm a simple bot. How else can I assist you?`;
+
+                if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+                    botResponse = `Hello there! This is the ${botName}. How can I help you today?`;
+                } else if (message.toLowerCase().includes('admission')) {
+                    botResponse = 'For admission inquiries, please refer to the Student Dashboard or the Academic section.';
+                } else if (message.toLowerCase().includes('scholarship')) {
+                    botResponse = 'Information about scholarships can be found on the Scholarship page under Academic.';
+                } else if (message.toLowerCase().includes('contact')) {
+                     botResponse = 'You can find our contact details by clicking the "Contact Us" link in the main navigation (if visible).';
+                } else if (message.toLowerCase().includes('dashboard') && currentUser) {
+                     botResponse = `You are currently on the ${currentUser.role} dashboard. What specifically about it do you need assistance with?`;
                 }
-                facultyStudentList.innerHTML = '';
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    const li = document.createElement('li');
-                    li.innerHTML = `<span>${data.name || data.email}</span>`;
-                    facultyStudentList.appendChild(li);
-                });
-            } catch (error) {
-                console.error("Error loading faculty students:", error);
-                facultyStudentList.innerHTML = '<li>Failed to load students.</li>';
+
+                const botMessageDiv = document.createElement('p');
+                botMessageDiv.textContent = `${botName}: ` + botResponse;
+                messagesElement.appendChild(botMessageDiv);
+
+                // Scroll to the bottom of the messages
+                messagesElement.scrollTop = messagesElement.scrollHeight;
+
+                // Clear input
+                inputElement.value = '';
             }
-        }
+
+            // --- Initial Setup on Load ---
+            // Check localStorage for a logged-in user
+            const storedUser = localStorage.getItem('loggedInUser');
+            if (storedUser) {
+                currentUser = JSON.parse(storedUser);
+                updateNavbar(true);
+                showPage(`dashboard-${currentUser.role}`);
+            } else {
+                updateNavbar(false); // Initialize navbar for logged-out state
+                showPage('home-page'); // Start on the home page
+            }
+
+            // Setup general chatbot
+            setupChatbot('open-general-chatbot', 'general-chatbot-popup', 'general-chatbot-messages', 'general-chatbot-input', 'general-chatbot-send');
+
+            // Setup chatbots for each dashboard (they are initially hidden)
+            setupChatbot('open-admin-chatbot', 'admin-chatbot-popup', 'admin-chatbot-messages', 'admin-chatbot-input', 'admin-chatbot-send');
+            setupChatbot('open-student-chatbot', 'student-chatbot-popup', 'student-chatbot-messages', 'student-chatbot-input', 'student-chatbot-send');
+            setupChatbot('open-faculty-chatbot', 'faculty-chatbot-popup', 'faculty-chatbot-messages', 'faculty-chatbot-input', 'faculty-chatbot-send');
+            setupChatbot('open-institute-chatbot', 'institute-chatbot-popup', 'institute-chatbot-messages', 'institute-chatbot-input', 'institute-chatbot-send');
+        });
+        /* --- JAVASCRIPT END HERE --- */
     </script>
 </body>
 </html>

@@ -1,1486 +1,1182 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBSN-U</title>
+    <title>CBSN-U - Your Path to Opportunities</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* --- CSS STYLES START HERE --- */
+        /* Custom font import for 'Inter' */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Prevent horizontal scroll due to potential overflow */
+        }
+        /* Style for the intro screen */
+        .intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right bottom, #4CAF50, #2196F3); /* Green to Blue gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .intro-screen.fade-out {
+            opacity: 0;
+            pointer-events: none; /* Make it unclickable after fade out */
+        }
+        /* Custom styling for cards */
+        .card {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        /* Responsive images */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Removes extra space below images */
+        }
+
+        /* --- Google AdSense Placeholder CSS --- */
+        .google-ad-placeholder {
+            background-color: #f8fafc; /* Lighter background */
+            border: 1px solid #e2e8f0; /* Softer solid border */
+            color: #666;
+            text-align: center;
+            padding: 1.5rem; /* Slightly reduced padding */
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            border-radius: 0.75rem; /* More rounded */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        }
+        .ad-9-16 {
+            width: 100%;
+            max-width: 300px; /* Example max width for a vertical ad */
+            aspect-ratio: 9 / 16; /* 9:16 aspect ratio */
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .ad-16-9 {
+            width: 100%;
+            max-width: 728px; /* Example max width for a horizontal ad */
+            aspect-ratio: 16 / 9; /* 16:9 aspect ratio */
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Modal specific styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001; /* Above intro screen */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s ease;
+        }
+        .modal-close-button:hover {
             color: #333;
         }
 
-        header {
-            background-color: #26fce7;
-            color: white;
-            padding: 10px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        /* Loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .navbar {
+        /* Chatbot specific styles */
+        .chatbot-icon {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #3B82F6; /* Blue-600 */
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: transform 0.2s ease-in-out;
+        }
+        .chatbot-icon:hover {
+            transform: scale(1.05);
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 400px;
+            height: 70%;
+            max-height: 600px;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .chatbot-window.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        .chatbot-header {
+            background-color: #3B82F6; /* Blue-600 */
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative; /* Needed for mobile menu positioning */
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
         }
-
-        .logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            z-index: 102; /* Ensure logo is above mobile menu */
-        }
-
-        .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex; /* Default to horizontal on desktop */
-        }
-
-        .nav-links li {
-            position: relative; /* Needed for dropdown positioning */
-            margin-left: 20px;
-        }
-
-        .nav-links a {
-            color: black;
-            text-decoration: none;
-            padding: 10px 15px;
-            display: block;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-links a.active,
-        .nav-links a:hover {
-            background-color: #f2f462;
-            border-radius: 4px;
-        }
-
-        /* Dropdown specific styles (for both desktop and mobile) */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 4px;
-            top: 100%; /* Position below the parent link */
-            left: 0;
-        }
-
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        /* Show the dropdown menu on hover (desktop) */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        /* Hamburger menu styles (hidden by default on desktop) */
-        .hamburger-menu {
-            display: none; /* Hidden on desktop */
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 25px;
-            background: transparent;
+        .chatbot-header button {
+            background: none;
             border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 101; /* Above nav links when open */
-        }
-
-        .hamburger-menu .bar {
-            width: 100%;
-            height: 3px;
-            background-color: black; /* Match nav link color */
-            border-radius: 2px;
-            transition: all 0.3s ease-in-out;
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        .section {
-            background-color: white;
-            padding: 30px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* --- KEY STYLES FOR SINGLE-FILE NAVIGATION --- */
-        .page-section {
-            display: none; /* All pages are hidden by default */
-        }
-        .page-section.active {
-            display: block; /* Only the active page is shown */
-        }
-
-        h2 {
-            color: #0056b3;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        h4 {
-            color: #0056b3;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* Announcement Corner */
-        .announcement-list p {
-            margin-bottom: 10px;
-            border-bottom: 1px dotted #eee;
-            padding-bottom: 5px;
-        }
-        .announcement-list p:last-child {
-            border-bottom: none;
-        }
-        .announcement-list a {
-            color: #0056b3;
-            text-decoration: none;
-        }
-        .announcement-list a:hover {
-            text-decoration: underline;
-        }
-
-        /* Image Gallery */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            justify-items: center;
-        }
-        .gallery-grid img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Product Info & Faculty Profiles */
-        .product-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .product-card {
-            border: 1px solid #e8714d;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            background-color: #adadad;
-        }
-        .product-card h3 {
-            color: #0056b3;
-            margin-top: 0;
-        }
-        .product-card a {
-            display: inline-block;
-            background-color: #0056b3;
             color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-top: 15px;
-        }
-        .product-card a:hover {
-            background-color: #003d82;
-        }
-
-        /* Scholarship Banners */
-        .banner-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .banner-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* Stats */
-        .stats-grid {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            text-align: center;
-        }
-        .stat-item {
-            background-color: #e0f2f7;
-            padding: 20px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 150px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .stat-item h3 {
-            color: #0056b3;
-            font-size: 2.5em;
-            margin: 0 0 10px;
-        }
-        .stat-item p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        /* Contact Options */
-        .contact-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .whatsapp-btn, .chatbot-btn {
-            background-color: #25D366; /* WhatsApp green */
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 1.1em;
+            font-size: 1.2rem;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: background-color 0.3s ease;
         }
-        .whatsapp-btn:hover {
-            background-color: #1DA851;
-        }
-        .chatbot-btn {
-            background-color: #007bff; /* Blue for chatbot */
-        }
-        .chatbot-btn:hover {
-            background-color: #0056b3;
-        }
-
-        /* Chatbot Popup (General Service Bot) */
-        .chatbot-popup {
-            display: none; /* Hidden by default */
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            background-color: purple;
-            color: black; /* Ensure text is visible on purple background */
-            z-index: 100;
-        }
-
-        .chatbot-content {
-            padding: 15px;
-        }
-
-        .close-chatbot {
-            float: right;
-            font-size: 1.5em;
-            cursor: pointer;
-            color: #333; /* Darker color for close button */
-        }
-
         .chatbot-messages {
-            height: 200px;
+            flex-grow: 1;
+            padding: 1rem;
             overflow-y: auto;
-            border: 1px solid #blue;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            background-color: #ffe300;
-            color: #333; /* Ensure text is visible on yellow background */
+            background-color: #f9fafb; /* Gray-50 */
         }
-
+        .chat-message {
+            margin-bottom: 0.75rem;
+            display: flex;
+        }
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+        .chat-message.ai {
+            justify-content: flex-start;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            line-height: 1.4;
+            word-wrap: break-word; /* Ensure long words wrap */
+        }
+        .chat-bubble.user {
+            background-color: #DBEAFE; /* Blue-100 */
+            color: #1E40AF; /* Blue-800 */
+            border-bottom-right-radius: 0.25rem;
+        }
+        .chat-bubble.ai {
+            background-color: #E0F2F7; /* Cyan-50 */
+            color: #005073; /* Darker Cyan */
+            border-bottom-left-radius: 0.25rem;
+        }
         .chatbot-input {
-            width: calc(100% - 20px);
-            padding: 8px 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #E5E7EB; /* Gray-200 */
         }
-
-        .chatbot-send {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB; /* Gray-300 */
+            border-radius: 0.5rem;
+            margin-right: 0.75rem;
+            font-size: 0.9rem;
+        }
+        .chatbot-input button {
+            background-color: #3B82F6;
             color: white;
-            border: none;
-            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
-
-        .chatbot-send:hover {
-            background-color: #0056b3;
+        .chatbot-input button:hover {
+            background-color: #2563EB; /* Blue-700 */
         }
-
-        footer {
+        .chatbot-input button:disabled {
+            background-color: #9CA3AF; /* Gray-400 */
+            cursor: not-allowed;
+        }
+        .chatbot-loader {
             text-align: center;
-            padding: 20px;
-            background-color: #003d82;
-            color: white;
-            margin-top: 20px;
+            margin-top: 0.5rem;
+        }
+        .chatbot-loader .loader {
+            width: 20px;
+            height: 20px;
+            border-width: 2px;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: row; /* Keep logo and hamburger on one row */
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .hamburger-menu {
-                display: flex; /* Show hamburger on mobile */
-            }
-
-            .nav-links {
-                display: none; /* Hide nav links by default on mobile */
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 60px; /* Below header */
-                left: 0;
-                background-color: #26fce7; /* Same as header */
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                padding: 10px 0;
-                border-radius: 0 0 8px 8px;
-                transition: transform 0.3s ease-in-out;
-                transform: translateY(-100%); /* Start off-screen */
-                z-index: 99;
-            }
-
-            .nav-links.active {
-                display: flex; /* Show nav links when active */
-                transform: translateY(0); /* Slide in */
-            }
-
-            .nav-links li {
-                margin: 0;
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                padding: 12px 15px;
-                border-bottom: 1px solid rgba(0,0,0,0.1); /* Separator */
-            }
-            .nav-links li:last-child a {
-                border-bottom: none;
-            }
-
-            /* Dropdown content within mobile menu */
-            .dropdown-content {
-                position: static; /* No absolute positioning in mobile menu */
-                box-shadow: none;
-                background-color: rgba(255,255,255,0.8); /* Slightly transparent background */
-                border-radius: 0;
-            }
-            .dropdown-content a {
-                padding-left: 30px; /* Indent dropdown items */
-            }
+        /* --- Font Effects --- */
+        /* Hero Section Banner Text Effect */
+        #hero-section h1, #hero-section p {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
         }
 
-        /* Styles for login/signup forms and dashboards (from untitlednhsndjdnd.html) */
-        .auth-form {
-            max-width: 400px;
-            margin: 30px auto;
-            padding: 25px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .auth-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            text-align: left; /* Align labels to the left */
-        }
-        .auth-form input[type="text"],
-        .auth-form input[type="password"],
-        .auth-form input[type="email"],
-        .auth-form select {
-            width: calc(100% - 22px); /* Account for padding and border */
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1em;
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        }
-        .auth-form button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .auth-form button:hover {
-            background-color: #0056b3;
-        }
-        .auth-form .form-message {
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            display: none; /* Hidden by default */
-        }
-        .auth-form .form-message.success {
-            background-color: #d4edda;
-            color: #155724;
-            border-color: #c3e6cb;
-        }
-        .auth-form .form-message.error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
+        /* Navigation Bar Link Hover Effect */
+        #mainNav a:hover, #mobileNav a:hover {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle text shadow on hover */
         }
 
-        .dashboard-container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .dashboard-container h2 {
-            color: #0056b3;
-            margin-bottom: 25px;
-        }
-
-        .dashboard-container p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            color: #666;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .dashboard-card {
-            background-color: #e0f2f7;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .dashboard-card h3 {
-            color: #0056b3;
-            margin-top: 0;
-        }
-        .dashboard-card p {
-            color: #555;
-        }
-
-        /* Chatbot popup for dashboards */
-        .dashboard-chatbot-popup {
-            display: none;
+        /* Scroll to Top Button */
+        .scroll-to-top {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            border: 1px solid #ccc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            background-color: #fefefe; /* Light background for dashboard chatbots */
-            z-index: 100;
-        }
-
-        .dashboard-chatbot-content {
-            padding: 15px;
-        }
-
-        .dashboard-chatbot-messages {
-            height: 200px;
-            overflow-y: auto;
-            border: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            background-color: #e9f7ef; /* Light green background for messages */
-        }
-
-        .dashboard-chatbot-input {
-            width: calc(100% - 20px);
-            padding: 8px 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .dashboard-chatbot-send {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            bottom: 2rem;
+            left: 2rem; /* Positioned left to avoid chatbot */
+            background-color: #4CAF50; /* Green */
             color: white;
-            border: none;
-            border-radius: 5px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 998; /* Below chatbot, above content */
+            transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
         }
-
-        .dashboard-chatbot-send:hover {
-            background-color: #0056b3;
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
-        /* --- CSS STYLES END HERE --- */
+        .scroll-to-top:hover {
+            transform: scale(1.05);
+            background-color: #43a047;
+        }
     </style>
+
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6336452986750958"
+           crossorigin="anonymous"></script>
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="logo"> CBSN-U </div>
-            <!-- Hamburger icon for mobile -->
-            <button class="hamburger-menu" id="hamburger-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Intro Screen -->
+    <div id="introScreen" class="intro-screen">
+        <div class="text-white text-6xl font-extrabold mb-4 animate-pulse">CBSN-U</div>
+        <div class="text-white text-lg text-center px-4">Welcome, seeker of destiny... Unfold your journey. Your future begins with CBSN-U.</div>
+    </div>
+
+    <!-- Main Website Content -->
+    <div id="mainContent" class="opacity-0 transition-opacity duration-1000 ease-out">
+        <!-- Header Section -->
+        <header class="bg-white shadow-md p-4">
+            <div class="container mx-auto flex justify-between items-center flex-wrap">
+                <!-- Logo -->
+                <a href="#hero-section" class="text-blue-600 text-3xl font-extrabold">CBSN-U</a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuButton" class="lg:hidden text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+
+                <!-- Navigation (Desktop) -->
+                <nav id="mainNav" class="hidden lg:flex flex-grow justify-center gap-6">
+                    <a href="#opportunities-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Opportunities</a>
+                    <a href="#resources-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Resources</a>
+                    <a href="#news-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">News</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Community</a>
+                    <a href="#footer-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">About Us</a>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium login-btn">Login</a>
+                    <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg signup-btn">Sign Up</a>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation (hidden by default) -->
+            <nav id="mobileNav" class="lg:hidden mt-4 hidden">
+                <a href="#opportunities-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Opportunities</a>
+                <a href="#resources-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Resources</a>
+                <a href="#news-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">News</a>
+                <a href="#" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Community</a>
+                <a href="#footer-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">About Us</a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <a href="#" class="block text-blue-600 hover:bg-gray-200 px-4 py-2 rounded-md login-btn">Login</a>
+                <a href="#" class="block bg-blue-600 text-white px-4 py-2 rounded-md mt-2 signup-btn">Sign Up</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="hero-section" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 text-center rounded-b-lg shadow-lg mx-auto max-w-7xl mt-4">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Discover Your Next Big Opportunity</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Scholarships, Internships, Competitions & More – All in one place.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <input type="text" placeholder="Search for opportunities..." class="w-full sm:w-80 p-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300" id="searchInput">
+                <button class="bg-yellow-400 text-blue-900 font-bold px-8 py-3 rounded-full hover:bg-yellow-500 transition-colors duration-200 shadow-md" id="heroSearchBtn">Search</button>
+            </div>
+        </section>
+
+        <!-- Google AdSense Placeholder 1 (Standard Leaderboard) -->
+        <div class="container mx-auto px-4 mt-8">
+            <div class="google-ad-placeholder">
+                <!-- AdSense Unit Code Here (e.g., 728x90 leaderboard) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Standard Banner Ad (e.g., 728x90)</p>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works-section" class="bg-white py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">How CBSN-U Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-blue-100 text-blue-600 rounded-full w-20 h-20 flex items-center justify-center text-4xl mb-4 shadow-md">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">1. Discover</h3>
+                    <p class="text-gray-600">Explore thousands of scholarships, internships, and educational programs tailored to your profile.</p>
+                </div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-green-100 text-green-600 rounded-full w-20 h-20 flex items-center justify-center text-4xl mb-4 shadow-md">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">2. Learn & Prepare</h3>
+                    <p class="text-gray-600">Utilize AI-powered tools for interview prep, essay ideas, study plans, and career guidance.</p>
+                </div>
+                <div class="flex flex-col items-center p-4">
+                    <div class="bg-yellow-100 text-yellow-600 rounded-full w-20 h-20 flex items-center justify-center text-4xl mb-4 shadow-md">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="font-semibold text-xl mb-2">3. Achieve</h3>
+                    <p class="text-gray-600">Secure your dream opportunities and embark on a successful academic and professional journey.</p>
+                </div>
+            </div>
+            <div class="text-center mt-10 text-gray-700">
+                <p class="text-lg font-medium">Over <span class="text-blue-600 font-bold">500,000+</span> Students Empowered | <span class="text-green-600 font-bold">10,000+</span> Opportunities Listed</p>
+            </div>
+        </section>
+
+        <!-- Opportunities Section -->
+        <section id="opportunities-section" class="py-12 px-4 container mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Top Opportunities Right Now</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Opportunity Card 1 -->
+                <div class="card bg-white p-6">
+                    <img src="https://placehold.co/400x200/4CAF50/ffffff?text=Scholarship+Image" alt="Scholarship" class="mb-4 rounded-md">
+                    <h3 class="text-xl font-semibold mb-2 opportunity-title">Global Impact Scholarship</h3>
+                    <p class="text-gray-600 mb-4 text-sm opportunity-description">A fully-funded scholarship for students passionate about community development.</p>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                        <span><i class="fas fa-calendar-alt mr-1"></i> Deadline: 30 June 2025</span>
+                        <span><i class="fas fa-graduation-cap mr-1"></i> UG & PG</span>
+                    </div>
+                    <button class="generate-details-btn block w-full text-center bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 mb-2">✨ Generate More Details</button>
+                    <a href="#" class="view-details-link block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">View Details</a>
+                </div>
+
+                <!-- Opportunity Card 2 -->
+                <div class="card bg-white p-6">
+                    <img src="https://placehold.co/400x200/2196F3/ffffff?text=Internship+Image" alt="Internship" class="mb-4 rounded-md">
+                    <h3 class="text-xl font-semibold mb-2 opportunity-title">Tech Innovator Internship</h3>
+                    <p class="text-gray-600 mb-4 text-sm opportunity-description">Paid internship at a leading tech firm for aspiring software engineers.</p>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                        <span><i class="fas fa-calendar-alt mr-1"></i> Deadline: 15 July 2025</span>
+                        <span><i class="fas fa-briefcase mr-1"></i> Final Year Students</span>
+                    </div>
+                    <button class="generate-details-btn block w-full text-center bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 mb-2">✨ Generate More Details</button>
+                    <a href="#" class="view-details-link block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">View Details</a>
+                </div>
+
+                <!-- Opportunity Card 3 -->
+                <div class="card bg-white p-6">
+                    <img src="https://placehold.co/400x200/FFC107/333333?text=Competition+Image" alt="Competition" class="mb-4 rounded-md">
+                    <h3 class="text-xl font-semibold mb-2 opportunity-title">National Science Olympiad</h3>
+                    <p class="text-gray-600 mb-4 text-sm opportunity-description">Test your scientific knowledge and win exciting prizes!</p>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                        <span><i class="fas fa-calendar-alt mr-1"></i> Deadline: 20 August 2025</span>
+                        <span><i class="fas fa-flask mr-1"></i> School & College</span>
+                    </div>
+                    <button class="generate-details-btn block w-full text-center bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200 mb-2">✨ Generate More Details</button>
+                    <a href="#" class="view-details-link block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">View Details</a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#opportunities-section" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg explore-opportunities-btn">Explore More Opportunities</a>
+            </div>
+            <!-- Google AdSense Placeholder 2 (Rectangle), now within Opportunities section -->
+            <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
+                <!-- AdSense Unit Code Here (e.g., 300x250 rectangle) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Medium Rectangle Ad (e.g., 300x250)</p>
+            </div>
+        </section>
+
+
+        <!-- Resources Section (Conceptual) -->
+        <section id="resources-section" class="bg-white py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Valuable Resources</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center p-4 rounded-md bg-gray-50 hover:bg-blue-50 transition-colors duration-200 card">
+                    <img src="https://placehold.co/80x80/673AB7/ffffff?text=Icon1" alt="Resource Icon" class="mx-auto mb-3 rounded-full">
+                    <h3 class="font-semibold text-lg mb-1">Exam Guides</h3>
+                    <p class="text-gray-600 text-sm">Prepare with expert-curated guides.</p>
+                </div>
+                <div class="text-center p-4 rounded-md bg-gray-50 hover:bg-blue-50 transition-colors duration-200 card">
+                    <img src="https://placehold.co/80x80/E91E63/ffffff?text=Icon2" alt="Resource Icon" class="mx-auto mb-3 rounded-full">
+                    <h3 class="font-semibold text-lg mb-1">Career Counseling</h3>
+                    <p class="text-gray-600 text-sm">Get personalized career advice.</p>
+                </div>
+                <div class="text-center p-4 rounded-md bg-gray-50 hover:bg-blue-50 transition-colors duration-200 card">
+                    <img src="https://placehold.co/80x80/00BCD4/ffffff?text=Icon3" alt="Resource Icon" class="mx-auto mb-3 rounded-full">
+                    <h3 class="font-semibold text-lg mb-1">Skill Development</h3>
+                    <p class="text-gray-600 text-sm">Enhance your profile with new skills.</p>
+                </div>
+                <div class="text-center p-4 rounded-md bg-gray-50 hover:bg-blue-50 transition-colors duration-200 card">
+                    <img src="https://placehold.co/80x80/8BC34A/ffffff?text=Icon4" alt="Resource Icon" class="mx-auto mb-3 rounded-full">
+                    <h3 class="font-semibold text-lg mb-1">Interview Prep</h3>
+                    <p class="text-gray-600 text-sm">Ace your interviews with our tips.</p>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#resources-section" class="text-blue-600 hover:underline font-medium text-lg view-all-resources-btn">View All Resources <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+        </section>
+
+        <!-- Google AdSense Placeholder (9:16 Ratio) -->
+        <div class="container mx-auto px-4 mt-8 flex justify-center">
+            <div class="google-ad-placeholder ad-9-16">
+                <!-- AdSense Unit Code Here (e.g., 9:16 Vertical Ad) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Vertical Ad (9:16 Aspect Ratio)</p>
+            </div>
+        </div>
+
+        <!-- AI Interview Prep Assistant Section -->
+        <section class="bg-blue-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Interview Prep Assistant</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Describe the role or opportunity you're preparing for, and our AI will suggest common interview questions.</p>
+            <div class="flex flex-col items-center gap-4">
+                <textarea id="interviewPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'Software Engineer Internship at a FinTech startup' or 'Scholarship interview for a Master's in Biology program'"></textarea>
+                <button id="generateInterviewQuestionsBtn" class="bg-blue-600 text-white font-bold px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg">Generate Questions ✨</button>
+            </div>
+            <!-- Google AdSense Placeholder (16:9 Ratio), now within Interview Prep section -->
+            <div class="google-ad-placeholder mt-8 ad-16-9">
+                <!-- AdSense Unit Code Here (e.g., 16:9 Wide Ad) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Wide Ad (16:9 Aspect Ratio)</p>
+            </div>
+        </section>
+
+
+        <!-- AI Essay Idea Generator Section -->
+        <section class="bg-purple-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Essay Idea Generator</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Stuck on an essay? Provide a topic, and our AI will generate a detailed outline and key ideas to get you started!</p>
+            <div class="flex flex-col items-center gap-4">
+                <textarea id="essayPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'The impact of social media on youth mental health' or 'Analyze the themes in Shakespeare's Hamlet'"></textarea>
+                <button id="generateEssayIdeasBtn" class="bg-purple-600 text-white font-bold px-8 py-3 rounded-full hover:bg-purple-700 transition-colors duration-200 shadow-lg text-lg">Generate Essay Ideas ✨</button>
+            </div>
+            <!-- Google AdSense Placeholder 3 (Standard Banner/Rectangle), now within Essay Generator section -->
+            <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
+                <!-- AdSense Unit Code Here (e.g., another rectangle or banner) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Another Standard Ad Placement</p>
+            </div>
+        </section>
+
+        <!-- AI Study Plan Generator Section -->
+        <section class="bg-indigo-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Study Plan Generator</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Need a study plan? Tell us your subject and target, and our AI will outline a tailored study schedule for you!</p>
+            <div class="flex flex-col items-center gap-4">
+                <textarea id="studyPlanPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-indigo-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'Prepare for advanced calculus in 2 months' or 'Learn web development basics in 6 weeks'"></textarea>
+                <button id="generateStudyPlanBtn" class="bg-indigo-600 text-white font-bold px-8 py-3 rounded-full hover:bg-indigo-700 transition-colors duration-200 shadow-lg text-lg">Generate Study Plan ✨</button>
+            </div>
+            <!-- Google AdSense Placeholder for Study Plan Generator -->
+            <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
+                <!-- AdSense Unit Code Here (e.g., a responsive ad unit) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Ad Placement for Study Plan Generator</p>
+            </div>
+        </section>
+
+        <!-- AI Career Path Suggester Section -->
+        <section class="bg-teal-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Career Path Suggester</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Unsure about your career path? Describe your interests, skills, and academic background, and our AI will suggest potential career directions!</p>
+            <div class="flex flex-col items-center gap-4">
+                <textarea id="careerPathPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-teal-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'I am interested in art and technology, good at problem-solving, and studying computer science.' or 'I love working with people and helping others, and I'm studying psychology.'"></textarea>
+                <button id="suggestCareerPathsBtn" class="bg-teal-600 text-white font-bold px-8 py-3 rounded-full hover:bg-teal-700 transition-colors duration-200 shadow-lg text-lg">Suggest Career Paths ✨</button>
+            </div>
+            <!-- Google AdSense Placeholder for Career Suggester -->
+            <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
+                <!-- AdSense Unit Code Here (e.g., a responsive ad unit) -->
+                <p>Advertisement (Google AdSense)</p>
+                <p>Ad Placement for Career Suggester Section</p>
+            </div>
+        </section>
+
+        <!-- Latest News/Articles Section -->
+        <section id="news-section" class="py-12 px-4 container mx-auto">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest News & Articles</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card bg-white p-6 flex flex-col md:flex-row gap-4">
+                    <img src="https://placehold.co/150x100/FF5722/ffffff?text=News1" alt="News Image" class="w-full md:w-1/3 rounded-md object-cover">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Upcoming Changes in Scholarship Eligibility</h3>
+                        <p class="text-gray-600 text-sm mb-3">Stay informed about the latest updates to scholarship requirements and application processes.</p>
+                        <a href="#" class="read-more-news-link text-blue-600 hover:underline text-sm">Read More</a>
+                    </div>
+                </div>
+                <div class="card bg-white p-6 flex flex-col md:flex-row gap-4">
+                    <img src="https://placehold.co/150x100/607D8B/ffffff?text=News2" alt="News Image" class="w-full md:w-1/3 rounded-md object-cover">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-semibold mb-2">Tips for Building a Strong Profile for Internships</h3>
+                        <p class="text-gray-600 text-sm mb-3">Expert advice on crafting an impressive resume and cover letter.</p>
+                        <a href="#" class="read-more-news-link text-blue-600 hover:underline text-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#news-section" class="text-blue-600 hover:underline font-medium text-lg view-all-articles-btn">View All Articles <i class="fas fa-arrow-right ml-2"></i></a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer id="footer-section" class="bg-gray-800 text-white py-10 px-4 mt-8">
+            <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CBSN-U</h3>
+                    <p class="text-gray-400 text-sm">Your reliable partner in academic and career success.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#footer-section" class="hover:text-white transition-colors duration-200">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 contact-us-link">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 privacy-policy-link">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors duration-200 terms-of-service-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Opportunities</h3>
+                    <ul class="text-gray-400 text-sm space-y-2">
+                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Scholarships</a></li>
+                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Internships</a></li>
+                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Competitions</a></li>
+                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Fellowships</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect With Us</h3>
+                    <p class="text-gray-400 text-sm mb-4">Follow us on social media for the latest updates.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/cbsnu" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f text-xl"></i></a>
+                        <a href="https://www.twitter.com/cbsnu" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="https://www.linkedin.com/company/cbsnu" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="https://www.instagram.com/cbsnu" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+                &copy; 2025 CBSN-U. All rights reserved.
+            </div>
+        </footer>
+    </div>
+
+    <!-- Font Awesome for icons (optional, but used for some placeholders) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+    <!-- Modal for Generated Details -->
+    <div id="detailsModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" id="closeModalBtn">&times;</button>
+            <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
+            <div id="modalContent" class="text-gray-700 leading-relaxed">
+                <!-- Loader or generated text will go here -->
+                <div class="loader" id="modalLoader"></div>
+                <p id="modalText" class="whitespace-pre-line"></p> <!-- Added whitespace-pre-line for formatting -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Floating Icon -->
+    <div id="chatbotIcon" class="chatbot-icon">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div id="chatbotWindow" class="chatbot-window hidden">
+        <div class="chatbot-header">
+            <span>CBSN-U Assistant</span>
+            <button id="closeChatbotBtn">&times;</button>
+        </div>
+        <div id="chatMessages" class="chatbot-messages">
+            <!-- Chat messages will be appended here -->
+            <div class="chat-message ai">
+                <div class="chat-bubble ai">Hello! How can I assist you today regarding opportunities or resources?</div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off">
+            <button id="sendChatBtn" class="flex items-center justify-center">
+                <i class="fas fa-paper-plane"></i>
             </button>
-            <ul class="nav-links" id="main-nav-links">
-                <!-- Navigation links will be dynamically updated by JavaScript -->
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home-page" class="section page-section active">
-            <section id="company-intro" class="sub-section">
-                <h2>Welcome to CBSN-U</h2>
-                <h4>CROSS BORDER STUDY NETWORK - U </h4>
-                <p>Your concise and engaging introduction about your company, its mission, and what it offers. This is where you make your first impression!</p>
-                <p>We are dedicated to providing excellent education/services/products in <B>EDUCATIONAL INDUSTRY </B>. Our commitment is to foster growth, innovation, and success for our students/customers/stakeholders.</p>
-            </section>
-
-            <section id="announcement-corner" class="sub-section">
-                <h2>Announcement Corner</h2>
-                <div class="announcement-list">
-                    <p><strong>[Date] - Latest News:</strong> <a href="#announcements-page">Important update regarding admissions for the upcoming session.</a></p>
-                    <p><strong>[Date] - Event:</strong> <a href="#">Webinar on Career Opportunities in AI - Register Now!</a></p>
-                    <p><strong>[Date] - Holiday Notice:</strong> <a href="#">Office will remain closed on [Date] for [Occasion].</a></p>
-                    <p><a href="#announcements-page">View All Announcements</a></p>
-                </div>
-            </section>
-
-            <section id="image-gallery" class="sub-section">
-                <h2>Image Gallery</h2>
-                <div class="gallery-grid">
-                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+1" alt="Gallery Image 1" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+1';">
-                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+2" alt="Gallery Image 2" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+2';">
-                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+3" alt="Gallery Image 3" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+3';">
-                    <img src="https://placehold.co/200x150/f0f0f0/333333?text=Image+4" alt="Gallery Image 4" onerror="this.onerror=null;this.src='https://placehold.co/200x150/f0f0f0/333333?text=Image+4';">
-                </div>
-            </section>
-
-            <section id="product-info" class="sub-section">
-                <h2>Books Corner</h2>
-                <div class="product-cards">
-                    <div class="product-card">
-                        <h3>NCERT</h3>
-                        <p>BUY THIS BOOK FROM THE LINK BELOW.</p>
-                        <a href="https://www.flipkart.com/ncert-books-english-medium-from-class-6to12-set-35-upsc-exam/p/itmb73618582470a?pid=RBKGWCV9JFEQR2U5&lid=LSTRBKGWCV9JFEQR2U5ZVRVY4&marketplace=FLIPKART&store=bks&srno=b_1_3&otracker=browse&fm=organic&iid=ff37b13b-7d2a-4128-bc48-aa5763b3bbdd.RBKGWCV9JFEQR2U5.SEARCH&ppt=None&ppn=None&ssid=kwota47qnk0000001748922144400">Learn More</a>
-                    </div>
-                    <div class="product-card">
-                        <h3>Substitute books</h3>
-                        <p>Along with NCERT buy these books for better reference.</p>
-                        <a href="https://www.amazon.in/NCERT-CLASS-COMBO-ENGLISH-MEDIUM/dp/B0CGHXC1B9">Learn More</a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="scholarship-banners" class="sub-section">
-                <h2>Scholarship Opportunities</h2>
-                <div class="banner-container">
-                    <img src="https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+1" alt="Scholarship Banner 1" onerror="this.onerror=null;this.src='https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+1';">
-                    <img src="https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+2" alt="Scholarship Banner 2" onerror="this.onerror=null;this.src='https://placehold.co/400x200/f0f0f0/333333?text=Scholarship+Banner+2';">
-                </div>
-            </section>
-
-            <section id="stats" class="sub-section">
-                <h2>Our Community at a Glance</h2>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3>[500]</h3>
-                        <p>Students</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>[200]</h3>
-                        <p>Faculty Members</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>[25]</h3>
-                        <p>Courses/Programs</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact-options" class="sub-section">
-                <h2>Get in Touch</h2>
-                <div class="contact-buttons">
-                    <a href="https://wa.me/8709547748" target="_blank" class="whatsapp-btn">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" style="height: 20px; vertical-align: middle;"> WhatsApp Us (8709547748)
-                    </a>
-                    <button id="open-general-chatbot" class="chatbot-btn">Service Help Bot</button>
-                </div>
-            </section>
-        </section>
-
-        <section id="login-page" class="section page-section">
-            <h2>User Login</h2>
-            <form id="login-form" class="auth-form">
-                <div class="form-message" id="login-message"></div>
-                <label for="login-username">Username:</label>
-                <input type="text" id="login-username" required>
-                <label for="login-password">Password:</label>
-                <input type="password" id="login-password" required>
-                <button type="submit">Login</button>
-                <p style="text-align: center; margin-top: 20px;">New user? <a href="#" id="go-to-signup">Sign Up here</a></p>
-            </form>
-        </section>
-
-        <section id="signup-page" class="section page-section">
-            <h2>User Signup</h2>
-            <form id="signup-form" class="auth-form">
-                <div class="form-message" id="signup-message"></div>
-                <label for="signup-username">Username:</label>
-                <input type="text" id="signup-username" required>
-                <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" required>
-                <label for="signup-role">Role:</label>
-                <select id="signup-role" required>
-                    <option value="">Select Role</option>
-                    <option value="student">Student</option>
-                    <option value="faculty">Faculty</option>
-                    <option value="institute">Institute</option>
-                    <option value="admin">Admin</option>
-                </select>
-                <button type="submit">Sign Up</button>
-                <p style="text-align: center; margin-top: 20px;">Already have an account? <a href="#" id="go-to-login">Login here</a></p>
-            </form>
-        </section>
-
-        <section id="dashboard-admin" class="section page-section">
-            <div class="dashboard-container">
-                <h2>Welcome, Admin!</h2>
-                <p>This is your administrative dashboard. From here, you can manage user accounts, website content, and system settings.</p>
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>Manage Users</h3>
-                        <p>Add, edit, or remove user accounts.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Content Management</h3>
-                        <p>Update announcements, events, and static page content.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>System Settings</h3>
-                        <p>Configure website settings and monitor activity.</p>
-                    </div>
-                </div>
-                <button id="open-admin-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Admin Chatbot</button>
-            </div>
-        </section>
-
-        <section id="dashboard-student" class="section page-section">
-            <div class="dashboard-container">
-                <h2>Welcome, Student!</h2>
-                <p>This is your student dashboard. Here you can access your academic information, courses, and resources.</p>
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>My Courses</h3>
-                        <p>View your enrolled courses and lecture materials.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Grades & Results</h3>
-                        <p>Check your academic performance and test scores.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Announcements</h3>
-                        <p>Stay updated with important student notices.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Assignments</h3>
-                        <p>Submit assignments and track deadlines.</p>
-                    </div>
-                </div>
-                <button id="open-student-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Student Chatbot</button>
-            </div>
-        </section>
-
-        <section id="dashboard-faculty" class="section page-section">
-            <div class="dashboard-container">
-                <h2>Welcome, Faculty!</h2>
-                <p>This is your faculty dashboard. Manage your courses, students, and academic responsibilities here.</p>
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>My Courses</h3>
-                        <p>Access your assigned courses and teaching materials.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Student Management</h3>
-                        <p>Manage student records, attendance, and grades.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Research & Publications</h3>
-                        <p>Update your research work and published papers.</p>
-                    </div>
-                </div>
-                <button id="open-faculty-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Faculty Chatbot</button>
-            </div>
-        </section>
-
-        <section id="dashboard-institute" class="section page-section">
-            <div class="dashboard-container">
-                <h2>Welcome, Institute Representative!</h2>
-                <p>This is your institute dashboard. Oversee overall operations, departmental performance, and strategic planning.</p>
-                <div class="dashboard-grid">
-                    <div class="dashboard-card">
-                        <h3>Academic Programs</h3>
-                        <p>Manage curriculum, program development, and accreditations.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Resource Allocation</h3>
-                        <p>Monitor budget, infrastructure, and facility utilization.</p>
-                    </div>
-                    <div class="dashboard-card">
-                        <h3>Reports & Analytics</h3>
-                        <p>Access performance reports and key institutional metrics.</p>
-                    </div>
-                </div>
-                <button id="open-institute-chatbot" class="chatbot-btn" style="margin-top: 30px;">Open Institute Chatbot</button>
-            </div>
-        </section>
-
-        <section id="students-page" class="section page-section">
-            <h2>Academic: Students</h2>
-            <p>Welcome, students! This section provides all the essential information and resources you need for a successful academic journey at [Your Company Name].</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div class="product-card">
-                    <h3>Admission Process</h3>
-                    <p>Details on how to apply, eligibility criteria, and important dates for new admissions.</p>
-                    <a href="#">Apply Now</a>
-                </div>
-                <div class="product-card">
-                    <h3>Student Handbook</h3>
-                    <p>A comprehensive guide to policies, procedures, and student life on campus.</p>
-                    <a href="#">Download Handbook</a>
-                </div>
-                <div class="product-card">
-                    <h3>Academic Calendar</h3>
-                    <p>View important academic dates, holidays, examination schedules, and more.</p>
-                    <a href="#">View Calendar</a>
-                </div>
-                <div class="product-card">
-                    <h3>Student Welfare</h3>
-                    <p>Support services, counseling, and initiatives aimed at student well-being.</p>
-                    <a href="#">Learn More</a>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">For any specific queries, please visit our <a href="#contact-page" style="color: #0056b3; text-decoration: none;">Contact Us</a> page.</p>
-        </section>
-
-        <section id="scholarship-page" class="section page-section">
-            <h2>Academic: Scholarship Opportunities</h2>
-            <p>At [Your Company Name], we believe in supporting talent. Explore various scholarship programs available to our deserving students.</p>
-
-            <div style="margin-top: 30px;">
-                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
-                    <h3>Merit-Based Scholarships</h3>
-                    <p>Awarded to students demonstrating exceptional academic achievement in their previous studies.</p>
-                    <p><strong>Eligibility:</strong> Minimum [X]% marks in previous qualifying exam, minimum [Y] CGPA, etc.</p>
-                    <p><strong>Application Deadline:</strong> [Date]</p>
-                    <a href="#" style="color: #0056b3; text-decoration: none;">Download Application Form &rarr;</a>
-                </article>
-
-                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
-                    <h3>Need-Based Financial Aid</h3>
-                    <p>Designed to assist students from economically disadvantaged backgrounds, ensuring access to quality education.</p>
-                    <p><strong>Eligibility:</strong> Based on family income criteria and financial need assessment.</p>
-                    <p><strong>Application Deadline:</strong> [Date]</p>
-                    <a href="#" style="color: #0056b3; text-decoration: none;">Learn More &rarr;</a>
-                </article>
-
-                <article style="margin-bottom: 25px; padding-bottom: 15px;">
-                    <h3>Special Category Scholarships</h3>
-                    <p>Scholarships available for specific categories such as sports, arts, physically challenged, or minority groups.</p>
-                    <p><strong>Eligibility:</strong> Specific criteria apply for each category.</p>
-                    <p><strong>Application Deadline:</strong> [Date]</p>
-                    <a href="#" style="color: #0056b3; text-decoration: none;">View Categories &rarr;</a>
-                </article>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">For more details on scholarship application procedures and required documents, please refer to our <a href="#announcements-page" style="color: #0056b3; text-decoration: none;">announcements</a> or contact the financial aid office.</p>
-        </section>
-
-        <section id="tests-page" class="section page-section">
-            <h2>Academic: Examination and Test Information</h2>
-            <p>Find all details regarding entrance examinations, internal assessments, and mock tests conducted by [Your Company Name].</p>
-
-            <div style="margin-top: 30px;">
-                <h3>Upcoming Entrance Exams</h3>
-                <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-                    <thead>
-                        <tr style="background-color: #f2f2f2;">
-                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Exam Name</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Date</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Application Deadline</th>
-                            <th style="padding: 12px; text-align: left; border: 1px solid #ddd;">Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid #ddd;">[Course A] Entrance Test</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">July 20, 2025</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">July 10, 2025</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;"><a href="#" style="color: #0056b3; text-decoration: none;">Syllabus</a></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 12px; border: 1px solid #ddd;">[Program B] Aptitude Test</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">August 5, 2025</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;">July 25, 2025</td>
-                            <td style="padding: 12px; border: 1px solid #ddd;"><a href="#" style="color: #0056b3; text-decoration: none;">Guidelines</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <h3 style="margin-top: 40px;">Internal Examination Schedule</h3>
-                <p>Regular internal assessments are conducted to monitor student progress. Please refer to the academic calendar for detailed dates.</p>
-                <ul style="list-style: disc; margin-left: 20px; margin-top: 15px;">
-                    <li style="margin-bottom: 8px;">Mid-Term Exams: October 2025</li>
-                    <li style="margin-bottom: 8px;">End-Term Exams: February 2026</li>
-                    <li>Practical Assessments: Ongoing through semester</li>
-                </ul>
-
-                <h3 style="margin-top: 40px;">Mock Tests and Resources</h3>
-                <p>Prepare effectively with our mock test series and study materials. Access them through the student portal.</p>
-                <a href="#students-page" style="display: inline-block; background-color: #0056b3; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; margin-top: 15px;">Access Mock Tests</a>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">For specific examination rules and regulations, please contact the Examination Department.</p>
-        </section>
-
-        <section id="institute-page" class="section page-section">
-            <h2>Academic: About Our Institute</h2>
-            <p>[Your Company Name] is a premier educational institution committed to fostering academic excellence, innovation, and holistic development. Established in [Year], we have been a beacon of knowledge and skill development in [Your Field/Region].</p>
-
-            <h3 style="margin-top: 30px;">Our Mission</h3>
-            <p>To provide high-quality education that empowers students with knowledge, critical thinking skills, and ethical values, preparing them to be responsible global citizens and leaders in their chosen professions.</p>
-
-            <h3 style="margin-top: 30px;">Our Vision</h3>
-            <p>To be recognized as a leading institution for academic innovation, research, and community engagement, contributing significantly to societal progress and technological advancement.</p>
-
-            <h3 style="margin-top: 30px;">Facilities</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><strong>Modern Classrooms:</strong> Equipped with audio-visual aids.</li>
-                    <li style="margin-bottom: 10px;"><strong>State-of-the-Art Laboratories:</strong> For hands-on practical experience.</li>
-                    <li style="margin-bottom: 10px;"><strong>Digital Library:</strong> Extensive collection of books, journals, and online resources.</li>
-                </ul>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px;"><strong>Sports Complex:</strong> Facilities for indoor and outdoor sports.</li>
-                    <li style="margin-bottom: 10px;"><strong>Hostel Accommodation:</strong> Separate facilities for male and female students.</li>
-                    <li style="margin-bottom: 10px;"><strong>Cafeteria:</strong> Hygienic and diverse food options.</li>
-                </ul>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">We continuously strive to create an enriching and supportive environment for our students.</p>
-        </section>
-
-        <section id="faculty-page" class="section page-section">
-            <h2>Academic: Our Esteemed Faculty</h2>
-            <p>Our faculty members are highly qualified, experienced, and dedicated professionals who are committed to nurturing the next generation of leaders and innovators.</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div class="product-card" style="text-align: left;">
-                    <img src="https://via.placeholder.com/100x100?text=Prof+A" alt="Professor A" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Prof+A';">
-                    <h3 style="text-align: center;">Prof. [Faculty Name A]</h3>
-                    <p><strong>Department:</strong> [Department Name]</p>
-                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
-                    <p><strong>Experience:</strong> [X] years</p>
-                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
-                </div>
-
-                <div class="product-card" style="text-align: left;">
-                    <img src="https://via.placeholder.com/100x100?text=Dr+B" alt="Dr. B" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Dr+B';">
-                    <h3 style="text-align: center;">Dr. [Faculty Name B]</h3>
-                    <p><strong>Department:</strong> [Department Name]</p>
-                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
-                    <p><strong>Experience:</strong> [Y] years</p>
-                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
-                </div>
-
-                <div class="product-card" style="text-align: left;">
-                    <img src="https://via.placeholder.co/100x100?text=Ms+C" alt="Ms. C" style="border-radius: 50%; width: 100px; height: 100px; object-fit: cover; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;" onerror="this.onerror=null;this.src='https://placehold.co/100x100/f0f0f0/333333?text=Ms+C';">
-                    <h3 style="text-align: center;">Ms. [Faculty Name C]</h3>
-                    <p><strong>Department:</strong> [Department Name]</p>
-                    <p><strong>Specialization:</strong> [Area of Expertise]</p>
-                    <p><strong>Experience:</strong> [Z] years</p>
-                    <a href="#" style="background-color: #007bff; text-align: center;">View Profile</a>
-                </div>
-            </div>
-            <p style="text-align: center; margin-top: 30px;">For a complete list of faculty members and their detailed profiles, please visit the respective department pages (if available).</p>
-        </section>
-
-        <section id="contact-page" class="section page-section">
-            <h2>Contact Us</h2>
-            <p>We'd love to hear from you! Please reach out to us using the information below or fill out our contact form.</p>
-
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; margin-top: 30px;">
-                <div style="flex: 1; min-width: 280px; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <h3>Our Office</h3>
-                    <address>
-                        <p><strong>Your Company Name</strong><br>
-                        [Your Company Address Line 1]<br>
-                        [Your Company Address Line 2]<br>
-                        Begusarai, Bihar, India - [Your Pincode]</p>
-                        <p><strong>Phone:</strong> +91 8709547748</p>
-                        <p><strong>Email:</strong> <a href="mailto:info@yourcompany.com">info@yourcompany.com</a></p>
-                    </address>
-                </div>
-
-                <div style="flex: 1; min-width: 280px; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                    <h3>Business Hours</h3>
-                    <p>Monday - Friday: 9:00 AM - 5:00 PM IST</p>
-                    <p>Saturday: 10:00 AM - 2:00 PM IST</p>
-                    <p>Sunday: Closed</p>
-                    <p>Public Holidays: Closed</p>
-                </div>
-            </div>
-
-            <h3 style="text-align: center; margin-top: 40px; color: #0056b3;">Send Us a Message</h3>
-            <form action="#" method="POST" style="max-width: 600px; margin: 20px auto; padding: 30px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                <label for="name">Your Name:</label><br>
-                <input type="text" id="name-contact" name="name" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-                <label for="email">Your Email:</label><br>
-                <input type="email" id="email-contact" name="email" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-                <label for="subject">Subject:</label><br>
-                <input type="text" id="subject-contact" name="subject" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;"><br>
-
-                <label for="message">Message:</label><br>
-                <textarea id="message-contact" name="message" rows="6" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea><br>
-
-                <button type="submit" style="width: 100%; padding: 12px; background-color: #0056b3; color: white; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">Send Message</button>
-            </form>
-        </section>
-
-        <section id="announcements-page" class="section page-section">
-            <h2>Important Announcements</h2>
-            <p>Stay updated with the latest news, events, and important notices from [Your Company Name].</p>
-
-            <div class="announcement-list" style="margin-top: 30px;">
-                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
-                    <h3>New Admission Cycle Opens Soon!</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: June 1, 2025</em></p>
-                    <p>We are excited to announce that the admission process for the academic year 2026-2027 will commence on July 15, 2025. Detailed guidelines and application forms will be available on the Students section of our website.</p>
-                    <a href="#students-page" style="color: #0056b3; text-decoration: none;">Learn more &rarr;</a>
-                </article>
-
-                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
-                    <h3>Webinar: Future of AI in Education</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 28, 2025</em></p>
-                    <p>Join our experts for a live webinar on "The Impact of Artificial Intelligence on Modern Education" on June 10, 2025, at 3:00 PM IST. Registration is free but seats are limited.</p>
-                    <a href="#" style="color: #0056b3; text-decoration: none;">Register Now &rarr;</a>
-                </article>
-
-                <article style="margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee;">
-                    <h3>Office Closure for Eid al-Adha</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 20, 2025</em></p>
-                    <p>Please note that our offices will remain closed on June 16-17, 2025, in observance of Eid al-Adha. Regular services will resume on June 18, 2025.</p>
-                </article>
-
-                <article style="margin-bottom: 25px; padding-bottom: 15px;">
-                    <h3>Scholarship Application Deadline Extended</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;"><em>Published: May 15, 2025</em></p>
-                    <p>Good news for aspiring students! The deadline for all scholarship applications has been extended to June 30, 2025. Don't miss this opportunity.</p>
-                    <a href="#scholarship-page" style="color: #0056b3; text-decoration: none;">View Scholarship Details &rarr;</a>
-                </article>
-            </div>
-        </section>
-
-        <section id="links-page" class="section page-section">
-            <h2>Useful Links</h2>
-            <p>Explore these valuable resources and external websites related to our programs, industry, and partners.</p>
-
-            <div style="margin-top: 30px;">
-                <h3>Internal Links</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="#home-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Home Page</a> - Go back to the main page.
-                    </li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="#students-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Student Portal</a> - Access student-specific resources and information.
-                    </li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="#scholarship-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Scholarship Information</a> - Learn about available scholarships.
-                    </li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="#contact-page" style="color: #0056b3; text-decoration: none; font-weight: bold;">Contact Information</a> - Find out how to reach us.
-                    </li>
-                </ul>
-
-                <h3 style="margin-top: 30px;">External Resources</h3>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">AICTE Website</a> - All India Council for Technical Education.
-                    </li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="https://www.ugc.ac.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">UGC India</a> - University Grants Commission.
-                    </li>
-                    <li style="margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px;">
-                        <a href="https://www.ncert.nic.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">NCERT</a> - National Council of Educational Research and Training.
-                    </li>
-                    <li style="margin-bottom: 10px; padding-bottom: 5px;">
-                        <a href="https://www.digilocker.gov.in/" target="_blank" rel="noopener noreferrer" style="color: #0056b3; text-decoration: none; font-weight: bold;">DigiLocker</a> - Your digital document wallet.
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <div id="general-chatbot-popup" class="chatbot-popup">
-            <div class="chatbot-content">
-                <span class="close-chatbot">&times;</span>
-                <h3>Service Bot</h3>
-                <div class="chatbot-messages">
-                    <p>Hello! How can I help you today?</p>
-                </div>
-                <input type="text" placeholder="Type your message..." class="chatbot-input">
-                <button class="chatbot-send">Send</button>
-            </div>
         </div>
-
-        <div id="admin-chatbot-popup" class="dashboard-chatbot-popup">
-            <div class="dashboard-chatbot-content">
-                <span class="close-chatbot">&times;</span>
-                <h3>Admin Bot</h3>
-                <div class="dashboard-chatbot-messages" id="admin-chatbot-messages"></div>
-                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="admin-chatbot-input">
-                <button class="dashboard-chatbot-send" id="admin-chatbot-send">Send</button>
-            </div>
+        <div id="chatLoader" class="chatbot-loader hidden">
+            <div class="loader"></div>
         </div>
+    </div>
 
-        <div id="student-chatbot-popup" class="dashboard-chatbot-popup">
-            <div class="dashboard-chatbot-content">
-                <span class="close-chatbot">&times;</span>
-                <h3>Student Bot</h3>
-                <div class="dashboard-chatbot-messages" id="student-chatbot-messages"></div>
-                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="student-chatbot-input">
-                <button class="dashboard-chatbot-send" id="student-chatbot-send">Send</button>
-            </div>
-        </div>
-
-        <div id="faculty-chatbot-popup" class="dashboard-chatbot-popup">
-            <div class="dashboard-chatbot-content">
-                <span class="close-chatbot">&times;</span>
-                <h3>Faculty Bot</h3>
-                <div class="dashboard-chatbot-messages" id="faculty-chatbot-messages"></div>
-                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="faculty-chatbot-input">
-                <button class="dashboard-chatbot-send" id="faculty-chatbot-send">Send</button>
-            </div>
-        </div>
-
-        <div id="institute-chatbot-popup" class="dashboard-chatbot-popup">
-            <div class="dashboard-chatbot-content">
-                <span class="close-chatbot">&times;</span>
-                <h3>Institute Bot</h3>
-                <div class="dashboard-chatbot-messages" id="institute-chatbot-messages"></div>
-                <input type="text" placeholder="Type your message..." class="dashboard-chatbot-input" id="institute-chatbot-input">
-                <button class="dashboard-chatbot-send" id="institute-chatbot-send">Send</button>
-            </div>
-        </div>
-
-    </main>
-
-    <footer>
-        <p>&copy; 2025 Your Company Name. All rights reserved.</p>
-    </footer>
+    <!-- Scroll to Top Button -->
+    <div id="scrollToTopBtn" class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <script>
-        /* --- JAVASCRIPT START HERE --- */
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- IN-MEMORY "USER DATABASE" (NOT PERSISTENT, CLEARS ON REFRESH/CLOSE) ---
-            // This array holds the registered users. For a real application, this would be a backend database.
-            let users = [
-                { username: 'admin', password: 'password', role: 'admin' },
-                { username: 'student1', password: 'password', role: 'student' },
-                { username: 'faculty1', password: 'password', role: 'faculty' },
-                { username: 'institute1', password: 'password', role: 'institute' }
-            ];
-            let currentUser = null; // Stores the currently logged-in user object
+        // DOM Elements
+        const introScreen = document.getElementById('introScreen');
+        const mainContent = document.getElementById('mainContent');
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileNav = document.getElementById('mobileNav');
 
-            // --- DOM Elements ---
-            const mainNavLinks = document.getElementById('main-nav-links');
-            const pageSections = document.querySelectorAll('.page-section');
-            const loginPage = document.getElementById('login-page');
-            const signupPage = document.getElementById('signup-page');
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            const loginUsernameInput = document.getElementById('login-username');
-            const loginPasswordInput = document.getElementById('login-password');
-            const signupUsernameInput = document.getElementById('signup-username');
-            const signupPasswordInput = document.getElementById('signup-password');
-            const signupRoleSelect = document.getElementById('signup-role');
-            const loginMessage = document.getElementById('login-message');
-            const signupMessage = document.getElementById('signup-message');
-            const goToSignupLink = document.getElementById('go-to-signup');
-            const goToLoginLink = document.getElementById('go-to-login');
-            const hamburgerMenu = document.getElementById('hamburger-menu'); // New: Hamburger menu button
+        const detailsModal = document.getElementById('detailsModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalLoader = document.getElementById('modalLoader');
+        const modalText = document.getElementById('modalText');
 
-            // --- Utility Functions ---
-            function showMessage(element, message, type) {
-                element.textContent = message;
-                element.className = 'form-message ' + type;
-                element.style.display = 'block';
-            }
+        const searchInput = document.getElementById('searchInput');
+        const heroSearchBtn = document.getElementById('heroSearchBtn');
+        const interviewPromptTextarea = document.getElementById('interviewPrompt');
+        const generateInterviewQuestionsBtn = document.getElementById('generateInterviewQuestionsBtn');
+        const essayPromptTextarea = document.getElementById('essayPrompt');
+        const generateEssayIdeasBtn = document.getElementById('generateEssayIdeasBtn');
+        const careerPathPromptTextarea = document.getElementById('careerPathPrompt');
+        const suggestCareerPathsBtn = document.getElementById('suggestCareerPathsBtn');
+        const studyPlanPromptTextarea = document.getElementById('studyPlanPrompt'); // New: Study Plan
+        const generateStudyPlanBtn = document.getElementById('generateStudyPlanBtn'); // New: Study Plan
 
-            function hideMessage(element) {
-                element.style.display = 'none';
-            }
+        const chatbotIcon = document.getElementById('chatbotIcon');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbotBtn = document.getElementById('closeChatbotBtn');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendChatBtn = document.getElementById('sendChatBtn');
+        const chatLoader = document.getElementById('chatLoader');
 
-            function showPage(pageId) {
-                pageSections.forEach(section => {
-                    section.classList.remove('active');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // New: Scroll to top
+
+        let chatHistory = [{
+            role: "user",
+            parts: [{ text: "You are a helpful assistant for CBSN-U, a website for student opportunities like scholarships, internships, and educational resources. Your goal is to answer questions related to finding opportunities, preparing for interviews, generating essay ideas, and general academic/career guidance. Keep your responses concise and focused on helping students. If asked about topics outside of this scope, politely redirect to CBSN-U's mission." }]
+        }, {
+            role: "model",
+            parts: [{ text: "Hello! How can I assist you today regarding opportunities or resources?" }]
+        }];
+
+
+        /**
+         * Smooth scrolls to a target element.
+         * @param {string} targetId - The ID of the element to scroll to.
+         */
+        function smoothScrollTo(targetId) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
-                const targetPage = document.getElementById(pageId);
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    console.error('Target page not found:', pageId);
-                }
             }
+        }
 
-            function updateNavbar(isLoggedIn) {
-                mainNavLinks.innerHTML = ''; // Clear existing links
-                if (isLoggedIn && currentUser) {
-                    // Logged-in view: show dashboard and logout, plus general academic/info links
-                    mainNavLinks.innerHTML = `
-                        <li><a href="#home-page" class="nav-link">Home</a></li>
-                        <li><a href="#dashboard-${currentUser.role}" class="nav-link">${currentUser.role.charAt(0).toUpperCase() + currentUser.role.slice(1)} Dashboard</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn nav-link">Academic</a>
-                            <div class="dropdown-content">
-                                <a href="#students-page" class="nav-link">Students</a>
-                                <a href="#scholarship-page" class="nav-link">Scholarship</a>
-                                <a href="#tests-page" class="nav-link">Tests</a>
-                                <a href="#institute-page" class="nav-link">Institute</a>
-                                <a href="#faculty-page" class="nav-link">Faculty</a>
-                            </div>
-                        </li>
-                        <li><a href="#contact-page" class="nav-link">Contact Us</a></li>
-                        <li><a href="#announcements-page" class="nav-link">Important Announcement</a></li>
-                        <li><a href="#links-page" class="nav-link">Links</a></li>
-                        <li><a href="#" id="logout-link" class="nav-link">Logout</a></li>
-                    `;
-                    document.getElementById('logout-link').addEventListener('click', handleLogout);
-                } else {
-                    // Logged-out view: show login and signup, and general home page
-                    mainNavLinks.innerHTML = `
-                        <li><a href="#home-page" class="nav-link">Home</a></li>
-                        <li><a href="#login-page" class="nav-link">Login</a></li>
-                        <li><a href="#signup-page" class="nav-link">Sign Up</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn nav-link">Academic</a>
-                            <div class="dropdown-content">
-                                <a href="#students-page" class="nav-link">Students</a>
-                                <a href="#scholarship-page" class="nav-link">Scholarship</a>
-                                <a href="#tests-page" class="nav-link">Tests</a>
-                                <a href="#institute-page" class="nav-link">Institute</a>
-                                <a href="#faculty-page" class="nav-link">Faculty</a>
-                            </div>
-                        </li>
-                        <li><a href="#contact-page" class="nav-link">Contact Us</a></li>
-                        <li><a href="#announcements-page" class="nav-link">Important Announcement</a></li>
-                        <li><a href="#links-page" class="nav-link">Links</a></li>
-                    `;
-                }
-                // Re-attach event listeners to all new nav links
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', function(event) {
-                        // Prevent default for internal hash links and dropdown buttons
-                        if (this.classList.contains('dropbtn') || this.getAttribute('href').startsWith('#')) {
-                            event.preventDefault();
-                        }
+        /**
+         * Initializes the intro screen fade-out effect.
+         */
+        function initIntroScreen() {
+            setTimeout(() => {
+                introScreen.classList.add('fade-out');
+                introScreen.addEventListener('transitionend', () => {
+                    introScreen.style.display = 'none';
+                    mainContent.classList.remove('opacity-0');
+                    mainContent.classList.add('opacity-100');
+                }, { once: true });
+            }, 2000); // 2 seconds delay
+        }
 
-                        // Remove active class from all nav links
-                        document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-
-                        // Add active class to the clicked link
-                        if (!this.classList.contains('dropbtn')) {
-                            this.classList.add('active');
-                            const targetId = this.getAttribute('href').substring(1);
-                            if (targetId) {
-                                showPage(targetId);
-                            }
-                        } else {
-                            // If it's a dropdown parent, set it active
-                            this.classList.add('active');
-                        }
-
-                        // Close mobile menu if open and a link is clicked
-                        if (window.innerWidth <= 768 && mainNavLinks.classList.contains('active')) {
-                            mainNavLinks.classList.remove('active');
-                        }
-                    });
-                });
-
-                // Set active class for the currently displayed page's nav link on navbar update
-                const activePage = document.querySelector('.page-section.active');
-                if (activePage) {
-                    const activePageId = activePage.id;
-                    const correspondingNavLink = document.querySelector(`.nav-links a[href="#${activePageId}"]`);
-                    if (correspondingNavLink) {
-                        correspondingNavLink.classList.add('active');
-                    } else if (activePageId.startsWith('dashboard-')) {
-                        // Handle dashboard links specifically
-                        const dashboardNavLink = document.querySelector(`.nav-links a[href^="#dashboard-"]`);
-                        if (dashboardNavLink) {
-                            dashboardNavLink.classList.add('active');
-                        }
-                    } else if (activePageId === 'students-page' || activePageId === 'scholarship-page' ||
-                               activePageId === 'tests-page' || activePageId === 'institute-page' ||
-                               activePageId === 'faculty-page') {
-                        const academicDropdownBtn = document.querySelector('.dropbtn');
-                        if (academicDropdownBtn) {
-                            academicDropdownBtn.classList.add('active');
-                        }
-                    }
-                }
-            }
-
-            // --- Authentication Logic ---
-            function handleLogin(event) {
-                event.preventDefault();
-                hideMessage(loginMessage);
-
-                const username = loginUsernameInput.value.trim();
-                const password = loginPasswordInput.value.trim();
-
-                const user = users.find(u => u.username === username && u.password === password);
-
-                if (user) {
-                    currentUser = user;
-                    // Store user data in localStorage
-                    localStorage.setItem('loggedInUser', JSON.stringify(currentUser));
-
-                    showMessage(loginMessage, 'Login successful!', 'success');
-                    setTimeout(() => {
-                        updateNavbar(true);
-                        showPage(`dashboard-${currentUser.role}`);
-                        loginForm.reset(); // Clear form
-                        hideMessage(loginMessage);
-                    }, 500);
-                } else {
-                    showMessage(loginMessage, 'Invalid username or password.', 'error');
-                }
-            }
-
-            function handleSignup(event) {
-                event.preventDefault();
-                hideMessage(signupMessage);
-
-                const username = signupUsernameInput.value.trim();
-                const password = signupPasswordInput.value.trim();
-                const role = signupRoleSelect.value;
-
-                if (!username || !password || !role) {
-                    showMessage(signupMessage, 'All fields are required.', 'error');
-                    return;
-                }
-
-                if (users.some(u => u.username === username)) {
-                    showMessage(signupMessage, 'Username already exists.', 'error');
-                    return;
-                }
-
-                users.push({ username, password, role });
-                showMessage(signupMessage, 'Signup successful! You can now login.', 'success');
-                signupForm.reset(); // Clear form
-                setTimeout(() => {
-                    showPage('login-page');
-                    hideMessage(signupMessage);
-                    // Ensure login nav link is active after signup
-                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-                    const loginNavLink = document.querySelector('.nav-links a[href="#login-page"]');
-                    if (loginNavLink) {
-                        loginNavLink.classList.add('active');
-                    }
-                }, 1000);
-            }
-
-            function handleLogout() {
-                currentUser = null;
-                // Clear user data from localStorage
-                localStorage.removeItem('loggedInUser');
-
-                updateNavbar(false);
-                showPage('home-page'); // Go back to general home page
-                // Hide all chatbots if open
-                document.querySelectorAll('.chatbot-popup, .dashboard-chatbot-popup').forEach(popup => popup.style.display = 'none');
-            }
-
-            // --- Event Listeners for Auth Forms ---
-            loginForm.addEventListener('submit', handleLogin);
-            signupForm.addEventListener('submit', handleSignup);
-
-            goToSignupLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                showPage('signup-page');
-                // Update nav active state
-                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-                const signupNavLink = document.querySelector('.nav-links a[href="#signup-page"]');
-                if (signupNavLink) {
-                    signupNavLink.classList.add('active');
-                }
-                hideMessage(loginMessage);
+        /**
+         * Sets up the mobile navigation toggle.
+         */
+        function setupNavigation() {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileNav.classList.toggle('hidden');
             });
 
-            goToLoginLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                showPage('login-page');
-                // Update nav active state
-                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
-                const loginNavLink = document.querySelector('.nav-links a[href="#login-page"]');
-                if (loginNavLink) {
-                    loginNavLink.classList.add('active');
-                }
-                hideMessage(signupMessage);
+            // Handle navigation links to scroll to sections
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    smoothScrollTo(targetId);
+                    // Close mobile nav if open
+                    if (!mobileNav.classList.contains('hidden')) {
+                        mobileNav.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        /**
+         * Shows the modal with content.
+         * @param {string} title - The title for the modal.
+         * @param {string} text - The main text content for the modal.
+         * @param {boolean} showLoader - Whether to show the loader.
+         */
+        function showModal(title, text, showLoader) {
+            modalTitle.textContent = title;
+            modalText.textContent = text;
+            modalLoader.style.display = showLoader ? 'block' : 'none';
+            detailsModal.classList.add('show');
+        }
+
+        /**
+         * Handles API calls to Gemini.
+         * @param {Array} history - Chat history or prompt for the API.
+         * @returns {Promise<string>} The generated text.
+         */
+        async function callGeminiAPI(history) {
+            const payload = { contents: history };
+            const apiKey = ""; // Canvas will automatically provide the API key at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
 
-            // --- Hamburger Menu Toggle ---
-            if (hamburgerMenu) {
-                hamburgerMenu.addEventListener('click', function() {
-                    mainNavLinks.classList.toggle('active');
-                });
-            }
+            const result = await response.json();
 
-            // --- Chatbot Functionality (Generic Handler) ---
-            function setupChatbot(openBtnId, popupId, messagesId, inputId, sendBtnId) {
-                const openChatbotBtn = document.getElementById(openBtnId);
-                const chatbotPopup = document.getElementById(popupId);
-                const closeChatbotBtn = chatbotPopup ? chatbotPopup.querySelector('.close-chatbot') : null;
-                const chatbotMessages = document.getElementById(messagesId);
-                const chatbotInput = document.getElementById(inputId);
-                const chatbotSendBtn = document.getElementById(sendBtnId);
-
-                if (openChatbotBtn) { // Check if the button exists
-                    openChatbotBtn.addEventListener('click', function() {
-                        chatbotPopup.style.display = 'block';
-                    });
-                }
-                if (closeChatbotBtn) { // Check if the close button exists
-                    closeChatbotBtn.addEventListener('click', function() {
-                        chatbotPopup.style.display = 'none';
-                    });
-                }
-                if (chatbotSendBtn) { // Check if send button exists
-                    chatbotSendBtn.addEventListener('click', () => sendMessage(chatbotInput, chatbotMessages, openBtnId));
-                }
-                if (chatbotInput) { // Check if input exists
-                    chatbotInput.addEventListener('keypress', function(e) {
-                        if (e.key === 'Enter') {
-                            sendMessage(chatbotInput, chatbotMessages, openBtnId);
-                        }
-                    });
-                }
-            }
-
-            function sendMessage(inputElement, messagesElement, botOriginId) {
-                const message = inputElement.value.trim();
-                if (message === '') return;
-
-                // Display user message
-                const userMessageDiv = document.createElement('p');
-                userMessageDiv.textContent = 'You: ' + message;
-                messagesElement.appendChild(userMessageDiv);
-
-                let botName = 'Service Bot';
-                if (botOriginId.includes('admin')) botName = 'Admin Bot';
-                else if (botOriginId.includes('student')) botName = 'Student Bot';
-                else if (botOriginId.includes('faculty')) botName = 'Faculty Bot';
-                else if (botOriginId.includes('institute')) botName = 'Institute Bot';
-
-                let botResponse = `Hello! This is the ${botName}. I'm a simple bot. How else can I assist you?`;
-
-                if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
-                    botResponse = `Hello there! This is the ${botName}. How can I help you today?`;
-                } else if (message.toLowerCase().includes('admission')) {
-                    botResponse = 'For admission inquiries, please refer to the Student Dashboard or the Academic section.';
-                } else if (message.toLowerCase().includes('scholarship')) {
-                    botResponse = 'Information about scholarships can be found on the Scholarship page under Academic.';
-                } else if (message.toLowerCase().includes('contact')) {
-                     botResponse = 'You can find our contact details by clicking the "Contact Us" link in the main navigation (if visible).';
-                } else if (message.toLowerCase().includes('dashboard') && currentUser) {
-                     botResponse = `You are currently on the ${currentUser.role} dashboard. What specifically about it do you need assistance with?`;
-                }
-
-                const botMessageDiv = document.createElement('p');
-                botMessageDiv.textContent = `${botName}: ` + botResponse;
-                messagesElement.appendChild(botMessageDiv);
-
-                // Scroll to the bottom of the messages
-                messagesElement.scrollTop = messagesElement.scrollHeight;
-
-                // Clear input
-                inputElement.value = '';
-            }
-
-            // --- Initial Setup on Load ---
-            // Check localStorage for a logged-in user
-            const storedUser = localStorage.getItem('loggedInUser');
-            if (storedUser) {
-                currentUser = JSON.parse(storedUser);
-                updateNavbar(true);
-                showPage(`dashboard-${currentUser.role}`);
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+                return result.candidates[0].content.parts[0].text;
             } else {
-                updateNavbar(false); // Initialize navbar for logged-out state
-                showPage('home-page'); // Start on the home page
+                console.error("Gemini API response structure unexpected:", result);
+                throw new Error("Failed to get a valid response from the AI.");
+            }
+        }
+
+        /**
+         * Sets up the functionality for generating opportunity details using Gemini API.
+         */
+        function setupOpportunityDetails() {
+            document.querySelectorAll('.generate-details-btn').forEach(button => {
+                button.addEventListener('click', async (event) => {
+                    const card = event.target.closest('.card');
+                    const title = card.querySelector('.opportunity-title').textContent;
+                    const description = card.querySelector('.opportunity-description').textContent;
+
+                    showModal(`Details for: ${title}`, '', true);
+
+                    try {
+                        const prompt = `Elaborate on this opportunity: "${title}". Current brief description: "${description}". Provide a detailed, engaging description, around 150-200 words, suitable for a student opportunities website. Focus on key benefits, who it's for, and what it entails.`;
+                        const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                        modalText.textContent = generatedText;
+                    } catch (error) {
+                        modalText.textContent = "An error occurred while fetching details. Please try again later.";
+                        console.error("Error generating opportunity details:", error);
+                    } finally {
+                        modalLoader.style.display = 'none';
+                    }
+                });
+            });
+
+            // Handle "View Details" links on cards
+            document.querySelectorAll('.view-details-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal("Opportunity Details Page (Conceptual)", "This would lead to a dedicated page with full details about the opportunity. For this demo, it's a placeholder action.", false);
+                });
+            });
+        }
+
+        /**
+         * Sets up the AI Interview Prep Assistant functionality.
+         */
+        function setupInterviewAssistant() {
+            generateInterviewQuestionsBtn.addEventListener('click', async () => {
+                const interviewTopic = interviewPromptTextarea.value.trim();
+
+                if (!interviewTopic) {
+                    showModal("Input Required", "Please describe the role or opportunity you are preparing for.", false);
+                    return;
+                }
+
+                showModal(`Interview Questions for: ${interviewTopic}`, '', true);
+
+                try {
+                    const prompt = `Generate a list of 5-7 common interview questions for a candidate preparing for "${interviewTopic}". Format them as a numbered list.`;
+                    const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                    modalText.textContent = generatedText;
+                } catch (error) {
+                    modalText.textContent = "An error occurred while fetching questions. Please try again later.";
+                    console.error("Error generating interview questions:", error);
+                } finally {
+                    modalLoader.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Sets up the AI Essay Idea Generator functionality.
+         */
+        function setupEssayIdeaGenerator() {
+            generateEssayIdeasBtn.addEventListener('click', async () => {
+                const essayTopic = essayPromptTextarea.value.trim();
+
+                if (!essayTopic) {
+                    showModal("Input Required", "Please enter an essay topic or prompt.", false);
+                    return;
+                }
+
+                showModal(`Essay Outline for: "${essayTopic}"`, '', true);
+
+                try {
+                    const prompt = `Generate a detailed essay outline and key ideas for an essay on the topic: "${essayTopic}". Include a compelling thesis statement, 3-4 main arguments for body paragraphs with brief explanations, and a concluding thought. Format this as a clearly structured outline.`;
+                    const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                    modalText.textContent = generatedText;
+                } catch (error) {
+                    modalText.textContent = "An error occurred while fetching essay ideas. Please try again later.";
+                    console.error("Error generating essay ideas:", error);
+                } finally {
+                    modalLoader.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Sets up the AI Study Plan Generator functionality.
+         */
+        function setupStudyPlanGenerator() {
+            generateStudyPlanBtn.addEventListener('click', async () => {
+                const studyPlanTopic = studyPlanPromptTextarea.value.trim();
+
+                if (!studyPlanTopic) {
+                    showModal("Input Required", "Please describe what you want to study and your target duration.", false);
+                    return;
+                }
+
+                showModal(`Study Plan for: "${studyPlanTopic}"`, '', true);
+
+                try {
+                    const prompt = `Generate a practical and structured study plan for a student who wants to "${studyPlanTopic}". Include a breakdown of topics, suggested daily/weekly allocation, and tips for effective learning. Format this as a clear, actionable plan.`;
+                    const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                    modalText.textContent = generatedText;
+                } catch (error) {
+                    modalText.textContent = "An error occurred while generating the study plan. Please try again later.";
+                    console.error("Error generating study plan:", error);
+                } finally {
+                    modalLoader.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Sets up the AI Career Path Suggester functionality.
+         */
+        function setupCareerPathSuggester() {
+            suggestCareerPathsBtn.addEventListener('click', async () => {
+                const careerPrompt = careerPathPromptTextarea.value.trim();
+
+                if (!careerPrompt) {
+                    showModal("Input Required", "Please describe your interests, skills, and academic background to get career suggestions.", false);
+                    return;
+                }
+
+                showModal(`Suggested Career Paths for: "${careerPrompt}"`, '', true);
+
+                try {
+                    const prompt = `Based on the following user input: "${careerPrompt}", suggest 3-5 potential career paths or fields. For each suggestion, provide a brief explanation of why it might be a good fit and list 1-2 relevant skills or academic areas. Format as a numbered list.`;
+                    const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                    modalText.textContent = generatedText;
+                } catch (error) {
+                    modalText.textContent = "An error occurred while suggesting career paths. Please try again later.";
+                    console.error("Error generating career paths:", error);
+                } finally {
+                    modalLoader.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Sets up the modal close functionality.
+         */
+        function setupModalClose() {
+            closeModalBtn.addEventListener('click', () => {
+                detailsModal.classList.remove('show');
+            });
+
+            detailsModal.addEventListener('click', (event) => {
+                if (event.target === detailsModal) {
+                    detailsModal.classList.remove('show');
+                }
+            });
+        }
+
+        /**
+         * Sets up other general buttons and links.
+         */
+        function setupOtherButtonsAndLinks() {
+            // Hero Search Button
+            heroSearchBtn.addEventListener('click', () => {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    console.log(`Searching for: ${searchTerm}`);
+                    showModal("Search Functionality (Conceptual)", `You searched for: "${searchTerm}". In a full website, this would display search results.`, false);
+                    searchInput.value = ''; // Clear input after search
+                } else {
+                    showModal("Search Input Empty", "Please enter something to search for.", false);
+                }
+            });
+
+            // Explore More Opportunities Button
+            document.querySelector('.explore-opportunities-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                smoothScrollTo('opportunities-section');
+                console.log("Exploring more opportunities.");
+            });
+
+            // View All Resources Button
+            document.querySelector('.view-all-resources-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                smoothScrollTo('resources-section');
+                console.log("Viewing all resources.");
+            });
+
+            // View All Articles Button
+            document.querySelector('.view-all-articles-btn').addEventListener('click', (e) => {
+                e.preventDefault();
+                smoothScrollTo('news-section');
+                console.log("Viewing all articles.");
+            });
+
+            // Read More links for News articles
+            document.querySelectorAll('.read-more-news-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    console.log("Reading full article (conceptual).");
+                    showModal("Article Page (Conceptual)", "This would lead to a dedicated page with the full article content. For this demo, it's a placeholder action.", false);
+                });
+            });
+
+            // Login/Signup Buttons
+            document.querySelectorAll('.login-btn, .signup-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal(`${e.target.textContent} Page (Conceptual)`, `This would take you to the ${e.target.textContent.toLowerCase()} page. For this demo, it's a placeholder action.`, false);
+                });
+            });
+
+            // Footer Quick Links (Contact Us, Privacy Policy, Terms of Service)
+            document.querySelector('.contact-us-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("Contact Us Page (Conceptual)", "This would open a contact form or display contact information. For this demo, it's a placeholder.", false);
+            });
+            document.querySelector('.privacy-policy-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("Privacy Policy Page (Conceptual)", "This would display the privacy policy document. For this demo, it's a placeholder.", false);
+            });
+            document.querySelector('.terms-of-service-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("Terms of Service Page (Conceptual)", "This would display the terms of service document. For this demo, it's a placeholder.", false);
+            });
+        }
+
+        /**
+         * Sets up the Chatbot functionality.
+         */
+        function setupChatbot() {
+            chatbotIcon.addEventListener('click', () => {
+                chatbotWindow.classList.toggle('hidden');
+                chatbotWindow.classList.toggle('show');
+                if (chatbotWindow.classList.contains('show')) {
+                    chatInput.focus();
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                }
+            });
+
+            closeChatbotBtn.addEventListener('click', () => {
+                chatbotWindow.classList.remove('show');
+                chatbotWindow.classList.add('hidden');
+            });
+
+            sendChatBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            async function sendMessage() {
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) return;
+
+                appendMessage(userMessage, 'user');
+                chatInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+
+                chatLoader.classList.remove('hidden');
+                sendChatBtn.disabled = true; // Disable button while loading
+
+                chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+
+                try {
+                    const aiResponse = await callGeminiAPI(chatHistory);
+                    appendMessage(aiResponse, 'ai');
+                    chatHistory.push({ role: "model", parts: [{ text: aiResponse }] });
+                } catch (error) {
+                    appendMessage("Sorry, I'm having trouble connecting right now. Please try again later.", 'ai');
+                    console.error("Chatbot API error:", error);
+                } finally {
+                    chatLoader.classList.add('hidden');
+                    sendChatBtn.disabled = false; // Re-enable button
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom again
+                }
             }
 
-            // Setup general chatbot
-            setupChatbot('open-general-chatbot', 'general-chatbot-popup', 'general-chatbot-messages', 'general-chatbot-input', 'general-chatbot-send');
+            function appendMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('chat-message', sender);
+                const bubbleDiv = document.createElement('div');
+                bubbleDiv.classList.add('chat-bubble', sender);
+                bubbleDiv.textContent = text;
+                messageDiv.appendChild(bubbleDiv);
+                chatMessages.appendChild(messageDiv);
+            }
+        }
 
-            // Setup chatbots for each dashboard (they are initially hidden)
-            setupChatbot('open-admin-chatbot', 'admin-chatbot-popup', 'admin-chatbot-messages', 'admin-chatbot-input', 'admin-chatbot-send');
-            setupChatbot('open-student-chatbot', 'student-chatbot-popup', 'student-chatbot-messages', 'student-chatbot-input', 'student-chatbot-send');
-            setupChatbot('open-faculty-chatbot', 'faculty-chatbot-popup', 'faculty-chatbot-messages', 'faculty-chatbot-input', 'faculty-chatbot-send');
-            setupChatbot('open-institute-chatbot', 'institute-chatbot-popup', 'institute-chatbot-messages', 'institute-chatbot-input', 'institute-chatbot-send');
+        /**
+         * Sets up the scroll-to-top button functionality.
+         */
+        function setupScrollToTopButton() {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Initialize all functionalities when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initIntroScreen();
+            setupNavigation();
+            setupOpportunityDetails();
+            setupInterviewAssistant();
+            setupEssayIdeaGenerator();
+            setupStudyPlanGenerator(); // Initialize new study plan generator
+            setupCareerPathSuggester();
+            setupModalClose();
+            setupOtherButtonsAndLinks();
+            setupChatbot();
+            setupScrollToTopButton(); // Initialize scroll to top button
         });
-        /* --- JAVASCRIPT END HERE --- */
     </script>
 </body>
 </html>

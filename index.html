@@ -4,38 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBSN-U - Your Path to Opportunities</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Custom font import for 'Inter' */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll due to potential overflow */
-        }
-        /* Style for the intro screen */
-        .intro-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right bottom, #4CAF50, #2196F3); /* Green to Blue gradient */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 1;
-            transition: opacity 1s ease-out;
-            color: white;
-            font-size: 3rem;
-            font-weight: 700;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .intro-screen.fade-out {
-            opacity: 0;
-            pointer-events: none; /* Make it unclickable after fade out */
         }
         /* Custom styling for cards */
         .card {
@@ -335,57 +310,152 @@
             transform: scale(1.05);
             background-color: #43a047;
         }
+
+        /* New: Login/Signup Modal Specific Styles */
+        .login-signup-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1002; /* Above other modals */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .login-signup-modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .login-signup-modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .login-signup-modal-overlay.show .login-signup-modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s ease;
+        }
+        .modal-close-button:hover {
+            color: #333;
+        }
+        .login-signup-modal-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .login-signup-modal-tab {
+            flex: 1;
+            padding: 0.75rem 0;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: #64748b; /* slate-500 */
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+        .login-signup-modal-tab.active {
+            color: #3b82f6; /* blue-500 */
+            border-color: #3b82f6;
+        }
+        .login-signup-modal-tab-content {
+            display: none;
+        }
+        .login-signup-modal-tab-content.active {
+            display: block;
+        }
+        .login-signup-modal-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .login-signup-modal-button {
+            width: 100%;
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .login-signup-modal-button:hover {
+            background-color: #2563eb;
+        }
+        .login-signup-error-message {
+            color: #ef4444; /* red-500 */
+            font-size: 0.875rem;
+            margin-top: -0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
     </style>
 
-    <!-- Google AdSense Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6336452986750958"
            crossorigin="anonymous"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-    <!-- Intro Screen -->
-    <div id="introScreen" class="intro-screen">
-        <div class="text-white text-6xl font-extrabold mb-4 animate-pulse">CBSN-U</div>
-        <div class="text-white text-lg text-center px-4">Welcome, seeker of destiny... Unfold your journey. Your future begins with CBSN-U.</div>
-    </div>
-
-    <!-- Main Website Content -->
-    <div id="mainContent" class="opacity-0 transition-opacity duration-1000 ease-out">
-        <!-- Header Section -->
+    <div id="mainContent">
         <header class="bg-white shadow-md p-4">
             <div class="container mx-auto flex justify-between items-center flex-wrap">
-                <!-- Logo -->
                 <a href="#hero-section" class="text-blue-600 text-3xl font-extrabold">CBSN-U</a>
 
-                <!-- Mobile Menu Button -->
                 <button id="mobileMenuButton" class="lg:hidden text-gray-600 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
 
-                <!-- Navigation (Desktop) -->
                 <nav id="mainNav" class="hidden lg:flex flex-grow justify-center gap-6">
-                    <a href="#opportunities-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Opportunities</a>
-                    <a href="#resources-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Resources</a>
+                    <a href="opportunities.html" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Opportunities</a>
+                    <a href="#faculties-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Faculties</a>
+                    <a href="#institutions-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Institutions</a>
+                    <a href="#programs-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Programs</a>
+                    <a href="#student-life-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Student Life</a>
+                    <a href="resources.html" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Resources</a>
                     <a href="#news-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">News</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">Community</a>
                     <a href="#footer-section" class="text-gray-600 hover:text-blue-600 font-medium py-2 px-3 rounded-md transition-colors duration-200">About Us</a>
                 </nav>
 
-                <!-- Auth Buttons -->
                 <div class="hidden lg:flex items-center gap-4">
                     <a href="#" class="text-blue-600 hover:text-blue-800 font-medium login-btn">Login</a>
                     <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg signup-btn">Sign Up</a>
                 </div>
             </div>
 
-            <!-- Mobile Navigation (hidden by default) -->
             <nav id="mobileNav" class="lg:hidden mt-4 hidden">
-                <a href="#opportunities-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Opportunities</a>
-                <a href="#resources-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Resources</a>
+                <a href="opportunities.html" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Opportunities</a>
+                <a href="#faculties-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Faculties</a>
+                <a href="#institutions-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Institutions</a>
+                <a href="#programs-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Programs</a>
+                <a href="#student-life-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Student Life</a>
+                <a href="resources.html" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Resources</a>
                 <a href="#news-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">News</a>
-                <a href="#" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">Community</a>
                 <a href="#footer-section" class="block text-gray-700 hover:bg-gray-200 px-4 py-2 rounded-md">About Us</a>
                 <div class="border-t border-gray-200 my-2"></div>
                 <a href="#" class="block text-blue-600 hover:bg-gray-200 px-4 py-2 rounded-md login-btn">Login</a>
@@ -393,7 +463,6 @@
             </nav>
         </header>
 
-        <!-- Hero Section -->
         <section id="hero-section" class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 text-center rounded-b-lg shadow-lg mx-auto max-w-7xl mt-4">
             <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Discover Your Next Big Opportunity</h1>
             <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Scholarships, Internships, Competitions & More – All in one place.</p>
@@ -403,16 +472,13 @@
             </div>
         </section>
 
-        <!-- Google AdSense Placeholder 1 (Standard Leaderboard) -->
         <div class="container mx-auto px-4 mt-8">
             <div class="google-ad-placeholder">
-                <!-- AdSense Unit Code Here (e.g., 728x90 leaderboard) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Standard Banner Ad (e.g., 728x90)</p>
             </div>
         </div>
 
-        <!-- How It Works Section -->
         <section id="how-it-works-section" class="bg-white py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">How CBSN-U Works</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -443,11 +509,9 @@
             </div>
         </section>
 
-        <!-- Opportunities Section -->
         <section id="opportunities-section" class="py-12 px-4 container mx-auto">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Top Opportunities Right Now</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Opportunity Card 1 -->
                 <div class="card bg-white p-6">
                     <img src="https://placehold.co/400x200/4CAF50/ffffff?text=Scholarship+Image" alt="Scholarship" class="mb-4 rounded-md">
                     <h3 class="text-xl font-semibold mb-2 opportunity-title">Global Impact Scholarship</h3>
@@ -460,7 +524,6 @@
                     <a href="#" class="view-details-link block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">View Details</a>
                 </div>
 
-                <!-- Opportunity Card 2 -->
                 <div class="card bg-white p-6">
                     <img src="https://placehold.co/400x200/2196F3/ffffff?text=Internship+Image" alt="Internship" class="mb-4 rounded-md">
                     <h3 class="text-xl font-semibold mb-2 opportunity-title">Tech Innovator Internship</h3>
@@ -473,7 +536,6 @@
                     <a href="#" class="view-details-link block w-full text-center bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200">View Details</a>
                 </div>
 
-                <!-- Opportunity Card 3 -->
                 <div class="card bg-white p-6">
                     <img src="https://placehold.co/400x200/FFC107/333333?text=Competition+Image" alt="Competition" class="mb-4 rounded-md">
                     <h3 class="text-xl font-semibold mb-2 opportunity-title">National Science Olympiad</h3>
@@ -487,18 +549,144 @@
                 </div>
             </div>
             <div class="text-center mt-10">
-                <a href="#opportunities-section" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg explore-opportunities-btn">Explore More Opportunities</a>
+                <a href="opportunities.html" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg explore-opportunities-btn">Explore More Opportunities</a>
             </div>
-            <!-- Google AdSense Placeholder 2 (Rectangle), now within Opportunities section -->
             <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
-                <!-- AdSense Unit Code Here (e.g., 300x250 rectangle) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Medium Rectangle Ad (e.g., 300x250)</p>
             </div>
         </section>
 
+        <section id="faculties-section" class="bg-gray-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Featured Faculties & Departments</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card bg-white p-4 text-center">
+                    <img src="https://placehold.co/150x150/FFCDD2/D32F2F?text=Engineering" alt="Engineering Faculty" class="mx-auto mb-3 rounded-full object-cover">
+                    <h3 class="font-semibold text-lg mb-1">Engineering & Technology</h3>
+                    <p class="text-gray-600 text-sm">Innovate the future with cutting-edge engineering programs.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block faculty-link">Learn More</a>
+                </div>
+                <div class="card bg-white p-4 text-center">
+                    <img src="https://placehold.co/150x150/DCEDC8/689F38?text=Arts" alt="Arts Faculty" class="mx-auto mb-3 rounded-full object-cover">
+                    <h3 class="font-semibold text-lg mb-1">Arts & Humanities</h3>
+                    <p class="text-gray-600 text-sm">Explore creativity, culture, and critical thinking.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block faculty-link">Learn More</a>
+                </div>
+                <div class="card bg-white p-4 text-center">
+                    <img src="https://placehold.co/150x150/BBDEFB/1976D2?text=Science" alt="Science Faculty" class="mx-auto mb-3 rounded-full object-cover">
+                    <h3 class="font-semibold text-lg mb-1">Sciences</h3>
+                    <p class="text-gray-600 text-sm">Unravel the mysteries of the natural and physical world.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block faculty-link">Learn More</a>
+                </div>
+                <div class="card bg-white p-4 text-center">
+                    <img src="https://placehold.co/150x150/F8BBD0/C2185B?text=Medicine" alt="Medicine Faculty" class="mx-auto mb-3 rounded-full object-cover">
+                    <h3 class="font-semibold text-lg mb-1">Medicine & Health Sciences</h3>
+                    <p class="text-gray-600 text-sm">Dedicated to advancing health and medical knowledge.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block faculty-link">Learn More</a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg faculties-link">View All Faculties</a>
+            </div>
+        </section>
 
-        <!-- Resources Section (Conceptual) -->
+        <section id="institutions-section" class="bg-white py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Partner Institutions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-gray-50 p-6 text-center flex flex-col items-center">
+                    <img src="https://placehold.co/100x100/F5F5F5/424242?text=University+A" alt="University A Logo" class="mb-4 rounded-full border border-gray-200">
+                    <h3 class="font-semibold text-xl mb-2">Global Tech University</h3>
+                    <p class="text-gray-600 text-sm">A leading institution for technology and innovation studies.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block institution-link">Visit Profile</a>
+                </div>
+                <div class="card bg-gray-50 p-6 text-center flex flex-col items-center">
+                    <img src="https://placehold.co/100x100/F5F5F5/424242?text=College+B" alt="College B Logo" class="mb-4 rounded-full border border-gray-200">
+                    <h3 class="font-semibold text-xl mb-2">City Arts College</h3>
+                    <p class="text-gray-600 text-sm">Renowned for its vibrant arts and design programs.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block institution-link">Visit Profile</a>
+                </div>
+                <div class="card bg-gray-50 p-6 text-center flex flex-col items-center">
+                    <img src="https://placehold.co/100x100/F5F5F5/424242?text=Academy+C" alt="Academy C Logo" class="mb-4 rounded-full border border-gray-200">
+                    <h3 class="font-semibold text-xl mb-2">Research Science Academy</h3>
+                    <p class="text-gray-600 text-sm">Fostering breakthrough research in fundamental sciences.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block institution-link">Visit Profile</a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg institutions-link">View All Institutions</a>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4 mt-8 flex justify-center">
+            <div class="google-ad-placeholder ad-16-9">
+                <p>Advertisement (Google AdSense)</p>
+                <p>Wide Ad (16:9 Aspect Ratio)</p>
+            </div>
+        </div>
+
+        <section id="programs-section" class="bg-blue-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Explore Academic Programs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card bg-white p-5 text-center">
+                    <h3 class="font-semibold text-xl mb-2">Computer Science Degrees</h3>
+                    <p class="text-gray-600 text-sm">From Bachelor's to PhDs in various computing specializations.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block program-link">Find Programs</a>
+                </div>
+                <div class="card bg-white p-5 text-center">
+                    <h3 class="font-semibold text-xl mb-2">Business Administration</h3>
+                    <p class="text-gray-600 text-sm">Courses covering management, finance, marketing, and entrepreneurship.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block program-link">Find Programs</a>
+                </div>
+                <div class="card bg-white p-5 text-center">
+                    <h3 class="font-semibold text-xl mb-2">Medical & Healthcare Courses</h3>
+                    <p class="text-gray-600 text-sm">Pathways to careers in medicine, nursing, and allied health fields.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block program-link">Find Programs</a>
+                </div>
+                <div class="card bg-white p-5 text-center">
+                    <h3 class="font-semibold text-xl mb-2">Creative Arts & Design</h3>
+                    <p class="text-gray-600 text-sm">Degrees in fine arts, graphic design, music, and performing arts.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block program-link">Find Programs</a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg programs-link">View All Programs</a>
+            </div>
+        </section>
+
+        <section id="student-life-section" class="bg-green-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Vibrant Student Life</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card bg-white p-5 text-center">
+                    <img src="https://placehold.co/200x120/AED581/000000?text=Clubs" alt="Student Clubs" class="mx-auto mb-3 rounded-md object-cover">
+                    <h3 class="font-semibold text-xl mb-2">Student Clubs & Organizations</h3>
+                    <p class="text-gray-600 text-sm">Discover and join a diverse range of student-led groups.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block student-life-link">Explore Clubs</a>
+                </div>
+                <div class="card bg-white p-5 text-center">
+                    <img src="https://placehold.co/200x120/FFD54F/000000?text=Events" alt="Campus Events" class="mx-auto mb-3 rounded-md object-cover">
+                    <h3 class="font-semibold text-xl mb-2">Campus Events & Activities</h3>
+                    <p class="text-gray-600 text-sm">Stay updated on workshops, festivals, and social gatherings.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block student-life-link">View Calendar</a>
+                </div>
+                <div class="card bg-white p-5 text-center">
+                    <img src="https://placehold.co/200x120/B3E5FC/000000?text=Support" alt="Student Support" class="mx-auto mb-3 rounded-md object-cover">
+                    <h3 class="font-semibold text-xl mb-2">Student Support Services</h3>
+                    <p class="text-gray-600 text-sm">Access academic advising, counseling, and wellness resources.</p>
+                    <a href="#" class="text-blue-600 hover:underline text-sm mt-2 block student-life-link">Get Support</a>
+                </div>
+            </div>
+            <div class="text-center mt-10">
+                <a href="#" class="bg-blue-600 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg student-life-link">Discover Student Life</a>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4 mt-8 flex justify-center">
+            <div class="google-ad-placeholder ad-9-16">
+                <p>Advertisement (Google AdSense)</p>
+                <p>Vertical Ad (9:16 Aspect Ratio)</p>
+            </div>
+        </div>
+
         <section id="resources-section" class="bg-white py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Valuable Resources</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -524,20 +712,10 @@
                 </div>
             </div>
             <div class="text-center mt-10">
-                <a href="#resources-section" class="text-blue-600 hover:underline font-medium text-lg view-all-resources-btn">View All Resources <i class="fas fa-arrow-right ml-2"></i></a>
+                <a href="resources.html" class="text-blue-600 hover:underline font-medium text-lg view-all-resources-btn">View All Resources <i class="fas fa-arrow-right ml-2"></i></a>
             </div>
         </section>
 
-        <!-- Google AdSense Placeholder (9:16 Ratio) -->
-        <div class="container mx-auto px-4 mt-8 flex justify-center">
-            <div class="google-ad-placeholder ad-9-16">
-                <!-- AdSense Unit Code Here (e.g., 9:16 Vertical Ad) -->
-                <p>Advertisement (Google AdSense)</p>
-                <p>Vertical Ad (9:16 Aspect Ratio)</p>
-            </div>
-        </div>
-
-        <!-- AI Interview Prep Assistant Section -->
         <section class="bg-blue-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Interview Prep Assistant</h2>
             <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Describe the role or opportunity you're preparing for, and our AI will suggest common interview questions.</p>
@@ -545,16 +723,13 @@
                 <textarea id="interviewPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-blue-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'Software Engineer Internship at a FinTech startup' or 'Scholarship interview for a Master's in Biology program'"></textarea>
                 <button id="generateInterviewQuestionsBtn" class="bg-blue-600 text-white font-bold px-8 py-3 rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg">Generate Questions ✨</button>
             </div>
-            <!-- Google AdSense Placeholder (16:9 Ratio), now within Interview Prep section -->
             <div class="google-ad-placeholder mt-8 ad-16-9">
-                <!-- AdSense Unit Code Here (e.g., 16:9 Wide Ad) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Wide Ad (16:9 Aspect Ratio)</p>
             </div>
         </section>
 
 
-        <!-- AI Essay Idea Generator Section -->
         <section class="bg-purple-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Essay Idea Generator</h2>
             <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Stuck on an essay? Provide a topic, and our AI will generate a detailed outline and key ideas to get you started!</p>
@@ -562,15 +737,12 @@
                 <textarea id="essayPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-purple-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'The impact of social media on youth mental health' or 'Analyze the themes in Shakespeare's Hamlet'"></textarea>
                 <button id="generateEssayIdeasBtn" class="bg-purple-600 text-white font-bold px-8 py-3 rounded-full hover:bg-purple-700 transition-colors duration-200 shadow-lg text-lg">Generate Essay Ideas ✨</button>
             </div>
-            <!-- Google AdSense Placeholder 3 (Standard Banner/Rectangle), now within Essay Generator section -->
             <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
-                <!-- AdSense Unit Code Here (e.g., another rectangle or banner) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Another Standard Ad Placement</p>
             </div>
         </section>
 
-        <!-- AI Study Plan Generator Section -->
         <section class="bg-indigo-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Study Plan Generator</h2>
             <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Need a study plan? Tell us your subject and target, and our AI will outline a tailored study schedule for you!</p>
@@ -578,15 +750,12 @@
                 <textarea id="studyPlanPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-indigo-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'Prepare for advanced calculus in 2 months' or 'Learn web development basics in 6 weeks'"></textarea>
                 <button id="generateStudyPlanBtn" class="bg-indigo-600 text-white font-bold px-8 py-3 rounded-full hover:bg-indigo-700 transition-colors duration-200 shadow-lg text-lg">Generate Study Plan ✨</button>
             </div>
-            <!-- Google AdSense Placeholder for Study Plan Generator -->
             <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
-                <!-- AdSense Unit Code Here (e.g., a responsive ad unit) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Ad Placement for Study Plan Generator</p>
             </div>
         </section>
 
-        <!-- AI Career Path Suggester Section -->
         <section class="bg-teal-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Career Path Suggester</h2>
             <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Unsure about your career path? Describe your interests, skills, and academic background, and our AI will suggest potential career directions!</p>
@@ -594,15 +763,25 @@
                 <textarea id="careerPathPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-teal-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'I am interested in art and technology, good at problem-solving, and studying computer science.' or 'I love working with people and helping others, and I'm studying psychology.'"></textarea>
                 <button id="suggestCareerPathsBtn" class="bg-teal-600 text-white font-bold px-8 py-3 rounded-full hover:bg-teal-700 transition-colors duration-200 shadow-lg text-lg">Suggest Career Paths ✨</button>
             </div>
-            <!-- Google AdSense Placeholder for Career Suggester -->
             <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
-                <!-- AdSense Unit Code Here (e.g., a responsive ad unit) -->
                 <p>Advertisement (Google AdSense)</p>
                 <p>Ad Placement for Career Suggester Section</p>
             </div>
         </section>
 
-        <!-- Latest News/Articles Section -->
+        <section class="bg-orange-50 py-12 px-4 container mx-auto rounded-lg shadow-md mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">✨ AI Project Idea Brainstormer</h2>
+            <p class="text-center text-gray-600 mb-6 max-w-2xl mx-auto">Need inspiration for your next project? Describe your field or interests, and our AI will brainstorm creative project ideas for you!</p>
+            <div class="flex flex-col items-center gap-4">
+                <textarea id="projectIdeaPrompt" class="w-full md:w-3/4 p-4 rounded-lg border-2 border-gray-300 focus:border-orange-500 focus:outline-none resize-y" rows="4" placeholder="e.g., 'A web development project for beginners' or 'Creative writing project ideas for fantasy genre'"></textarea>
+                <button id="generateProjectIdeasBtn" class="bg-orange-600 text-white font-bold px-8 py-3 rounded-full hover:bg-orange-700 transition-colors duration-200 shadow-lg text-lg">Generate Project Ideas ✨</button>
+            </div>
+            <div class="google-ad-placeholder mt-8 max-w-md mx-auto">
+                <p>Advertisement (Google AdSense)</p>
+                <p>Ad Placement for Project Ideas</p>
+            </div>
+        </section>
+
         <section id="news-section" class="py-12 px-4 container mx-auto">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Latest News & Articles</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -628,7 +807,6 @@
             </div>
         </section>
 
-        <!-- Footer -->
         <footer id="footer-section" class="bg-gray-800 text-white py-10 px-4 mt-8">
             <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -647,10 +825,10 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Opportunities</h3>
                     <ul class="text-gray-400 text-sm space-y-2">
-                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Scholarships</a></li>
-                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Internships</a></li>
-                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Competitions</a></li>
-                        <li><a href="#opportunities-section" class="hover:text-white transition-colors duration-200">Fellowships</a></li>
+                        <li><a href="opportunities.html" class="hover:text-white transition-colors duration-200">Scholarships</a></li>
+                        <li><a href="opportunities.html" class="hover:text-white transition-colors duration-200">Internships</a></li>
+                        <li><a href="opportunities.html" class="hover:text-white transition-colors duration-200">Competitions</a></li>
+                        <li><a href="opportunities.html" class="hover:text-white transition-colors duration-200">Fellowships</a></li>
                     </ul>
                 </div>
                 <div>
@@ -670,37 +848,59 @@
         </footer>
     </div>
 
-    <!-- Font Awesome for icons (optional, but used for some placeholders) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
-    <!-- Modal for Generated Details -->
     <div id="detailsModal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-button" id="closeModalBtn">&times;</button>
             <h2 id="modalTitle" class="text-2xl font-bold mb-4"></h2>
             <div id="modalContent" class="text-gray-700 leading-relaxed">
-                <!-- Loader or generated text will go here -->
                 <div class="loader" id="modalLoader"></div>
-                <p id="modalText" class="whitespace-pre-line"></p> <!-- Added whitespace-pre-line for formatting -->
+                <p id="modalText" class="whitespace-pre-line"></p> </div>
+        </div>
+    </div>
+
+    <div id="loginSignupModal" class="login-signup-modal-overlay">
+        <div class="login-signup-modal-content">
+            <button class="modal-close-button" id="closeLoginSignupModalBtn">&times;</button>
+            <div class="login-signup-modal-tabs">
+                <div id="loginTab" class="login-signup-modal-tab active">Login</div>
+                <div id="signupTab" class="login-signup-modal-tab">Sign Up</div>
+            </div>
+
+            <div id="loginContent" class="login-signup-modal-tab-content active">
+                <h3 class="text-xl font-semibold mb-4 text-center">Login to CBSN-U</h3>
+                <input type="email" id="loginEmail" class="login-signup-modal-input" placeholder="Email" required>
+                <input type="password" id="loginPassword" class="login-signup-modal-input" placeholder="Password" required>
+                <p id="loginError" class="login-signup-error-message hidden">Please enter both email and password.</p>
+                <button id="loginSubmitBtn" class="login-signup-modal-button">Login</button>
+                <p class="text-center text-sm text-gray-600 mt-4">Don't have an account? <span id="switchToSignup" class="text-blue-600 cursor-pointer hover:underline">Sign Up</span></p>
+            </div>
+
+            <div id="signupContent" class="login-signup-modal-tab-content">
+                <h3 class="text-xl font-semibold mb-4 text-center">Join CBSN-U</h3>
+                <input type="email" id="signupEmail" class="login-signup-modal-input" placeholder="Email" required>
+                <input type="password" id="signupPassword" class="login-signup-modal-input" placeholder="Password" required>
+                <input type="password" id="signupConfirmPassword" class="login-signup-modal-input" placeholder="Confirm Password" required>
+                <p id="signupError" class="login-signup-error-message hidden">Please fill all fields and ensure passwords match.</p>
+                <button id="signupSubmitBtn" class="login-signup-modal-button">Sign Up</button>
+                <p class="text-center text-sm text-gray-600 mt-4">Already have an account? <span id="switchToLogin" class="text-blue-600 cursor-pointer hover:underline">Login</span></p>
             </div>
         </div>
     </div>
 
-    <!-- Chatbot Floating Icon -->
     <div id="chatbotIcon" class="chatbot-icon">
         <i class="fas fa-comments"></i>
     </div>
 
-    <!-- Chatbot Window -->
     <div id="chatbotWindow" class="chatbot-window hidden">
         <div class="chatbot-header">
-            <span>CBSN-U Assistant</span>
+            <span>Rithiksha (CBSN-U Assistant)</span>
             <button id="closeChatbotBtn">&times;</button>
         </div>
         <div id="chatMessages" class="chatbot-messages">
-            <!-- Chat messages will be appended here -->
             <div class="chat-message ai">
-                <div class="chat-bubble ai">Hello! How can I assist you today regarding opportunities or resources?</div>
+                <div class="chat-bubble ai">Hello! I am Rithiksha, your CBSN-U assistant. How can I help you discover opportunities or prepare for your academic journey today?</div>
             </div>
         </div>
         <div class="chatbot-input">
@@ -714,14 +914,13 @@
         </div>
     </div>
 
-    <!-- Scroll to Top Button -->
     <div id="scrollToTopBtn" class="scroll-to-top">
         <i class="fas fa-arrow-up"></i>
     </div>
 
     <script>
         // DOM Elements
-        const introScreen = document.getElementById('introScreen');
+        // Removed introScreen as its element is removed from HTML
         const mainContent = document.getElementById('mainContent');
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileNav = document.getElementById('mobileNav');
@@ -741,8 +940,10 @@
         const generateEssayIdeasBtn = document.getElementById('generateEssayIdeasBtn');
         const careerPathPromptTextarea = document.getElementById('careerPathPrompt');
         const suggestCareerPathsBtn = document.getElementById('suggestCareerPathsBtn');
-        const studyPlanPromptTextarea = document.getElementById('studyPlanPrompt'); // New: Study Plan
-        const generateStudyPlanBtn = document.getElementById('generateStudyPlanBtn'); // New: Study Plan
+        const studyPlanPromptTextarea = document.getElementById('studyPlanPrompt');
+        const generateStudyPlanBtn = document.getElementById('generateStudyPlanBtn');
+        const projectIdeaPromptTextarea = document.getElementById('projectIdeaPrompt');
+        const generateProjectIdeasBtn = document.getElementById('generateProjectIdeasBtn');
 
         const chatbotIcon = document.getElementById('chatbotIcon');
         const chatbotWindow = document.getElementById('chatbotWindow');
@@ -752,15 +953,47 @@
         const sendChatBtn = document.getElementById('sendChatBtn');
         const chatLoader = document.getElementById('chatLoader');
 
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // New: Scroll to top
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
+        // Login/Signup Modal Elements
+        const loginSignupModal = document.getElementById('loginSignupModal');
+        const closeLoginSignupModalBtn = document.getElementById('closeLoginSignupModalBtn');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+        const loginContent = document.getElementById('loginContent');
+        const signupContent = document.getElementById('signupContent');
+        const loginEmailInput = document.getElementById('loginEmail');
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+        const loginSubmitBtn = document.getElementById('loginSubmitBtn');
+        const signupEmailInput = document.getElementById('signupEmail');
+        const signupPasswordInput = document.getElementById('signupPassword');
+        const signupConfirmPasswordInput = document.getElementById('signupConfirmPassword');
+        const signupError = document.getElementById('signupError');
+        const signupSubmitBtn = document.getElementById('signupSubmitBtn');
+        const switchToSignupLink = document.getElementById('switchToSignup');
+        const switchToLoginLink = document.getElementById('switchToLogin');
+
+        const desktopLoginBtn = document.getElementById('desktopLoginBtn');
+        const desktopSignupBtn = document.getElementById('desktopSignupBtn');
+        const mobileLoginBtn = document.getElementById('mobileLoginBtn');
+        const mobileSignupBtn = document.getElementById('mobileSignupBtn');
+
+
+        // Chatbot specific state variables
         let chatHistory = [{
             role: "user",
-            parts: [{ text: "You are a helpful assistant for CBSN-U, a website for student opportunities like scholarships, internships, and educational resources. Your goal is to answer questions related to finding opportunities, preparing for interviews, generating essay ideas, and general academic/career guidance. Keep your responses concise and focused on helping students. If asked about topics outside of this scope, politely redirect to CBSN-U's mission." }]
+            parts: [{ text: "You are Rithiksha, a helpful and professional AI assistant for CBSN-U. Your main goal is to assist students with queries related to scholarships, internships, educational resources, interview preparation, essay ideas, and career guidance. You are also programmed to maintain a respectful and productive environment. If a user's language is inappropriate or disrespectful, you have the right to issue a warning. If misbehavior persists after a warning, you will terminate the conversation for the current session. Your responses should be concise and focused on helping students." }]
         }, {
             role: "model",
-            parts: [{ text: "Hello! How can I assist you today regarding opportunities or resources?" }]
+            parts: [{ text: "Hello! I am Rithiksha, your CBSN-U assistant. How can I help you discover opportunities or prepare for your academic journey today?" }]
         }];
+        let warningCount = 0;
+        const maxWarnings = 2; // Rithiksha will terminate after 2 warnings
+        let conversationTerminated = false;
+
+        // Simplified list of keywords for demonstration. In a real app, this would be more sophisticated.
+        const inappropriateKeywords = ['insult', 'rude', 'offensive', 'stupid', 'idiot', 'useless', 'shut up'];
 
 
         /**
@@ -779,16 +1012,16 @@
 
         /**
          * Initializes the intro screen fade-out effect.
+         * REMOVED as the intro screen is now removed from HTML.
+         * This function is now a placeholder.
          */
         function initIntroScreen() {
-            setTimeout(() => {
-                introScreen.classList.add('fade-out');
-                introScreen.addEventListener('transitionend', () => {
-                    introScreen.style.display = 'none';
-                    mainContent.classList.remove('opacity-0');
-                    mainContent.classList.add('opacity-100');
-                }, { once: true });
-            }, 2000); // 2 seconds delay
+            // Since the intro screen is removed, the main content is visible by default.
+            // Ensure mainContent is visible immediately on page load.
+            mainContent.classList.remove('opacity-0');
+            mainContent.classList.add('opacity-100');
+
+            // No audio to play as the intro screen is removed.
         }
 
         /**
@@ -799,12 +1032,19 @@
                 mobileNav.classList.toggle('hidden');
             });
 
-            // Handle navigation links to scroll to sections
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            // Handle navigation links to scroll to sections or new pages
+            document.querySelectorAll('nav a').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    smoothScrollTo(targetId);
+                    const href = this.getAttribute('href');
+                    if (href.startsWith('#')) { // Links to sections on current page
+                        e.preventDefault();
+                        const targetId = href.substring(1);
+                        smoothScrollTo(targetId);
+                    } else { // Links to new pages (like opportunities.html, resources.html)
+                        // Allow default browser behavior for page navigation
+                        console.log(`Navigating to: ${href}`);
+                        // No e.preventDefault() needed here if it's a page navigation
+                    }
                     // Close mobile nav if open
                     if (!mobileNav.classList.contains('hidden')) {
                         mobileNav.classList.add('hidden');
@@ -997,7 +1237,34 @@
         }
 
         /**
-         * Sets up the modal close functionality.
+         * Sets up the AI Project Idea Brainstormer functionality.
+         */
+        function setupProjectIdeaBrainstormer() {
+            generateProjectIdeasBtn.addEventListener('click', async () => {
+                const projectIdeaPrompt = projectIdeaPromptTextarea.value.trim();
+
+                if (!projectIdeaPrompt) {
+                    showModal("Input Required", "Please describe your field or interests to brainstorm project ideas.", false);
+                    return;
+                }
+
+                showModal(`Project Ideas for: "${projectIdeaPrompt}"`, '', true);
+
+                try {
+                    const prompt = `Brainstorm 3-5 creative and actionable project ideas for someone interested in "${projectIdeaPrompt}". For each idea, provide a brief description and suggest a few key components or technologies involved. Format as a numbered list.`;
+                    const generatedText = await callGeminiAPI([{ role: "user", parts: [{ text: prompt }] }]);
+                    modalText.textContent = generatedText;
+                } catch (error) {
+                    modalText.textContent = "An error occurred while brainstorming project ideas. Please try again later.";
+                    console.error("Error generating project ideas:", error);
+                } finally {
+                    modalLoader.style.display = 'none';
+                }
+            });
+        }
+
+        /**
+         * Sets up the main modal (for AI tool outputs) close functionality.
          */
         function setupModalClose() {
             closeModalBtn.addEventListener('click', () => {
@@ -1010,6 +1277,108 @@
                 }
             });
         }
+
+        /**
+         * Sets up the Login/Signup modal functionality.
+         */
+        function setupLoginSignupModal() {
+            function showLoginModal() {
+                loginSignupModal.classList.add('show');
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                loginContent.classList.add('active');
+                signupContent.classList.remove('active');
+                loginEmailInput.focus();
+                loginError.classList.add('hidden');
+                signupError.classList.add('hidden');
+            }
+
+            function showSignupModal() {
+                loginSignupModal.classList.add('show');
+                signupTab.classList.add('active');
+                loginTab.classList.remove('active');
+                signupContent.classList.add('active');
+                loginContent.classList.remove('active');
+                signupEmailInput.focus();
+                loginError.classList.add('hidden');
+                signupError.classList.add('hidden');
+            }
+
+            function closeLoginSignupModal() {
+                loginSignupModal.classList.remove('show');
+                loginEmailInput.value = '';
+                loginPasswordInput.value = '';
+                signupEmailInput.value = '';
+                signupPasswordInput.value = '';
+                signupConfirmPasswordInput.value = '';
+                loginError.classList.add('hidden');
+                signupError.classList.add('hidden');
+            }
+
+            // Open modal buttons
+            document.querySelectorAll('.login-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showLoginModal();
+                });
+            });
+            document.querySelectorAll('.signup-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => { // Added e to parameter
+                    e.preventDefault();
+                    showSignupModal();
+                });
+            });
+
+            // Close modal button
+            closeLoginSignupModalBtn.addEventListener('click', closeLoginSignupModal);
+            loginSignupModal.addEventListener('click', (event) => {
+                if (event.target === loginSignupModal) {
+                    closeLoginSignupModal();
+                }
+            });
+
+            // Tab switching
+            if (loginTab) loginTab.addEventListener('click', showLoginModal);
+            if (signupTab) signupTab.addEventListener('click', showSignupModal);
+            if (switchToSignupLink) switchToSignupLink.addEventListener('click', showSignupModal);
+            if (switchToLoginLink) switchToLoginLink.addEventListener('click', showLoginModal);
+
+            // Login submission
+            if (loginSubmitBtn) {
+                loginSubmitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = loginEmailInput.value.trim();
+                    const password = loginPasswordInput.value.trim();
+                    if (email && password) {
+                        console.log("Login Attempt:", { email, password });
+                        showModal("Login Success (Conceptual)", "You've successfully attempted to log in. In a real application, this would authenticate you.", false);
+                        closeLoginSignupModal();
+                    } else {
+                        loginError.textContent = "Please enter both email and password.";
+                        loginError.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Signup submission
+            if (signupSubmitBtn) {
+                signupSubmitBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = signupEmailInput.value.trim();
+                    const password = signupPasswordInput.value.trim();
+                    const confirmPassword = signupConfirmPasswordInput.value.trim();
+                    if (email && password && confirmPassword && (password === confirmPassword)) {
+                        console.log("Signup Attempt:", { email, password });
+                        showModal("Sign Up Success (Conceptual)", "Account created! In a real application, this would register your new account.", false);
+                        closeLoginSignupModal();
+                    } else {
+                        signupError.textContent = "Please fill all fields and ensure passwords match.";
+                        signupError.classList.remove('hidden');
+                    }
+                });
+            }
+        }
+
 
         /**
          * Sets up other general buttons and links.
@@ -1030,15 +1399,17 @@
             // Explore More Opportunities Button
             document.querySelector('.explore-opportunities-btn').addEventListener('click', (e) => {
                 e.preventDefault();
-                smoothScrollTo('opportunities-section');
-                console.log("Exploring more opportunities.");
+                // This link now points to the opportunities.html page directly via href="opportunities.html"
+                console.log("Navigating to opportunities.html page.");
+                window.location.href = "opportunities.html"; // Ensure this redirects
             });
 
             // View All Resources Button
             document.querySelector('.view-all-resources-btn').addEventListener('click', (e) => {
                 e.preventDefault();
-                smoothScrollTo('resources-section');
-                console.log("Viewing all resources.");
+                // This link now points to the resources.html page directly via href="resources.html"
+                console.log("Navigating to resources.html page.");
+                window.location.href = "resources.html"; // Ensure this redirects
             });
 
             // View All Articles Button
@@ -1057,13 +1428,6 @@
                 });
             });
 
-            // Login/Signup Buttons
-            document.querySelectorAll('.login-btn, .signup-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showModal(`${e.target.textContent} Page (Conceptual)`, `This would take you to the ${e.target.textContent.toLowerCase()} page. For this demo, it's a placeholder action.`, false);
-                });
-            });
 
             // Footer Quick Links (Contact Us, Privacy Policy, Terms of Service)
             document.querySelector('.contact-us-link').addEventListener('click', (e) => {
@@ -1077,6 +1441,62 @@
             document.querySelector('.terms-of-service-link').addEventListener('click', (e) => {
                 e.preventDefault();
                 showModal("Terms of Service Page (Conceptual)", "This would display the terms of service document. For this demo, it's a placeholder.", false);
+            });
+
+            // New: Handle Faculty Links
+            document.querySelectorAll('.faculty-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal("Faculty Page (Conceptual)", `This would lead to a page detailing programs and opportunities related to ${e.target.closest('.card').querySelector('h3').textContent}.`, false);
+                });
+            });
+
+            // New: Handle Institution Links
+            document.querySelectorAll('.institution-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal("Institution Profile (Conceptual)", `This would lead to a profile page for ${e.target.closest('.card').querySelector('h3').textContent}.`, false);
+                });
+            });
+
+            // New: Handle Program Links
+            document.querySelectorAll('.program-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal("Program Listing (Conceptual)", `This would lead to a page listing programs in ${e.target.closest('.card').querySelector('h3').textContent}.`, false);
+                });
+            });
+
+            // New: Handle Student Life Links
+            document.querySelectorAll('.student-life-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showModal("Student Life Details (Conceptual)", `This would lead to details about ${e.target.closest('.card').querySelector('h3').textContent}.`, false);
+                });
+            });
+
+            // New: View All Faculties Button
+            document.querySelector('.faculties-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("All Faculties Page (Conceptual)", "This would navigate to a comprehensive directory of all faculties and departments.", false);
+            });
+
+            // New: View All Institutions Button
+            document.querySelector('.institutions-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("All Institutions Page (Conceptual)", "This would navigate to a comprehensive directory of all partner institutions.", false);
+            });
+
+            // New: View All Programs Button
+            document.querySelector('.programs-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("All Programs Page (Conceptual)", "This would navigate to a comprehensive listing of all academic programs.", false);
+            });
+
+            // New: Discover Student Life Button
+            document.querySelector('.student-life-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal("Full Student Life Page (Conceptual)", "This would navigate to a detailed section or page about student life at institutions.", false);
             });
         }
 
@@ -1096,6 +1516,21 @@
             closeChatbotBtn.addEventListener('click', () => {
                 chatbotWindow.classList.remove('show');
                 chatbotWindow.classList.add('hidden');
+                // Reset session when closing chatbot window
+                warningCount = 0;
+                conversationTerminated = false;
+                chatHistory = [{
+                    role: "user",
+                    parts: [{ text: "You are Rithiksha, a helpful and professional AI assistant for CBSN-U. Your main goal is to assist students with queries related to scholarships, internships, educational resources, interview preparation, essay ideas, and career guidance. You are also programmed to maintain a respectful and productive environment. If a user's language is inappropriate or disrespectful, you have the right to issue a warning. If misbehavior persists after a warning, you will terminate the conversation for the current session. Your responses should be concise and focused on helping students." }]
+                }, {
+                    role: "model",
+                    parts: [{ text: "Hello! I am Rithiksha, your CBSN-U assistant. How can I help you discover opportunities or prepare for your academic journey today?" }]
+                }];
+                chatMessages.innerHTML = `
+                    <div class="chat-message ai">
+                        <div class="chat-bubble ai">Hello! I am Rithiksha, your CBSN-U assistant. How can I help you discover opportunities or prepare for your academic journey today?</div>
+                    </div>
+                `;
             });
 
             sendChatBtn.addEventListener('click', sendMessage);
@@ -1105,16 +1540,51 @@
                 }
             });
 
+            // Function to check for inappropriate content (simplified for demo)
+            function containsInappropriateContent(message) {
+                const lowerCaseMessage = message.toLowerCase();
+                return inappropriateKeywords.some(keyword => lowerCaseMessage.includes(keyword));
+            }
+
             async function sendMessage() {
                 const userMessage = chatInput.value.trim();
                 if (!userMessage) return;
 
+                if (conversationTerminated) {
+                    appendMessage("I cannot continue this conversation. Please close and re-open the chat window to start a new session.", 'ai');
+                    chatInput.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    return;
+                }
+
+                if (containsInappropriateContent(userMessage)) {
+                    warningCount++;
+                    if (warningCount <= maxWarnings) {
+                        const warningText = `Please refrain from using inappropriate language. This is warning ${warningCount} of ${maxWarnings}.`;
+                        appendMessage(userMessage, 'user'); // Append user's message
+                        appendMessage(warningText, 'ai');
+                        chatHistory.push({ role: "user", parts: [{ text: userMessage }] }); // Keep user's message in history
+                        chatHistory.push({ role: "model", parts: [{ text: warningText }] }); // Add warning to history
+                    } else {
+                        const terminationText = "Due to continued inappropriate behavior, I am terminating this conversation for the current session. Please close and re-open the chat window to start a new one.";
+                        appendMessage(userMessage, 'user'); // Append user's message
+                        appendMessage(terminationText, 'ai');
+                        conversationTerminated = true;
+                        chatInput.disabled = true; // Disable input
+                        sendChatBtn.disabled = true; // Disable send button
+                    }
+                    chatInput.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    return; // Stop further processing for this message
+                }
+
+                // If not terminated and no misbehavior, proceed with normal AI response
                 appendMessage(userMessage, 'user');
                 chatInput.value = '';
-                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
 
                 chatLoader.classList.remove('hidden');
-                sendChatBtn.disabled = true; // Disable button while loading
+                sendChatBtn.disabled = true;
 
                 chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
@@ -1127,8 +1597,10 @@
                     console.error("Chatbot API error:", error);
                 } finally {
                     chatLoader.classList.add('hidden');
-                    sendChatBtn.disabled = false; // Re-enable button
-                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom again
+                    if (!conversationTerminated) { // Only re-enable if not terminated
+                        sendChatBtn.disabled = false;
+                    }
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
                 }
             }
 
@@ -1165,17 +1637,23 @@
 
         // Initialize all functionalities when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', () => {
-            initIntroScreen();
+            initIntroScreen(); // Now just makes mainContent visible
             setupNavigation();
             setupOpportunityDetails();
             setupInterviewAssistant();
             setupEssayIdeaGenerator();
-            setupStudyPlanGenerator(); // Initialize new study plan generator
+            setupStudyPlanGenerator();
             setupCareerPathSuggester();
+            setupProjectIdeaBrainstormer();
             setupModalClose();
             setupOtherButtonsAndLinks();
+            setupLoginSignupModal(); // Initialize the login/signup modal
             setupChatbot();
-            setupScrollToTopButton(); // Initialize scroll to top button
+            setupScrollToTopButton();
+
+            // Additional setup for new sections
+            // No specific JS needed for faculty/institution cards beyond conceptual clicks
+            // handled by setupOtherButtonsAndLinks
         });
     </script>
 </body>
